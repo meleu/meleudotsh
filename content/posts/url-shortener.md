@@ -45,7 +45,7 @@ A palavra inglesa _bearer_ em português significa "portador", portanto podemos 
 
 Para usarmos esta metodologia de autenticação através do `curl`, fazemos da seguinte forma:
 
-```bash
+```
 curl \
   --header "Authorization: Bearer ac4b1cabb9264079c4e9f2532804f81364c09b12"
 ```
@@ -58,7 +58,7 @@ Essa linha de comando ainda não está pronta...
 A versão mais atual da API do bitly (versão 4) espera receber dados no formato JSON. E neste JSON precisamos passar a propriedade `long_url` contendo a URL que queremos encurtar.
 
 No exemplo abaixo vamos encurtar a URL `https://meleu.sh/elemento-presente-no-array/` (muita atenção nas aspas!):
-```bash
+```
 curl \
   --header "Authorization: Bearer ac4b1cabb9264079c4e9f2532804f81364c09b12" \
   --header "Content-Type: application/json" \
@@ -73,7 +73,7 @@ Calma que o comando ainda não está pronto! Precisamos dizer ao `curl` para ond
 O endpoint da API responsável por encurtar URLs é o `shorten`, e ele é acessado através desta URL: `https://api-ssl.bitly.com/v4/shorten`.
 
 Portanto o comando completo (e pronto para ser usado) vai ficar parecido com isso (lembre-se que o token abaixo é inválido, use o seu próprio token):
-```bash
+```
 curl \
   --header "Authorization: Bearer ac4b1cabb9264079c4e9f2532804f81364c09b12" \
   --header "Content-Type: application/json" \
@@ -96,7 +96,7 @@ O `jq` é um comandinho que serve para processar dados no formato JSON.
 Não faz parte do escopo deste artigo explicar o que é JSON nem os detalhes de como usar o `jq` (talvez num próximo artigo). Então vou apenas mostrar aqui a "receitinha de bolo" de como obter o que queremos.
 
 Para tornar aquele "tijolão" de JSON que obtivemos como resposta, basta mandarmos esse conteúdo para o `jq` da seguinte maneira:
-```bash
+```
 curl \
   --header "Authorization: Bearer ac4b1cabb9264079c4e9f2532804f81364c09b12" \
   --header "Content-Type: application/json" \
@@ -126,7 +126,7 @@ Bem mais legível, certo?
 
 Como podemos observar, a propriedade que nos interessa é a `link`, portanto vamos pegar somente ela. Desta forma:
 
-```bash
+```
 curl \
   --header "Authorization: Bearer ac4b1cabb9264079c4e9f2532804f81364c09b12" \
   --header "Content-Type: application/json" \
@@ -146,7 +146,7 @@ E se o usuário quiser encurtar uma URL inválida?
 Poderíamos criar uma RegEx para verificar isso de antemão, mas vamos pensar melhor: com certeza um o a API do bitly.com sabe lidar com isso!
 
 Vamos ver o que acontece se passarmos uma url inválida:
-```bash
+```
 curl \
   --header "Authorization: Bearer ac4b1cabb9264079c4e9f2532804f81364c09b12" \
   --header "Content-Type: application/json" \
@@ -172,7 +172,7 @@ Isso vai gerar essa saída:
 Neste JSON retornado, não existe a propriedade `link`. Além disso o conteúdo da propriedade `description` parece bastante apropriado para mostrar ao usuário quuando ele mandar uma URL inválida.
 
 Portanto vamos usar o recurso `if-then-else` do `jq` e mostrar o `link` se estiver tudo certo, e mostrar `description` se tiver dado algum problema:
-```bash
+```
 curl \
   --header "Authorization: Bearer ac4b1cabb9264079c4e9f2532804f81364c09b12" \
   --header "Content-Type: application/json" \
@@ -190,7 +190,7 @@ Perfeito! Acho que já temos tudo que precisamos para transformar isso num scrip
 
 ## Sexto Passo: transformando tudo isso num script
 
-```bash
+```
 #!/usr/bin/env bash
 # shortener.sh - encurtador de URLs
 

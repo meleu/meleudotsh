@@ -97,7 +97,7 @@ Vá no seu diretório home (`/home/nome_do_usuario`) e procure o arquivo `.bashr
 
 Provavelmente já vai existir bastante coisa escrita nele. Se quiser tentar dar uma olhadela no conteúdo do arquivo e tentar entender o que está acontecendo lá, você pode acabar se deparando com algumas coisas legais e aprender coisa nova. Mas vamos concluir a nossa dica logo! Vá no final do arquivo e adicione a seguinte linha:
 
-```bash
+```
 alias result='echo verdadeiro || echo falso'
 ```
 

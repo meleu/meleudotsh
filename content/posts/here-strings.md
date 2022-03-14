@@ -14,7 +14,7 @@ Um _here string_ nada mais é do que uma maneira de transformar uma string na en
 
 A sintaxe, pegando de uma variável, é a seguinte:
 
-```bash
+```
 COMMAND <<< "$VAR"
 ```
 
@@ -22,14 +22,14 @@ Onde o conteúdo variável `$VAR` será colocado na entrada padrão do `COMMAND`
 
 Usar a técnica do _here string_ evita o uso de estruturas como:
 
-```bash
+```
 # uso desnecessário do echo
 echo "$var" | grep padrao
 ```
 
 Podemos obter o mesmo resultado usando a sintaxe do _here string_:
 
-```bash
+```
 grep padrao <<< "$var"
 ```
 

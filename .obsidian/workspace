@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "content/posts/here-strings.md",
+            "file": "content/posts/url-shortener.md",
             "mode": "source"
           }
         }
@@ -39,7 +39,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tags",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/posts/here-strings.md",
+                "file": "content/posts/url-shortener.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +88,15 @@
   },
   "active": "ed33efdbb15a82c8",
   "lastOpenFiles": [
+    "content/posts/url-shortener.md",
+    "content/posts/dica-result.md",
     "content/posts/here-strings.md",
     "content/posts/shebang.md",
     "content/posts/aspas-sempre.md",
     "content/posts/coronavirus-ranking.md",
     "content/posts/coronavirus.md",
-    "content/posts/url-shortener.md",
     "content/posts/parametros.md",
     "content/posts/tolower-toupper.md",
-    "content/posts/percorrer-arquivo.md",
-    "content/posts/urlencode.md"
+    "content/posts/percorrer-arquivo.md"
   ]
 }
