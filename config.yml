@@ -5,7 +5,6 @@ title: meleu.sh
 ###############################################################################
 # PaperMod configs
 # https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-installation/
-theme: "PaperMod"
 # configs pendentes:
 ###############################################################################
 # - post cover image:
@@ -13,10 +12,15 @@ theme: "PaperMod"
 # - otimização para SEO:
 #   - https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/#enhanced-seo
 ###############################################################################
+theme: "PaperMod"
 
 buildDrafts: false
 buildFuture: false
 enableEmoji: true
+
+# todos os arquivos em /posts/ serão servidos na raiz
+permalinks:
+  posts: /:filename
 
 ###############################################################################
 # menu no canto superior direito das páginas
@@ -53,10 +57,7 @@ params:
   showToc: true
   tocOpen: false
   showCodeCopyButtons: true
-  images:
-    - "assets/meleush.png"
-
-  #showBreadCrumbs: true
+  showBreadCrumbs: true
 
   # sugerir outros posts ao final
   # (não gostei do fato de ficar acima dos links de compartilhamento)
@@ -71,8 +72,6 @@ params:
     content: Compartilhando conhecimento sobre linha de comando e shell script. Foco no conteúdo e sem distrações.
 
   socialIcons:
-    - name: rss
-      url: "index.xml"
     - name: twitter
       url: "https://twitter.com/meleushell"
     - name: github
@@ -81,6 +80,8 @@ params:
       url: "https://www.linkedin.com/in/meleu/"
     - name: kofi
       url: "https://ko-fi.com/meleu"
+    - name: rss
+      url: "index.xml"
   # TODO: adicionar link para o youtube, quanto tiver
   #############################################################################
 

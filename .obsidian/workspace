@@ -1,0 +1,102 @@
+{
+  "main": {
+    "id": "da743f03d94638b3",
+    "type": "split",
+    "children": [
+      {
+        "id": "ed33efdbb15a82c8",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "content/posts/here-strings.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "59c80e20c1d53055",
+    "type": "split",
+    "children": [
+      {
+        "id": "e3bbf22e04ff7aad",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cb482cdffc186be9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "5c1226e3be63ce63",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tags",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "0b1e12dad37b18cf",
+    "type": "split",
+    "children": [
+      {
+        "id": "5bb00b1128f8a4db",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2aea91216d48873a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "content/posts/here-strings.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "ed33efdbb15a82c8",
+  "lastOpenFiles": [
+    "content/posts/here-strings.md",
+    "content/posts/shebang.md",
+    "content/posts/aspas-sempre.md",
+    "content/posts/coronavirus-ranking.md",
+    "content/posts/coronavirus.md",
+    "content/posts/url-shortener.md",
+    "content/posts/parametros.md",
+    "content/posts/tolower-toupper.md",
+    "content/posts/percorrer-arquivo.md",
+    "content/posts/urlencode.md"
+  ]
+}
