@@ -5,7 +5,7 @@ title: meleu.sh
 ###############################################################################
 # PaperMod configs
 # https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-installation/
-theme: "papermod"
+theme: "PaperMod"
 # configs pendentes:
 ###############################################################################
 # - post cover image:
