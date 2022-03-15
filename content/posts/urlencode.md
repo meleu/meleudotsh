@@ -6,6 +6,9 @@ tags:
   - bash puro
   - codigo
 date: 2020-01-05T15:12:37-03:00
+cover:
+  image: "urlencode.png"
+  alt: "output de urlencode e urldecode"
 ---
 
 Quando estamos trabalhando com URLs e/ou APIs REST, precisamos com frequência converter uma string para um formato válido de URL, conhecido como _URL encoded_. Se estivermos trabalhando com o `curl` é tranquilo, já temos a nossa disposição a opção `--data-urlencode`. Mas quando não vamos usar o `curl`, podemos implementar nossa própria solução usando bash puro.
@@ -145,7 +148,7 @@ Pois é amigos... Esse macetinho obscuro está "escondido" lá manpage do bash, 
 Agora, lembra daquele `LC_ALL=C` lá do início da função? Também precisamos dele aqui para que esse `printf` gere a saída que precisamos. Veja só a diferença:
 
 ```shell-session
-$ $ LC_ALL='pt_BR.UTF-8'
+$ LC_ALL='pt_BR.UTF-8'
 $ printf '%d\n' "'á"
 225
 $ LC_ALL=C

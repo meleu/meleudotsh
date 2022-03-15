@@ -5,6 +5,9 @@ description: >
 tags:
   - codigo
 date: 2020-01-07T15:41:59-03:00
+cover:
+  image: "abrir-qualquer-arquivo.png"
+  alt: "xdg-open"
 ---
 
 Um recurso que facilita muito a vida do usuário quando usando um gerenciador de arquivos no ambiente gráfico é o fato de poder dar um duplo clique no ícone e o sistema já saber qual programa utilizar para abrí-lo.

@@ -7,6 +7,9 @@ tags:
   - links
   - jq
 date: 2020-02-15T16:17:04-03:00
+cover:
+  image: "url-shortener.png"
+  alt: "função shortener()"
 ---
 
 Um conhecido serviço de "encurtamento de URL" que existe na web é o [https://bitly.com](https://bitly.com). Neste site podemos criar versões mais curtas para URLs grandes. Se você já se deparou com links do tipo `bit.ly/AlgumaCoisa`, sabe do que estou falando, certo?

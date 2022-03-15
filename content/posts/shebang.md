@@ -6,6 +6,9 @@ description: >
 tags:
   - fundamentos
   - boas praticas
+cover:
+  image: "shebang.png"
+  alt: "shebang"
 ---
 
 Para tornar o primeiro post deste blog bem simbólico, vamos falar sobre a primeira coisa que devemos colocar em um shell script: o `#!` (vulgarmente chamado de [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) ou hashbang).

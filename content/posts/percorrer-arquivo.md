@@ -6,6 +6,9 @@ tags:
   - boas praticas
   - codigo
 date: 2020-01-21T16:00:42-03:00
+cover:
+  image: "percorrer-arquivo.png"
+  alt: "loop while para percorrer o arquivo linha a linha"
 ---
 
 Uma das coisas que você certamente vai encarar um dia como um programador de shell scripts é a necessidade de percorrer um arquivo inteiro lendo cada linha e fazer algo com este conteúdo. Veremos neste artigo como fazer isso de maneira segura, robusta e evitando as possíveis armadilhas que podem aparecer no caminho.

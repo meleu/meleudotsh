@@ -7,6 +7,9 @@ tags:
   - bash puro
   - fundamentos
 date: 2020-01-25T16:09:01-03:00
+cover:
+  image: "tolower-toupper.png"
+  alt: "função camelCase()"
 ---
 
 Desde a versão 4.0 do bash (lançada em 2009) nós temos disponível alguns operadores para lidar com _case conversion_.

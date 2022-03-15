@@ -6,6 +6,9 @@ date: 2020-01-26T16:11:52-03:00
 tags:
   - fundamentos
   - boas praticas
+cover:
+  image: "aspas-sempre.png"
+  alt: "problemas ao não usar aspas"
 ---
 
 Esse post é para tentar convencê-los de que suas variáveis devem ser protegidas com aspas duplas **SEMPRE**. E quando eu digo **sempre**, é sempre **mesmo**. Até mesmo em `$(subshells)`.

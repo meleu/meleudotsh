@@ -7,6 +7,9 @@ tags:
   - codigo
   - jq
 date: 2020-03-17T16:19:38-03:00
+cover:
+  image: "coronavirus.png"
+  alt: "output de covid.sh"
 ---
 
 O mundo está em pânico! O tal do Coronavirus está se alastrando rapidamente pelo mundo. Mesmo que exista uma turma tentando minimizar o alarde e nos convencer que não tem necessidade de tanto pânico, dizendo que existem/existiram outras doenças matando muito mais... O melhor é se prevenir!

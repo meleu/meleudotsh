@@ -6,6 +6,9 @@ tags:
   - fundamentos
   - boas praticas
 date: 2020-01-17T15:58:54-03:00
+cover:
+  image: "here-strings.png"
+  alt: "exemplo de here strings"
 ---
 
 ## O que é um _here string_?

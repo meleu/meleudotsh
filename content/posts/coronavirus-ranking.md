@@ -7,6 +7,9 @@ tags:
   - links
   - jq
 date: 2020-03-27T16:21:54-03:00
+cover:
+  image: "coronavirus-ranking.png"
+  alt: "output de covid-ranking.sh"
 ---
 
 Recentemente descobri uma ferramenta bem bacaninha que serve para gerar simples e belos gráficos de barra diretamente no terminal. A ferramenta se chama `termgraph` e seu repositório no github é [https://github.com/mkaz/termgraph](https://github.com/mkaz/termgraph).

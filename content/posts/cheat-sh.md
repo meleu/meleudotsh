@@ -4,6 +4,9 @@ description: >
   Descubra como o cheat.sh vai facilitar sua vida te mostrando rapidamente vários macetes e exemplos de uso dos mais diversos comandos. Podendo inclusive ser acessado diretamente da linha de comando.
 date: 2019-12-27T05:00:13-03:00
 showToc: false
+cover:
+  image: "cheat-sh.png"
+  alt: "exemplo de output do cheat.sh"
 ---
 
 Recentemente conheci um site muito maneiro para os amantes da linha de comando: https://cheat.sh

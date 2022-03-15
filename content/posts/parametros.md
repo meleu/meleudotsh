@@ -5,6 +5,9 @@ description: >
 tags:
   - fundamentos
 date: 2020-02-02T16:14:09-03:00
+cover:
+  image: "parametros.png"
+  alt: "parametros no shell script"
 ---
 
 O shell script é uma "linguagem" muito permissiva. Não é necessário muito conhecimento pra você começar a fazer algumas coisas legais. Isso é bom, fazer coisas legais é divertido, mas também tem um perigo embutido: você pode acabar ir levando adiante uma prática ruim que funciona em determinado cenário mas que em outro pode trazer consequências indesejadas (a [não utilização de aspas duplas pra proteger suas variáveis](http://meleu.sh/aspas-sempre/) é um exemplo dessas práticas ruins).

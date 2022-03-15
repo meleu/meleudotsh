@@ -6,6 +6,9 @@ tags:
   - links
   - codigo
 date: 2020-01-14T15:53:34-03:00
+cover:
+  image: "explainshell.png"
+  alt: "screenshot de explainshell.com"
 ---
 
 Recentemente conheci mais um site que certamente é muito útil para iniciantes e até mesmo para usuários de linha de comando já iniciados: https://explainshell.com/

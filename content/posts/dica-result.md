@@ -6,6 +6,9 @@ tags:
   - dicas
   - fundamentos
 date: 2020-01-11T15:51:17-03:00
+cover:
+  image: "dica-result.png"
+  alt: "dica result"
 ---
 
 Quando estamos escrevendo um shell script é muito comum precisarmos verificar se um teste resultará em verdadeiro ou falso. Fazer esses testes muitas vezes é tedioso, principalmente quando o comando não gera saída alguma (ou seja, não imprime nada na tela).
