@@ -22,4 +22,4 @@ jobs:
         HUGO_VERSION: 0.94.2
         TARGET_REPO: meleu/sh
         TOKEN: ${{ secrets.TOKEN }}
-        #CNAME: www.jameswright.xyz
+        CNAME: meleu.sh
