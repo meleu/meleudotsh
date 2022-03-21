@@ -24,18 +24,18 @@ Para podermos usar a API do bitly.com, vamos precisar criar uma conta. O process
 
 Uma vez criada a conta e confirmado o seu registro via email, você poderá acessar o seu "dashboard". É uma tela parecida com essa:
 
-![bitlyDashboard](http://meleu.sh/content/images/2020/02/bitlyDashboard.png)
+![bitlyDashboard](bitlyDashboard.png)
 
 ## Segundo Passo: obter um _access token_
 
 Ali no canto superior direito (onde na minha imagem está escrito "Meleu Zord") você vai clicar e vai aparecer um menu. Escolha "Profile Settings" e em seguida escolha "Generic Access Token". Você verá algo parecido com isso:
 
-![genericAccessToken](http://meleu.sh/content/images/2020/02/genericAccessToken.png)
+![genericAccessToken](genericAccessToken.png)
 
 Digite sua senha naquele campo onde está escrito "PASSWORD" e tecle enter. Você receberá seu _access token_, que é uma string bem loucona tipo isso: `ac4b1cabb9264079c4e9f2532804f81364c09b12` (este é um token inválido e fictício).
 
 
-## Teiceiro Passo: acessando a API do bitly com o `curl`
+## Terceiro Passo: acessando a API do bitly com o `curl`
 
 Lendo a [documentação do bitly.com](https://dev.bitly.com/v4_documentation.html) é possível entender como usar a API, mas aqui já vou te dar tudo mastigadinho.
 

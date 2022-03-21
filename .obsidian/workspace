@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "content/sobre.md",
+            "file": "content/posts/url-shortener.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/sobre.md",
+                "file": "content/posts/url-shortener.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,15 +88,15 @@
   },
   "active": "bc6d159e2492edcc",
   "lastOpenFiles": [
+    "content/posts/url-shortener.md",
+    "content/posts/coronavirus.md",
     "content/sobre.md",
     "content/archives.md",
     "content/search.md",
     "content/posts/urlencode.md",
-    "content/posts/url-shortener.md",
     "content/posts/tolower-toupper.md",
     "content/posts/shebang.md",
     "content/posts/por-que-shell.md",
-    "content/posts/percorrer-arquivo.md",
-    "content/posts/parametros.md"
+    "content/posts/percorrer-arquivo.md"
   ]
 }
