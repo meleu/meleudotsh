@@ -3,5 +3,7 @@
   "useTab": false,
   "tabSize": 2,
   "useMarkdownLinks": true,
-  "attachmentFolderPath": "static"
+  "attachmentFolderPath": "img",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "content/posts"
 }
