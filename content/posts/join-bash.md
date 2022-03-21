@@ -4,7 +4,7 @@ description: >
   Algumas linguagens (como JavaScript e PHP) possuem uma função 'join()' (ou 'implode()') que serve para juntar os elementos de um array separando-os por um caracter. Vamos ver aqui uma maneira simples de fazer isso em bash.
 date: 2019-12-31T14:46:31-03:00
 cover:
-  image: "join-bash.png"
+  image: "img/join-bash.png"
   alt: "função joinBy()"
 ---
 

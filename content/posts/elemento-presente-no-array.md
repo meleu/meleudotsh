@@ -3,9 +3,9 @@ title: "Como checar se um array contém um determinado elemento"
 date: 2020-01-03T05:00:59-03:00
 tags:
   - codigo
-  - bash puro
+  - bash-puro
 cover:
-  image: "elemento-presente-no-array.png"
+  image: "img/elemento-presente-no-array.png"
   alt: "output de covid.sh"
 ---
 

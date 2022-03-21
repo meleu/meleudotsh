@@ -4,10 +4,10 @@ description: >
   É comum vermos códigos usando 'echo $var | comando'. Nesse artigo veremos como a técnica here strings evita este uso desnecessário do echo, melhorando a legibilidade e performance do seu código (também veremos raras situações onde essa técnica não nos atende).
 tags:
   - fundamentos
-  - boas praticas
+  - boas-praticas
 date: 2020-01-17T15:58:54-03:00
 cover:
-  image: "here-strings.png"
+  image: "img/here-strings.png"
   alt: "exemplo de here strings"
 ---
 

@@ -3,11 +3,11 @@ title: "Como fazer URL encode/decode com shell script"
 description: >
   Escreva sua própria função para codificar uma string para um formato válido para URL usando bash puro - urlencode/urldecode.
 tags:
-  - bash puro
+  - bash-puro
   - codigo
 date: 2020-01-05T15:12:37-03:00
 cover:
-  image: "urlencode.png"
+  image: "img/urlencode.png"
   alt: "output de urlencode e urldecode"
 ---
 

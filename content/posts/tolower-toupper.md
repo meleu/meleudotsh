@@ -4,11 +4,11 @@ description: >
   Em várias linguagens nós contamos com toLower()/toUpper() para converter strings para minúsculas/maiúsculas. No bash podemos ter essa mesma funcionalidade.
 tags:
   - codigo
-  - bash puro
+  - bash-puro
   - fundamentos
 date: 2020-01-25T16:09:01-03:00
 cover:
-  image: "tolower-toupper.png"
+  image: "img/tolower-toupper.png"
   alt: "função camelCase()"
 ---
 

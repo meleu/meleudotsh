@@ -5,9 +5,9 @@ description: >
   O que exatamente acontece quando executamos um arquivo que começa com '#!' - também conhecido como shebang.
 tags:
   - fundamentos
-  - boas praticas
+  - boas-praticas
 cover:
-  image: "shebang.png"
+  image: "img/shebang.png"
   alt: "shebang"
 ---
 

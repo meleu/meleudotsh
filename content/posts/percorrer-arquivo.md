@@ -3,11 +3,11 @@ title: "Como ler o conteúdo de um arquivo linha por linha em shell script"
 description: >
   Veja uma maneira robusta de percorrer um arquivo linha por linha. E sem cair nas armadilhas sutis que nos trazem surpresas desagradáveis.
 tags:
-  - boas praticas
+  - boas-praticas
   - codigo
 date: 2020-01-21T16:00:42-03:00
 cover:
-  image: "percorrer-arquivo.png"
+  image: "img/percorrer-arquivo.png"
   alt: "loop while para percorrer o arquivo linha a linha"
 ---
 

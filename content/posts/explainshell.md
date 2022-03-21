@@ -7,7 +7,7 @@ tags:
   - codigo
 date: 2020-01-14T15:53:34-03:00
 cover:
-  image: "explainshell.png"
+  image: "img/explainshell.png"
   alt: "screenshot de explainshell.com"
 ---
 

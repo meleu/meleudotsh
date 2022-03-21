@@ -5,7 +5,7 @@ description: >
 date: 2019-12-27T05:00:13-03:00
 showToc: false
 cover:
-  image: "cheat-sh.png"
+  image: "img/cheat-sh.png"
   alt: "exemplo de output do cheat.sh"
 ---
 

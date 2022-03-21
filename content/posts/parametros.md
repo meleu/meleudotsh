@@ -6,7 +6,7 @@ tags:
   - fundamentos
 date: 2020-02-02T16:14:09-03:00
 cover:
-  image: "parametros.png"
+  image: "img/parametros.png"
   alt: "parametros no shell script"
 ---
 

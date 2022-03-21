@@ -8,7 +8,7 @@ tags:
   - jq
 date: 2020-02-15T16:17:04-03:00
 cover:
-  image: "url-shortener.png"
+  image: "img/url-shortener.png"
   alt: "função shortener()"
 ---
 
@@ -24,13 +24,13 @@ Para podermos usar a API do bitly.com, vamos precisar criar uma conta. O process
 
 Uma vez criada a conta e confirmado o seu registro via email, você poderá acessar o seu "dashboard". É uma tela parecida com essa:
 
-![bitlyDashboard](bitlyDashboard.png)
+![bitlyDashboard](/img/bitlyDashboard.png)
 
 ## Segundo Passo: obter um _access token_
 
 Ali no canto superior direito (onde na minha imagem está escrito "Meleu Zord") você vai clicar e vai aparecer um menu. Escolha "Profile Settings" e em seguida escolha "Generic Access Token". Você verá algo parecido com isso:
 
-![genericAccessToken](genericAccessToken.png)
+![genericAccessToken](/img/genericAccessToken.png)
 
 Digite sua senha naquele campo onde está escrito "PASSWORD" e tecle enter. Você receberá seu _access token_, que é uma string bem loucona tipo isso: `ac4b1cabb9264079c4e9f2532804f81364c09b12` (este é um token inválido e fictício).
 

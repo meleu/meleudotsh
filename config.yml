@@ -18,9 +18,17 @@ buildDrafts: false
 buildFuture: false
 enableEmoji: true
 
-# todos os arquivos em /posts/ serão servidos na raiz
+# todos os arquivos em 'content/posts/' serão servidos na raiz
 permalinks:
   posts: /:filename
+
+# servindo o diretório 'img/' como 'static/img/'
+# só acertei essa config vendo os exemplos desse artigo aqui:
+# https://geeksocket.in/posts/hugo-modules/
+module:
+  mounts:
+    - source: img/
+      target: static/img/
 
 ###############################################################################
 # menu no canto superior direito das páginas

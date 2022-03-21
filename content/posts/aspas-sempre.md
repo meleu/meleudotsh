@@ -5,9 +5,9 @@ description: >
 date: 2020-01-26T16:11:52-03:00
 tags:
   - fundamentos
-  - boas praticas
+  - boas-praticas
 cover:
-  image: "aspas-sempre.png"
+  image: "img/aspas-sempre.png"
   alt: "problemas ao não usar aspas"
 ---
 

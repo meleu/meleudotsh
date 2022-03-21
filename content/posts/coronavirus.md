@@ -8,7 +8,7 @@ tags:
   - jq
 date: 2020-03-17T16:19:38-03:00
 cover:
-  image: "coronavirus.png"
+  image: "img/coronavirus.png"
   alt: "output de covid.sh"
 ---
 

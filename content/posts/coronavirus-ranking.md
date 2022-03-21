@@ -8,7 +8,7 @@ tags:
   - jq
 date: 2020-03-27T16:21:54-03:00
 cover:
-  image: "coronavirus-ranking.png"
+  image: "img/coronavirus-ranking.png"
   alt: "output de covid-ranking.sh"
 ---
 

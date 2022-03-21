@@ -6,7 +6,7 @@ tags:
   - codigo
 date: 2020-01-07T15:41:59-03:00
 cover:
-  image: "abrir-qualquer-arquivo.png"
+  image: "img/abrir-qualquer-arquivo.png"
   alt: "xdg-open"
 ---
 
@@ -48,7 +48,7 @@ Se tiver mais interesse nesse assunto, siga os links da seção [Fontes](#fontes
 
 ## Bônus
 
-Vou aproveitar o tema e mostrar uma breve função onde usamos a variável _builtin_ `$OSTYPE`, específica do bash, para detectar o Sistema Operacional. Outra opção é utilizar `uname`, mas eu gosto de usar soluções em [bash puro](http://meleu.sh/tag/bash-puro). :)
+Vou aproveitar o tema e mostrar uma breve função onde usamos a variável _builtin_ `$OSTYPE`, específica do bash, para detectar o Sistema Operacional. Outra opção é utilizar `uname`, mas eu gosto de usar soluções em [bash puro](http://meleu.sh/tags/bash-puro). :)
 
 Quando você chama a função `openFile`, ela vai detectar em qual Sistema Operacional você está e executa o comando correspondente.
 

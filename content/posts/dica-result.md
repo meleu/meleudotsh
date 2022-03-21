@@ -7,7 +7,7 @@ tags:
   - fundamentos
 date: 2020-01-11T15:51:17-03:00
 cover:
-  image: "dica-result.png"
+  image: "img/dica-result.png"
   alt: "dica result"
 ---
 
