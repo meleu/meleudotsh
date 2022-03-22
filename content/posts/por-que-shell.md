@@ -7,7 +7,7 @@ tags:
 date: 2020-01-10T15:48:11-03:00
 showToc: false
 cover:
-  image: "por-que-shell.gif"
+  image: "img/por-que-shell.gif"
   alt: "prompt"
 ---
 
