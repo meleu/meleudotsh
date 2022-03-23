@@ -97,12 +97,11 @@ params:
 
   # link para edição
   # https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/#edit-link-for-posts
-  # TODO: adicionar quando tiver definido o repositório no github
   #############################################################################
-  #editPost:
-  #  URL: "https://github.com/meleu/sh/content"
-  #  text: "Sugerir mudanças neste artigo"
-  #  appendFilePath: true
+  editPost:
+   URL: "https://github.com/meleu/meleudotsh/edit/master/content"
+   text: "Sugerir mudanças neste artigo"
+   appendFilePath: true
   #############################################################################
 
   # config de busca
