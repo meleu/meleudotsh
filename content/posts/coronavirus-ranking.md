@@ -6,6 +6,7 @@ tags:
   - codigo
   - links
   - jq
+  - curl
 date: 2020-03-27T16:21:54-03:00
 cover:
   image: "img/coronavirus-ranking.png"

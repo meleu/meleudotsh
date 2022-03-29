@@ -6,6 +6,7 @@ tags:
   - codigo
   - links
   - jq
+  - curl
 date: 2020-02-15T16:17:04-03:00
 cover:
   image: "img/url-shortener.png"

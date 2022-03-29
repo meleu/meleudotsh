@@ -6,6 +6,7 @@ tags:
   - links
   - codigo
   - jq
+  - curl
 date: 2020-03-17T16:19:38-03:00
 cover:
   image: "img/coronavirus.png"

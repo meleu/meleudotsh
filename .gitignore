@@ -1,4 +1,8 @@
 .obsidian/workspace
+carbon.sh
+carbon*.png
+code*.png
+carbon*.json
 
 # Created by https://www.toptal.com/developers/gitignore/api/vim,visualstudio,linux,windows,macos,emacs,node,hugo
 # Edit at https://www.toptal.com/developers/gitignore?templates=vim,visualstudio,linux,windows,macos,emacs,node,hugo
