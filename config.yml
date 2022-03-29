@@ -56,10 +56,10 @@ menu:
       weight: 99
 ###############################################################################
 
-
 params:
   env: production
-  description: "meleu.sh - Linha de comando e shell script. Foco no conteúdo e sem distrações"
+  description: >
+    "meleu.sh - Linha de comando e shell script. Foco no conteúdo e sem distrações."
   author: meleu
   defaultTheme: dark
   showShareButtons: true
@@ -71,8 +71,7 @@ params:
 
   # sugerir outros posts ao final
   # (não gostei do fato de ficar acima dos links de compartilhamento)
-  #showPostNavLinks: true 
-
+  #showPostNavLinks: true
 
   # página inicial
   # https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/#home-info-mode
@@ -95,13 +94,18 @@ params:
   # TODO: adicionar link para o youtube, quanto tiver
   #############################################################################
 
+  # google analytics
+  analytics:
+    google:
+      SiteVerificationTag: "UA-155045503-1"
+
   # link para edição
   # https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/#edit-link-for-posts
   #############################################################################
   editPost:
-   URL: "https://github.com/meleu/meleudotsh/edit/master/content"
-   text: "Sugerir mudanças neste artigo"
-   appendFilePath: true
+    URL: "https://github.com/meleu/meleudotsh/edit/master/content"
+    text: "Sugerir mudanças neste artigo"
+    appendFilePath: true
   #############################################################################
 
   # config de busca
@@ -127,4 +131,3 @@ outputs:
     - HTML
     - RSS
     - JSON
-
