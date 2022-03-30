@@ -31,47 +31,6 @@ pip3 install termgraph
 
 E pronto. Agora digite um `termgraph -h` só para se certificar que a instalação foi feita com sucesso.
 
----
-
-**OBSERVAÇÃO**
-
-Se o `termgraph -h` funcionou normalmente pra você (mostrou a mensagem de ajuda), você pode pular essa parte.
-
-Mas se no seu sistema você está usando uma versão do Python inferior a 3.6, provavelmente você verá um erro desse tipo ao executar o `termgraph`:
-
-```shell-session
-$ termgraph -h
-Traceback (most recent call last):
-  File "/home/meleu/.local/bin/termgraph", line 6, in <module>
-    from termgraph.termgraph import main
-  File "/home/meleu/.local/lib/python3.5/site-packages/termgraph/termgraph.py", line 175
-    sys.stdout.write( f'\033[{color}m' ) # Start to write colorized.
-                                     ^
-SyntaxError: invalid syntax
-```
-
-Isso ocorre pois o código do termgraph utiliza um recurso chamado f-string que foi disponibilizado no python a partir da versão 3.6.
-
-Felizmente isso é fácil de resolver em apenas 2 passos:
-
-1. Instale o pacote `future-fstring`:
-```shell-session
-pip3 install future-fstrings
-```
-
-2. Edite o arquivo `termgraph.py` deixando o cabeçalho desta forma:
-```
-#!/usr/bin/env python3
-# -*- coding: future_fstrings -*-
-# coding=utf-8
-```
-
-Aqui no meu sistema (Linux Mint) o arquivo encontra-se em `~/.local/lib/python3.5/site-packages/termgraph/termgraph.py`.
-
-Voltando ao artigo...
-
----
-
 O formato dos dados a serem enviados ao `termgraph` pra ele gerar o gráfico de barras é absurdamente simples. Trata-se apenas de um arquivo onde cada linha contém um rótulo, seguido de espaço(s) (ou vírgula), seguido do(s) número(s) a serem usados como valores para criar o gráfico.
 
 Veja o exemplo abaixo:
@@ -110,21 +69,21 @@ Pois agora o que temos que fazer é obter os dados que queremos para fazer o ran
 
 ## Segundo passo: obtendo os dados com `curl`
 
-Assim como no meu [artigo anterior](http://meleu.sh/coronavirus/), mais uma vez vamos usar a API que é documentada nesse repositório: [https://github.com/novelcovid/api](https://github.com/novelcovid/api).
+Assim como no meu [artigo anterior](/coronavirus/), mais uma vez vamos usar a API que é documentada nesse repositório: <https://github.com/disease-sh/API>
 
-Lá podemos ver que o endpoint a ser acessado para obtermos uma lista ordenada pelo número de mortes é `https://corona.lmao.ninja/countries?sort=deaths`.
+Lá podemos ver que o endpoint a ser acessado para obtermos uma lista ordenada pelo número de mortes é `https://disease.sh/v3/covid-19/countries?sort=deaths`.
 
 Se você fizer o teste aí no seu terminal, vai perceber que sua tela vai receber uma enxurrada de dados no formato JSON. Abaixo eu mostro apenas o início dos dados:
 
 ```shell-session
-$ curl 'https://corona.lmao.ninja/countries?sort=deaths'
+$ curl 'https://disease.sh/v3/covid-19/countries?sort=deaths'
 [{"country":"Italy","countryInfo":{"_id":380,"lat":42.8333,...
 ```
 
 Para simplificar os nossos testes iniciais e evitar de ficar acessando a API desnecessariamente, vamos salvar esse JSON num arquivo:
 
 ```shell-session
-$ curl 'https://corona.lmao.ninja/countries?sort=deaths' > corona-deaths.json
+$ curl 'https://disease.sh/v3/covid-19/countries?sort=deaths' > corona-deaths.json
 ```
 
 Agora esses dados JSON brutos, precisam ser lapidados. E mais uma vamos usar o `jq` para isso:
@@ -153,7 +112,7 @@ $ jq '.[:10]' corona-deaths.json
       "_id": 380,
       "lat": 42.8333,
       "long": 12.8333,
-      "flag": "https://raw.githubusercontent.com/NovelCOVID/API/master/assets/flags/it.png",
+      "flag": "https://disease.sh/assets/flags/it.png",
       "iso3": "ITA",
       "iso2": "IT"
     },
@@ -187,7 +146,7 @@ $ jq '.[:10][]' corona-deaths.json
     "_id": 380,
     "lat": 42.8333,
     "long": 12.8333,
-    "flag": "https://raw.githubusercontent.com/NovelCOVID/API/master/assets/flags/it.png",
+    "flag": "https://disease.sh/assets/flags/it.png",
     "iso3": "ITA",
     "iso2": "IT"
   },
@@ -332,7 +291,7 @@ Agora sim! Temos todo os insumos necessários para montar o nosso script!
 # maior número de mortes causadas pelo COVID-19 (Coronavirus).
 #
 
-readonly URL='https://corona.lmao.ninja/countries?sort=deaths'
+readonly URL='https://disease.sh/v3/covid-19/countries?sort=deaths'
 
 readonly DEPENDENCIES=(curl jq termgraph)
 
@@ -394,7 +353,7 @@ Belgium    : ▇ 289
 
 Sugestões de melhorias que você pode implementar nesse script como exercício:
 
-- Veja [na documentação da API](https://github.com/NovelCOVID/API#endpoints-v1) como obter os dados ordenados por outros critérios (exemplo: `cases`, `todayCases`, `recovered`, etc.)
+- Veja [na documentação da API](https://disease.sh/docs/) como obter os dados ordenados por outros critérios (exemplo: `cases`, `todayCases`, `recovered`, etc.)
 - Uma vez que tenha aprendido a ordenar por outros critérios, gerar gráficos do ranking dos países com mais casos, com mais casos registrados hoje, com mais casos recuperados. Você pode fazer isso por exemplo adicionando uma opção de linha de comando chamada `--sort-by`
 - Adicione a opção da linha de comando `--max`, onde o usuário poderá especificar o número de entradas no ranking (exemplo: apenas os top-5 ou os top-20).
 - Use sua criatividade.
@@ -402,7 +361,7 @@ Sugestões de melhorias que você pode implementar nesse script como exercício:
 
 ## Fontes
 
-- https://github.com/novelcovid/api - repositório com a descrição de como usar a api rest.
-- https://stedolan.github.io/jq/manual/ - manual do `jq`
-- https://jqplay.org/ - ótima ferramenta para treinar `jq` e ajudar a montar seu comando/filtro.
+- <https://github.com/disease-sh/api> - repositório com a descrição de como usar a api rest.
+- <https://stedolan.github.io/jq/manual/> - manual do `jq`
+- <https://jqplay.org/> - ótima ferramenta para treinar `jq` e ajudar a montar seu comando/filtro.
 

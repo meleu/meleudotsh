@@ -32,16 +32,16 @@ Vamos começar...
 
 ## Primeiro Passo: obtendo os dados com `curl`
 
-Eu conheci essa API lá no github, o repositório fica em https://github.com/novelcovid/api
+Eu conheci essa API lá no github, o repositório fica em <https://github.com/disease-sh/API>.
 
-O endpoint que iremos acessar é o `https://corona.lmao.ninja/all` para pegar um resumo dos dados globais. E também usaremos o `https://corona.lmao.ninja/countries/[nome-do-pais]` para consultas por país.
+O endpoint que iremos acessar é o `https://disease.sh/v3/covid-19/all` para pegar um resumo dos dados globais. E também usaremos o `https://disease.sh/v3/covid-19/countries/[nome-do-pais]` para consultas por país.
 
 Vamos usar o `curl` para ver o que esses endpoints nos retornam:
 ```shell-session
-$ curl --silent 'https://corona.lmao.ninja/all'
+$ curl --silent 'https://disease.sh/v3/covid-19/all'
 {"cases":186993,"deaths":7477,"recovered":80842,"updated":1584448250501}
 $ 
-$ curl --silent 'https://corona.lmao.ninja/countries/brazil'
+$ curl --silent 'https://disease.sh/v3/covid-19/countries/brazil'
 {"country":"Brazil","cases":234,"todayCases":0,"deaths":0,"todayDeaths":0,"recovered":2,"critical":18}
 ```
 
@@ -54,7 +54,7 @@ Um comando bem útil para tratar de dados JSON na linha de comando é o `jq` (se
 
 Vejamos como ele pode "embelezar" aquele JSON e torná-lo mais legível:
 ```shell-session
-$ curl --silent 'https://corona.lmao.ninja/all' | jq '.'
+$ curl --silent 'https://disease.sh/v3/covid-19/all' | jq '.'
 {
   "cases": 186993,
   "deaths": 7477,
@@ -62,7 +62,7 @@ $ curl --silent 'https://corona.lmao.ninja/all' | jq '.'
   "updated": 1584448250501
 }
 
-$ curl --silent 'https://corona.lmao.ninja/countries/brazil' | jq '.'
+$ curl --silent 'https://disease.sh/v3/covid-19/countries/brazil' | jq '.'
 {
   "country": "Brazil",
   "cases": 234,
@@ -93,7 +93,7 @@ O que nós queremos é que, por exemplo, `"country": "Brazil"` vire isso:
 
 E para alcançar tal objetivo, vamos usar o `to_entries` do próprio `jq`.
 ```shell-session
-$ curl --silent 'https://corona.lmao.ninja/all' | jq '. | to_entries'
+$ curl --silent 'https://disease.sh/v3/covid-19/all' | jq '. | to_entries'
 [
   {
     "key": "cases",
@@ -125,7 +125,7 @@ Continuando...
 
 Nós queremos usar o par key-value para posteriormente salvar esse conteúdo em um array. Vamos prosseguir (fique atento às explicações nos comentários entre os comandos abaixo):
 ```shell-session
-$ curl --silent 'https://corona.lmao.ninja/all' \
+$ curl --silent 'https://disease.sh/v3/covid-19/all' \
     | jq '. | to_entries'
 [
   {
@@ -148,7 +148,7 @@ $ curl --silent 'https://corona.lmao.ninja/all' \
 
 $ # to_entries retornou um array de objetos.
 $ # Vamos pegar só o que está dentro do array usando '.[]'
-$ curl --silent 'https://corona.lmao.ninja/all' \
+$ curl --silent 'https://disease.sh/v3/covid-19/all' \
     | jq '. | to_entries | .[]'
 {
   "key": "cases",
@@ -170,14 +170,14 @@ $ curl --silent 'https://corona.lmao.ninja/all' \
 $ # agora vamos pegar somente o valor de cada
 $ # propriedade, colocá-las em apenas uma linha
 $ # e separar os valores com um '=' (igual)
-$ curl --silent 'https://corona.lmao.ninja/all' \
+$ curl --silent 'https://disease.sh/v3/covid-19/all' \
     | jq -r '. | to_entries | .[] | .key + "=" + .value'
 jq: error (at <stdin>:0): string ("cases ") and number (187404) cannot be added
 
 $ # Whooops! o sinal de + serve para concatenar strings,
 $ # mas se algum operando é um número, o + é um operador aritmético.
 $ # Portanto vamos converter esse número para string.
-$ curl --silent 'https://corona.lmao.ninja/all' \
+$ curl --silent 'https://disease.sh/v3/covid-19/all' \
     | jq -r '. | to_entries | .[] | .key + "=" + (.value|tostring)'
 cases=188146
 deaths=7497
@@ -224,7 +224,7 @@ $ # "carregando" a função nessa instância do shell
 $ . covid.sh
 $
 $ # vamos colocar o JSON em uma variável:
-$ myJson="$(curl --silent 'https://corona.lmao.ninja/all')"
+$ myJson="$(curl --silent 'https://disease.sh/v3/covid-19/all')"
 $
 $ # agora sim vamos passar o JSON para alimentar o array:
 $ json2array "$myJson"
@@ -251,7 +251,7 @@ Nesse script nós vamos consultar os números referentes aos dados globais e do 
 # Imprime números a respeito do COVID-19 (doença causada pelo Coronavirus).
 #
 
-readonly API_URL='https://corona.lmao.ninja'
+readonly API_URL='https://disease.sh/v3/covid-19'
 
 # deixando claro que data é um array associativo
 declare -A data
@@ -351,15 +351,14 @@ Sugestões de melhorias que você pode implementar neste script como exercício:
 
 - Usar o `printf` para imprimir os números de uma maneira mais "legível". Exemplo: `188.623` no lugar de `188623`.
 
-- Acessar o endpoint `https://corona.lmao.ninja/countries` e imprimir os 5 países com maior número de casos/mortes.
+- Acessar o endpoint `https://disease.sh/v3/covid-19/countries` e imprimir os 5 países com maior número de casos/mortes.
 
 - Use sua criatividade...
 
 
 ## Fontes
 
-- https://github.com/javieraviles/covidAPI - repositório com a descrição de como usar a API.
-- https://github.com/novelcovid/api - repositório com a descrição de como usar a api rest.
+- <https://github.com/disease-sh/API> - repositório com a descrição de como usar a api rest.
 - https://stedolan.github.io/jq/manual/ - manual do `jq`
 - https://jqplay.org/ - ótima ferramenta para treinar `jq` e ajudar a montar seu comando/filtro.
-- https://debxp.org/cbpb/aula06 - uma aula do amigo [Blau Araujo](https://debxp.org/user/blau) sobre arrays no bash.
+- <https://debxp.org/cbpb/aula-6-vetores/> - uma aula do amigo [Blau Araujo](https://www.youtube.com/c/debxplinux) sobre arrays no bash.
