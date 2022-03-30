@@ -3,20 +3,18 @@ title: Melhorando seu .bash_history
 description: >
   Deixe o seu .bash_history um pouco mais inteligente.
 tags:
-  - draft
   - configuracoes
-date: 2022-03-29T18:50:00-03:00
+date: 2022-03-30T10:40:00-03:00
 cover:
   image: "img/bash-history.png"
   alt: "configuração do bash history no .bashrc"
-draft: true
 ---
 
 Neste artigo veremos algumas configurações interessantes para se fazer no seu ambiente de forma a melhorar o seu `.bash_history` e o output do comando `history`.
 
 ## Motivação
 
-Normalmente o bash grava o `.bash_history` com histórico de comandos de uma sessão ao final da sessão. Eu geralmente uso o `tmux` com várias sessões de bash abertas, e como raramente eu desligo o computador, muitas vezes essas sessões duram dias.
+Eu geralmente uso o `tmux` com várias sessões de bash abertas, e como raramente eu desligo o computador, muitas vezes essas sessões duram dias. Normalmente o bash grava o histórico da sessão atual no `.bash_history` apenas ao final da sessão.
 
 O problema disso é que muitas vezes eu quero consultar o histórico de comandos em busca de algo que fiz dias atrás, mas o como eu não encerrei a sessão onde o comando foi executado, esse histórico ainda não foi salvo no meu `.bash_history`.
 
