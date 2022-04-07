@@ -1,4 +1,9 @@
+### Obsidian ###
+# config dir
 .obsidian/workspace
+.obsidian/plugins/
+.obsidian/themes/
+
 carbon.sh
 carbon*.png
 code*.png

@@ -39,7 +39,7 @@ O que vamos ver nesse artigo vai fazer você nunca mais sofrer com isso.
 set -euo pipefail
 ```
 
-**Observação**: a opção `u` tem algumas nuances que você precisa estar ciente (descrição no artigo). Se realmente não quiser ler e nem arriscar, certifique-se de ao menos usar `set -eo pipefail`.
+**Observação**: a opção `u` tem algumas nuances que você precisa estar ciente. Se realmente não quiser ler e nem arriscar, certifique-se de ao menos usar `set -eo pipefail`.
 
 
 ## Opções do comando `set`
