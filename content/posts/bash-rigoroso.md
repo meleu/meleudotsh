@@ -72,7 +72,7 @@ echo "O comando falhou mas você está lendo essa mensagem... :("
 ```
 
 Vamos executá-lo:
-```shell
+```txt
 $ bash set+e.sh 
 O comando a seguir vai falhar...
 cat: /diretorio/arquivo-inexistente: No such file or directory
@@ -95,7 +95,7 @@ echo "O comando falhou e essa mensagem nem será impressa. :)"
 ```
 
 Executando:
-```shell
+```txt
 $ bash set-e.sh 
 O comando a seguir vai falhar...
 cat: /diretorio/arquivo-inexistente: No such file or directory
@@ -128,7 +128,7 @@ echo "O programa continua..."
 ```
 
 Executando:
-```shell
+```txt
 $ bash set-e.v2.sh 
 --- inicio do arquivo ---
 cat: /dir/arquivo-inexistente: No such file or directory
@@ -161,7 +161,7 @@ grep UsuarioInvalido /etc/passwd \
 ```
 
 Executando e verificando se o script terminou com sucesso ou falha:
-```shell
+```txt
 $ bash pipe-test.sh && echo sucesso || echo falha
 sucesso
 ```
@@ -215,7 +215,7 @@ echo "Seja bem vindo..."
 ```
 
 Executando:
-```
+```txt
 $ bash -u hello.sh 
 hello.sh: line 6: name: unbound variable
 ```
@@ -245,7 +245,7 @@ echo "Seja bem vindo..."
 ```
 
 Executando:
-```shell
+```txt
 $ bash hello2.sh 
 hello2.sh: line 6: name: unbound variable
 ```
@@ -272,7 +272,7 @@ echo "Seja bem vindo..."
 ```
 
 Executando:
-```shell
+```txt
 $ bash hello3.sh 
 Hello World
 Seja bem vindo...
