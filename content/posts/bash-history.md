@@ -4,6 +4,7 @@ description: >
   Deixe o seu .bash_history um pouco mais inteligente.
 tags:
   - configuracoes
+  - dotfiles
 date: 2022-03-30T10:40:00-03:00
 cover:
   image: "img/bash-history.png"

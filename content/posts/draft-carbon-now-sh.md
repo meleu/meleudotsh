@@ -5,8 +5,7 @@ description: >
 tags:
   - draft
   - curl
-  - jq
-date: 2022-03-29T19:08:42-03:00
+date: 2022-03-30T18:48:42-03:00
 cover:
   image:
   alt:
@@ -15,5 +14,6 @@ draft: true
 
 ## Fontes
 
+- <https://github.com/jpmens/jo>
 - <https://github.com/petersolopov/carbonara>
 - <https://carbon.now.sh/>

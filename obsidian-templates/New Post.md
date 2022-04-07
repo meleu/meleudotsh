@@ -2,10 +2,10 @@
 title: {{title}}
 description:
 tags:
-  - ...
+  - draft
 date: {{date}}T{{time}}
 cover:
-  image:
-  alt:
+  image: "img/{{title}}.png"
+  alt: {{title}}
 draft: true
 ---

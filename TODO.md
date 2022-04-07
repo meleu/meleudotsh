@@ -1,9 +1,9 @@
 # TODO
 
-- [ ] configurar um 404 que leva pra busca
+- [ ] configurar um 404 que exibe barra de busca
 - [ ] analytics
-- [ ] obsidian: configurar um template para drafts com o frontmatter já devidamente preenchido
 - [ ] SEO
+- [x] obsidian: configurar um template para drafts com o frontmatter já devidamente preenchido
 - [x] imagens nos posts
 - [x] configurar o domínio "meleu.sh"
 - [x] criar o repo meleudotsh
@@ -25,6 +25,3 @@
 - [x] sobre
 
 
-## artigos
-
-- [ ] recuperar senha do Ghost CMS totalmente via linha de comando
