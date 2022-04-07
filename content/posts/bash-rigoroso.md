@@ -16,7 +16,7 @@ No livro [The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/ht
 
 Neste artigo eu vou tratar da situação de "falhar o mais cedo possível". Em um outro artigo eu vou falar sobre o "falhar ruidosamente".
 
-🤔 - "Não etendi... E Qual é a vantagem de falhar o mais cedo possível?"
+🤔 - "Não entendi... E Qual é a vantagem de falhar o mais cedo possível?"
 
 Excelente pergunta! A vantagem é que quanto mais cedo você visualizar um erro, mais rápido você irá corrigí-lo.
 
