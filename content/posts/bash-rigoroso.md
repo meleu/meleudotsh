@@ -289,7 +289,7 @@ if [[ -z "${ENV_VARIABLE}" ]]; then
 fi
 ```
 
-Esse exemplo é só pra mostrar que queremos que nosso script faça algo quando aquela variável estiver vazia. No entanto, no entanto, se o `set -u` estiver ativo, aquele `if` pode acabar quebrando antes mesmo da verificação de variável vazia.
+Esse exemplo é só pra mostrar que queremos que nosso script faça algo quando aquela variável estiver vazia. No entanto, com o `set -u` aquele `if` pode acabar quebrando antes mesmo da verificação de variável vazia.
 
 Dando um exemplo mais "vida real" ainda (só vai fazer sentido se você entende de `git`):
 
