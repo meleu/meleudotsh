@@ -59,8 +59,10 @@ menu:
 params:
   env: production
   description: >
-    "meleu.sh - Linha de comando e shell script. Foco no conteúdo e sem distrações."
+    meleu.sh - Linha de comando e shell script. Foco no conteúdo e sem distrações.
   author: meleu
+  images:
+    - img/por-que-shell.gif
   defaultTheme: dark
   showShareButtons: true
   showReadingTime: true

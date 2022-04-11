@@ -1,5 +1,13 @@
 # TODO
 
+## artigos
+
+- [ ] dotfiles
+- [ ] trap
+- [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
+
+## chore
+
 - [ ] configurar um 404 que exibe barra de busca
 - [ ] analytics
 - [ ] SEO
