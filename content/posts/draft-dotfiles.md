@@ -1,21 +1,237 @@
 ---
-title: "Gerencie seus dotfiles em repositório git"
+title: "A maneira mais simples e inteligente de gerenciar seus dotfiles em um repositório git"
 description: >
-  A maneira mais simples que conheço de gerenciar seus dotfiles em um repositório git
+  Veja como alguns segredinhos do git podem tornar o gerenciamento de seus dotfiles uma coisa simples, limpa e inteligente. Não instale ferramenta alguma, apenas use o git.
 tags:
   - draft
   - dotfiles
   - git
-date: 2022-03-31T13:32:13-03:00
+date: 2022-04-20T13:32:13-03:00
 cover:
   image: "img/dotfiles.png"
   alt: "configuração dos meus dotfiles"
 draft: true
 ---
 
+## Introdução
+
+Neste artigo conheceremos uma maneira inteligente, simples e limpa de gerenciar seus dotfiles com o git.
+
+Quando eu digo que é simples e limpa é porque não será necessária ferramenta adicional alguma. Você não precisará instalar nada e nem mesmo escrever script algum. Tudo que precisamos é pura e simplesmente o git.
+
+Para alcançar esse objetivo usaremos recursos nativos do git que tornam desnecessárias grande parte das complicações que muitas vezes vemos por aí para gerenciamento de dotfiles.
+
+Como resultado da técnica descrita aqui, você terá um repositório dotfiles refletindo exatamente a estrutura de diretórios e localização dos arquivos que deve estar em seu homedir.
+
+## Não quero ler isso tudo! Me diz logo o que tenho que fazer!
+
+Se você já tem sólidos conhecimento sobre como o git funciona e não quer gastar seu tempo lendo o artigo, pule direto para o [resumo](#resumo).
+
+## Motivação
+
+Armazenar seus dotfiles em um repositório git (e deixá-lo open source em um repositório público) proporciona as seguintes vantagens:
+
+- **backup "na nuvem"**: Todas aquelas suas customizações minuciosas e caprichadas que você fez estaram facilmente acessíveis de outras máquinas que você for começar usar.
+- **aprendizado**: bisbilhotando 👀 os dotfiles de outras pessoas você aprende vários truquezinhos bacanas que facilitam sua vida. E se você deixa seus dotfiles open-source, a comunidade também vai aprender quais são os seus truques.
+
+## ⚠ ATENÇÃO
+
+Se você salva em seus dotfiles algumas informações sensíveis como senha, tokens, emails, etc. Tome cuidado para não tornar essas informações públicas.
+
+Se por um acaso você acidentalmente commitou alguma informação sensível, recomendo uma lida nesse artigo do site do github: [Remover dados confidenciais do repositório](https://docs.github.com/pt/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository).
+
+
+
+## Iniciando seu repositório `dotfiles`
+
+### Crie seu repositório remoto
+
+O primeiro passo é criar o seu repositório remoto. Eu recomendo fortemente que você deixe seu repositório público. Desta forma você pode compartilhar seu conhecimento com a comunidade e com os seus colegas, pode ensinar e aprender muito.
+
+Vá no seu [github](https://github.com/), [gitlab](https://gitlab.com/), ou seu webservice de git favorito e crie um repositório chamado `dotfiles`.
+
+**Observção**: crie seu diretório completamente vazio (sem README, sem LICENSE, etc.)
+
+
+### Crie seu repositório local
+
+Neste exemplo vou considerar que você criou o repositório no github. Portanto, se você está usando outros serviços, faça as adaptações necessárias nos comandos a seguir.
+
+```bash
+# só pra garantir...
+username='COLOQUE_SEU_USERNAME_AQUI'
+
+# vá para o home e crie o diretório "dotfiles"
+cd ~
+mkdir dotfiles
+
+# entre no diretório e inicie um repositório git
+cd ~/dotfiles
+git init
+
+# vá no github e pegue o endereço SSH do seu 
+# repositório 'dotfiles'. Copie aquele endereço
+# e configure o seu repo local.
+git remote add origin git@github.com:${username}/dotfiles.git
+```
+
+### Primeiro segredo: customize seu `worktree`
+
+Esse é o "pulo do gato" que vai tornar desnecessário que você instale qualquer software, crie links simbólicos, ou escreva scripts...
+
+O que vamos fazer aqui é dizer para o nosso repositório local, que o diretório que ele tem que monitorar está em outro lugar.
+
+Vamos fazer isso da seguinte forma:
+
+```bash
+# certifique-se que está no diretório do seu repo
+cd ~/dotfiles
+
+# diga ao git pra monitorar os arquivos no seu homedir
+git config core.worktree '../../'
+```
+
+Motivo pelo qual estamos usando `../../`: pois esse caminho é relativo ao diretório `~/dotfiles/.git`. Portanto, se queremos apontar para o homedir, temos que subir dois níveis.
+
+Isso fará com que o seu repo `dotfiles` passe a monitorar **TODOS os arquivos do seu homedir**. 😱
+
+Para contornar isso, vamos para o segundo segredo...
+
+
+### Segundo segredo: ignore tudo!
+
+Nosso arquivo `.gitignore` terá apenas um byte: `*`
+
+```bash
+# ignore a p*rr@ toda
+echo '*' > ~/.gitignore
+```
+
+Note que o `.gitignore` PRECISA estar no seu homedir.
+
+Prontinho! Agora que você está gitignorando tudo, basta você adicionar os arquivos que você quer usando a Força ~~Jedi~~ com `-f`:
+
+```bash
+# esses comandos precisam ser executados de
+# dentro do diretório ~/dotfiles/
+cd ~/dotfiles
+
+# observações:
+# - como estamos gitignorando tudo, use '-f'
+# - como estamos em ~/dotfiles, precisamos do '../'
+git add -f ../.bashrc
+git add -f ../.vimrc
+# etc...
+
+# commit & push
+git commit -m 'upando meus dotfiles'
+git push
+```
+
+Lembre-se:
+
+- para usar os comandos `git` no seu repositório, você precisa estar dentro do `~/dotfiles/`
+- para adicionar arquivos novos, você precisa usar `git add -f`
+- você precisará referenciar os arquivos levando em consideração que o `worktree` foi customizado. No nosso caso aqui, você terá que usar algo assim `git add -f ../${arquivo}`
+- uma vez que o arquivo é adicionado, você não precisa mais usar o `-f`
+
+
+## Recuperando seus dotfiles em uma outra máquina
+
+Para recuperar os nossos dotfiles de maneira limpa, vamos usar o terceiro segredo. Esse é o segredinho que torna desnecessárias todas aquelas ferramentas de gerenciar links simbólicos ou escrita de scripts para colocar os dotfiles nos lugares corretos.
+
+### Terceiro segredo: git clone sem checkout
+
+Por padrão, quando clonamos um repositório remoto, o git automaticamente já faz checkout dos arquivos e coloca no repositório criado.
+
+Mas como nós queremos fazer checkout dos arquivos diretamente no nosso homedir, vamos fazer o seguinte:
+```bash
+# certifique-se que está no homedir
+cd ~
+
+# use o --no-checkout para não fazer checkout
+# dos arquivos dentro diretório que será criado
+git clone --no-checkout git@github.com:${username}/dotfiles.git
+
+# entre no repositório recém criado
+cd ~/dotfiles
+
+# diga ao git pra monitorar os arquivos no seu homedir
+git config core.worktree '../../'
+
+# agora fazemos o checkout dos arquivos
+# diretamente no nosso homedir
+# ⚠ atenção! ⚠ arquivos atuais serão sobrescritos
+git reset --hard origin/master
+```
+
+**ATENÇÃO**: ao usar o `git reset --hard`, seus dotfiles atuais da máquina serão sobrescritos com o conteúdo que está vindo do seu repositório. Geralmente é exatamente isso que queremos, mas de qualquer forma achei por bem ressaltar. 😇
+
+## Resumo
+
+```bash
+# crie um repo remoto chamado "dotfiles"
+# (tanto faz se é github, gitlab, etc.)
+
+# só pra garantir...
+username='COLOQUE_SEU_USERNAME_AQUI'
+
+# vá para o home e crie o diretório "dotfiles"
+cd ~
+mkdir dotfiles
+
+# entre no diretório e inicie um repositório git
+cd ~/dotfiles
+git init
+
+# vá no github e pegue o endereço SSH do seu 
+# repositório 'dotfiles'. Copie aquele endereço
+# e configure o seu repo local.
+git remote add origin git@github.com:${username}/dotfiles.git
+
+# diga ao git pra monitorar os arquivos no seu homedir
+git config core.worktree '../../'
+
+# ignore a p*rr@ toda
+echo '*' > ~/.gitignore
+
+# observações:
+# - como estamos gitignorando tudo, use '-f'
+# - como estamos em ~/dotfiles, precisamos do '../'
+git add -f ../.bashrc
+git add -f ../.vimrc
+# etc...
+
+# commit & push
+git commit -m 'upando meus dotfiles'
+git push
+```
+
+Recuperando os arquivos em outra máquina:
+```bash
+# certifique-se que está no homedir
+cd ~
+
+# use o --no-checkout para não fazer checkout
+# dos arquivos dentro diretório que será criado
+git clone --no-checkout git@github.com:${username}/dotfiles.git
+
+# entre no repositório recém criado
+cd ~/dotfiles
+
+# diga ao git pra monitorar os arquivos no seu homedir
+git config core.worktree '../../'
+
+# agora fazemos o checkout dos arquivos
+# diretamente no nosso homedir
+# ⚠ atenção! ⚠ arquivos atuais serão sobrescritos
+git reset --hard origin/master
+```
+
 
 ## Fontes
 
-- <https://dotfiles.github.io/>
-- <https://drewdevault.com/2019/12/30/dotfiles.html>
+- gitignore "a porra toda": <https://drewdevault.com/2019/12/30/dotfiles.html>
+- truquezinho do worktree: <https://www.wangzerui.com/2017/03/06/using-git-to-manage-system-configuration-files/>
+- vários artigos sobre gerenciamento de dotfiles: <https://dotfiles.github.io/>
 - Documentação do github sobre como [Remover dados confidenciais do repositório](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)
