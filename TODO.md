@@ -5,6 +5,9 @@
 - [ ] dotfiles
 - [ ] trap
 - [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
+- [ ] unix moderno
+	- https://github.com/ibraheemdev/modern-unix
+	- https://mobile.twitter.com/amilajack/status/1479328649820000256
 
 ## chore
 
