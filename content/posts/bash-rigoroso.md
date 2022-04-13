@@ -7,7 +7,7 @@ tags:
 date: 2022-04-07T11:08:14-03:00
 cover:
   image: "img/strict-mode.png"
-  alt: draft-strict-mode
+  alt: habilitando bash strict-mode
 ---
 
 No livro [The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/html/), o Eric S. Raymond diz o seguinte:
