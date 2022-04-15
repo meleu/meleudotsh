@@ -3,7 +3,7 @@
 ## artigos
 
 - [ ] dotfiles
-- [ ] trap
+- [ ] gitconfig pra varias organizações
 - [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
 - [ ] asdf-vm
     - cheat
@@ -11,6 +11,7 @@
 - [ ] shellcheck
 - [ ] shfmt
 - [ ] unix moderno
+    - https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
     - https://github.com/ibraheemdev/modern-unix
     - https://mobile.twitter.com/amilajack/status/1479328649820000256
 
@@ -36,8 +37,8 @@
 ## páginas
 
 - [ ] referencias
-	- [ ] blau araujo bash pdf
-	- [ ] blau araujo videos
+    - [ ] blau araujo bash pdf
+    - [ ] blau araujo videos
 - [x] sobre
 
 
