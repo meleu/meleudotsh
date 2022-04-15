@@ -245,15 +245,57 @@ Pois é! É aquele `set -e` que eu mencionei no [artigo anterior](/bash-rigoroso
 
 Ou seja, o `set -e` interrompe o script assim que o bash encontra um script que termine com falha e em seguida lança o sinal `ERR`.
 
-### Segredo #2: o `trap` executa o comando na linha onde o `ERR` é capturado
+Exemplo bobo:
+```bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+trap 'echo "Oops! Quebrei!"' ERR
+
+comando invalido
+
+echo "o script vai quebrar no comando inválido acima"
+echo "portanto isso aqui não será executado"
+```
+
+Executando:
+```txt
+$ ./trap-bobo.sh 
+./trap-bobo.sh: line 7: comando: command not found
+Oops! Quebrei!
+```
+
+Como eu disse, o `set -e` faz o bash (1) interromper o script e (2) lançar o sinal `ERR`.
 
 
+### Segredo #2: o `trap` executa o comando como se estivesse na linha onde o `ERR` é capturado
 
-## Juntando tudo
+Esse segredo é uma das chaves para alcançar o objetivo que queremos. Continue comigo...
 
-Vamos juntar aqui o conhecimento que adquirimos no [artigo anterior](/bash-rigoroso), com o que foi foi exposto neste arquivo.
+Quando temos uma situação do tipo:
+```bash
+# requer 'set -e'
+trap 'echo "ERR capturado, abortando!"' ERR
+```
 
-Após concluirmos nosso curso relâmpago de como usar o básico do básico do `trap`, vamos logo ao truque que vai mudar a sua vida:
+Como dissemos, o sinal `ERR` será lançado quando qualquer comando do script terminal com uma falha (ou seja, status code diferente de zero).
+
+A grande sacada aqui é que esse `echo` que estamos passando para o `trap` será executado como se estivesse na linha onde o `ERR` foi capturado!
+
+Agora se você coloca nesse `echo` uma referência a variável `LINENO` que mencionamos anteriormente... 🤯
+
+```bash
+# requer 'set -e'
+trap 'echo "ERR capturado na linha ${LINENO}!"' ERR
+```
+
+É sério... Quando eu percebi isso eu quase chorei de emoção. 🥲
+
+
+### Tentando juntar tudo isso
+
+Vamos juntar o conhecimento que adquirimos no [artigo anterior](/bash-rigoroso) com o que foi foi exposto aqui e vamos logo ao truque que vai mudar a sua vida:
 
 ```bash
 # OBS: isso só funciona se usarmos 'set -e'
@@ -269,34 +311,64 @@ Vamos explicar cada pedacinho dessa linha:
     - `${FUNCNAME:-}` é o nome da função que está sendo (ou uma string vazia se o comando não estiver dentro de uma função).
 - `ERR` é o sinal que será capturado.
 
+Vamos ver essa belezura em ação com esse exemplo bem bobinho porém ilustrativo:
+
+?????????????????????????????????????????????
+adicionar código aqui
+?????????????????????????????????????????????
 
 
+Mas eu sou um cara que sou rigoroso com meu estilo de codificação. E uma das coisas que eu pratico nos meus códigos da vida real é que tudo tem que ficar dentro de uma função. Portanto eu vou refatorar o exemplo acima pra ficar assim:
 
-CONTINUAR A PARTIR DAQUI!!!
+```bash
+#!/usr/bin/env bash
+# find-user.sh
+# Encontra um usuário dentro do /etc/passwd
+# e imprime o nome em maiúsculo.
 
-### Variáveis úteis fornecidas pelo bash
+set -euo pipefail
 
-EU DEVERIA DAR UMA PALHINHA SOBRE AS VARIÁVEIS NESSE TÓPICO AQUI
+trap 'echo "ERRO EM: ${BASH_SOURCE}:${LINENO}:${FUNCNAME:-}"' ERR
 
-MUDANÇA!
-- PRIMEIRO FALAR DAS VARIÁVEIS
-- DEPOIS FALAR DO TRAP
-- MOSTRAR O SEGREDO
-- MOSTRAR QUE NÃO FUNCIONA EM FUNÇÕES
-- MOSTRAR O set -E
-- LINKS PARA
-    - TRAP
-    - VARIÁVEIS ÚTEIS
-    - 
+main() {
+  # se não passar um usuário, use um default
+  local username="${1:-usuário inválido}"
+
+  grep "${username}" /etc/passwd \
+    | cut -d: -f1 \
+    | tr [:lower:] [:upper:]
+}
+
+main "$@"
+```
+
+Agora vamos executar:
+```txt
+$ ./find-user.sh meleu
+MELEU
+
+$ ./find-user.sh
+
+$ # 😳 como assim?
+
+$ ./find-user.sh UsuarioQualquer
+
+$ # 😕 cadê o trap em ação?!
+```
+
+Quebrei a cara! O `trap` não fez o que eu esperava que ele fizesse... 😔
+
+Vamos à mais um segredo...
+
+### Segredo #3: `set -E` faz o `trap` ser herdado pelas funções
 
 
-
-
-### O código
+## Resumo
 
 
 ## Fontes
 
-- `man bash`
 - `help set`
+- `help trap`
+- `man bash`
 - Eu tive a ideia de usar `$BASH_SOURCE:$LINENO:$FUNCNAME` quando eu estava lendo o [BashGuide](https://mywiki.wooledge.org/BashGuide/Practices#Activate_Bash.27s_Debug_Mode)
