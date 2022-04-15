@@ -17,6 +17,7 @@ No artigo anterior aprendemos como fazer o nosso script falhar o mais rápido po
 
 Desde que comecei a usar isso nos meus scripts (principalmente nas minhas esteiras de Integração Contínua) minha vida é muito mais feliz. Isso mudou minha vida e espero que mude a sua também! 🙏
 
+Você tá ligado naquelas situações onde estamos quebrando a cabeça por horas... E só depois de muito tempo percebemos que nosso script tá bugado por conta de (por exemplo) um `grep` que a gente acreditava que deveria retornar algo mas veio vazio e mesmo assim nosso script continuou e só lá na frente ele começou a quebrar em alguma outra parte... Tá ligado, né? Pois é, isso nunca mais vai acontecer na sua vida!
 
 ## Recapitulando...
 
