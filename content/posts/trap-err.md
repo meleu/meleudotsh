@@ -460,7 +460,7 @@ set -Eeuo pipefail
 trap 'echo "ERRO EM: ${BASH_SOURCE}:${LINENO}:${FUNCNAME:-}"' ERR
 ```
 
-Obviamente que o `echo` pode ser incrementado. Por exemplo, colocando a mensagem em verbelho com caracteres de escape ANSI. Use sua criatividade! 😉
+Obviamente que o `echo` pode ser incrementado. Por exemplo, colocando a mensagem em vermelho com caracteres de escape ANSI. Use sua criatividade! 😉
 
 
 ## Fontes
