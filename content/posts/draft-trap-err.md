@@ -3,21 +3,20 @@ title: "Como detectar precisamente onde seu script está quebrando"
 description: >
   Segredinhos obscuros do bash que permitirão que você poupe muito tempo quando precisar caçar bugs. Garanto que isso vai mudar sua vida.
 tags:
-  - draft
   - trap
   - boas-praticas
 date: 2022-04-15T07:09:29-03:00
 cover:
   image: "img/trap-err.png"
   alt: capturando erros no bash
-draft: true
 ---
 
 Esse artigo é uma continuação do artigo anterior sobre como deixar o [bash mais rigoroso](/bash-rigoroso).
 
 No artigo anterior aprendemos como fazer o nosso script falhar o mais rápido possível e entedemos qual é a grande vantagem disso. Neste artigo veremos como obter uma indicação bem direta e precisa de onde o nosso script falhou.
 
-Esse truque mudou minha vida e espero que mude a sua também!
+Desde que comecei a usar isso nos meus scripts (principalmente nas minhas esteiras de Integração Contínua) minha vida é muito mais feliz. Isso mudou minha vida e espero que mude a sua também! 🙏
+
 
 ## Recapitulando...
 
@@ -32,6 +31,8 @@ Pois queremos que o script:
 - `set -e`: seja interrompido assim que ele falhar
 - `set -u`: não tolere variáveis sem um valor explicitamente definido
 - `set -o pipefail`: o "exit status" de uma pipeline seja o status do primeiro comando que falhar (ou sucesso)
+
+A partir desse conhecimento vamos avançar um pouco mais...
 
 
 ## Não quero ler tudo isso! Me diz logo o que tenho que fazer!
@@ -147,7 +148,7 @@ Não está no escopo desse artigo entrar no detalhe de como *signal handling* fu
 ### Lista de sinais
 
 Primeiro vamos ver a lista de sinais com o comando `trap -l`:
-```
+```txt
 $ trap -l
  1) SIGHUP       2) SIGINT       3) SIGQUIT      4) SIGILL       5) SIGTRAP
  6) SIGABRT      7) SIGBUS       8) SIGFPE       9) SIGKILL     10) SIGUSR1
@@ -168,7 +169,7 @@ Essa lista nos mostra o número do sinal e o seu nome. Ao referenciarmos estes s
 
 ### Capturando o Ctrl-c
 
-Quando você digita um `Ctrl-c`, por exemplo, pra cancelar a execução de um script, o bash recebe o sinal `SIGINT`.
+Quando você tecla `Ctrl-c`, por exemplo, pra cancelar a execução de um script, o bash recebe o sinal `SIGINT`.
 
 Vejamos o seguinte script:
 
@@ -199,7 +200,7 @@ Se precisar de mim, pressione <Ctrl-c>
 🥴 - Acordei!
 ```
 
-Observe que como o `trap` capturou o `SIGINT` gerado pelo `Ctrl-c`, executou um `echo` e o script prosseguiu.
+Observe que como o `trap` capturou o `SIGINT` gerado pelo `Ctrl-c`, executou um `echo` e o script prosseguiu. Ou seja, o `Ctrl-c` não interrompeu a execução do script.
 
 ### Ponto de atenção
 
@@ -215,18 +216,19 @@ Observe com atenção a linha do `trap` no script de exemplo:
 trap 'echo "Você pressionou <Ctrl-c>!"' SIGINT
 ```
 
-Veja como que o `echo` e todos os seus argumentos estão dentro de `'`aspas simples`'`.
+Veja como que o `echo` e todos os seus argumentos estão dentro de `'aspas simples'`.
 
 Como sei que esse papo de aspas é um assunto meio tortuoso pra quem não usa o shell com frequência, fica aqui o alerta.
 
 
-## Alguns segredos
+## Os Segredos™
 
-Estou classificando o conhecimento que estou mostrando aqui como "segredo", não porque eles são realmente secretos. Mas porque eles estão espalhados pela documentação. Quando eu consegui "ligar os pontos" o sentimento de [epifania](https://pt.wikipedia.org/wiki/Epifania) foi grande!
+Estou classificando o conhecimento que estou mostrando aqui como "segredo", não porque eles são realmente secretos. Mas porque eles estão meio que espalhados pela documentação. E quando eu consegui "ligar os pontos" o sentimento de [epifania](https://pt.wikipedia.org/wiki/Epifania) foi grande!
+
 
 ### Segredo #1: `set -e` cria um novo sinal
 
-Essa informação meio que passa despercebida lá help do trap (aqui traduzida por mim e mostrando apenas a parte que nos interessa):
+Essa informação meio que passa despercebida lá no help do trap (aqui traduzida por mim e mostrando apenas a parte que nos interessa):
 
 ```txt
 $ help trap
@@ -239,11 +241,13 @@ trap: trap [-lp] [[arg] signal_spec ...]
    (...)
 ```
 
-Ele está mencionando um sinal chamado `ERR`, mas se olharmos com atenção a lista de sinais no output do `trap -l` não tem nenhum `SIGERR`.
+Pois é... Está escrito de maneira meio confusa. E não é por conta da minha tradução ser precária. Está escrito de maneira esquisita no original também...
 
-Pois é! É aquele `set -e` que eu mencionei no [artigo anterior](/bash-rigoroso) faz o bash criar um sinal chamado `ERR` que será lançado quando o script encontrar algum comando que termine com um status diferente de zero.
+O help está mencionando um sinal chamado `ERR`, mas se olharmos com atenção a lista de sinais no output do `trap -l` não tem nenhum `SIGERR`.
 
-Ou seja, o `set -e` interrompe o script assim que o bash encontra um script que termine com falha e em seguida lança o sinal `ERR`.
+Pois é! O lance é que aquele `set -e` que eu mencionei no [artigo anterior](/bash-rigoroso) faz o bash criar um sinal chamado `ERR` que será lançado quando o script encontrar algum comando que termine com um status diferente de zero.
+
+Ou seja, o `set -e` faz o bash interromper o script assim encontra uma falha e em seguida lança o sinal `ERR`.
 
 Exemplo bobo:
 ```bash
@@ -269,7 +273,7 @@ Oops! Quebrei!
 Como eu disse, o `set -e` faz o bash (1) interromper o script e (2) lançar o sinal `ERR`.
 
 
-### Segredo #2: o `trap` executa o comando como se estivesse na linha onde o `ERR` é capturado
+### Segredo #2: executando um comando na linha onde o `ERR` é lançado
 
 Esse segredo é uma das chaves para alcançar o objetivo que queremos. Continue comigo...
 
@@ -279,7 +283,7 @@ Quando temos uma situação do tipo:
 trap 'echo "ERR capturado, abortando!"' ERR
 ```
 
-Como dissemos, o sinal `ERR` será lançado quando qualquer comando do script terminal com uma falha (ou seja, status code diferente de zero).
+O sinal `ERR` será lançado quando qualquer comando do script terminal com uma falha (ou seja, status code diferente de zero).
 
 A grande sacada aqui é que esse `echo` que estamos passando para o `trap` será executado como se estivesse na linha onde o `ERR` foi capturado!
 
@@ -302,23 +306,44 @@ Vamos juntar o conhecimento que adquirimos no [artigo anterior](/bash-rigoroso) 
 trap 'echo "${BASH_SOURCE}:${LINENO}:${FUNCNAME:-}"' ERR
 ```
 
-Vamos explicar cada pedacinho dessa linha:
-
-- `trap` é o comando que acabamos de aprender como funciona.
-- `'echo "${BASH_SOURCE}:${LINENO}:${FUNCNAME:-}"'` é o comando que será executado, onde:
-    - `${BASH_SOURCE}` é o nome do script.
-    - `${LINENO}` é a exata linha que o script estava executando quando o sinal foi capturado.
-    - `${FUNCNAME:-}` é o nome da função que está sendo (ou uma string vazia se o comando não estiver dentro de uma função).
-- `ERR` é o sinal que será capturado.
-
 Vamos ver essa belezura em ação com esse exemplo bem bobinho porém ilustrativo:
 
-?????????????????????????????????????????????
-adicionar código aqui
-?????????????????????????????????????????????
+```bash
+#!/usr/bin/env bash
+# find-user.sh
+# Encontra um usuário dentro do /etc/passwd
+# e imprime o nome em maiúsculo.
 
+set -euo pipefail
 
-Mas eu sou um cara que sou rigoroso com meu estilo de codificação. E uma das coisas que eu pratico nos meus códigos da vida real é que tudo tem que ficar dentro de uma função. Portanto eu vou refatorar o exemplo acima pra ficar assim:
+trap 'echo "ERRO EM: ${BASH_SOURCE}:${LINENO}:${FUNCNAME:-}"' ERR
+
+# se não passar um usuário, use um default
+username="${1:-usuário inválido}"
+
+grep "${username}" /etc/passwd \
+  | cut -d: -f1 \
+  | tr [:lower:] [:upper:]
+
+# pra fingir que aqui teria mais comando,
+# vamos colocar esse echo
+echo fim
+```
+
+Executando:
+```txt
+$ ./find-user.sh meleu
+MELEU
+fim
+
+$ ./find-user.sh 
+ERRO EM: ./find-user.sh:15:
+
+```
+
+Bacana... Recebemos o nome do script e a linha onde o erro ocorreu. A nome da função veio em branco mas era de se esperar, pois o erro não correu dentro de função alguma.
+
+Acontece que eu sou um cara rigoroso com meu estilo de codificação. E uma das coisas que eu pratico nos meus códigos da vida real é colocar tudo dentro de uma função. Portanto eu vou refatorar o exemplo acima pra ficar assim:
 
 ```bash
 #!/usr/bin/env bash
@@ -358,12 +383,83 @@ $ # 😕 cadê o trap em ação?!
 
 Quebrei a cara! O `trap` não fez o que eu esperava que ele fizesse... 😔
 
-Vamos à mais um segredo...
+Mas não vamos nos abalar! Vamos conhecer mais um segredo
 
-### Segredo #3: `set -E` faz o `trap` ser herdado pelas funções
+### Segredo #3: fazendo o `trap` ser herdado pelas funções
+
+Esse segredo está "escondido" no `help set`. Lá vemos o seguinte (tradução minha):
+```txt
+-E  Se ligado, o trap com ERR será herdado pelas funções.
+```
+
+Opa! Parece ser exatamente o que queremos! Agora sim vamos juntar os pontos.
 
 
-## Resumo
+## Juntando tudo
+
+Agora que já temos tudo que precisamos vamos refatorar meu script adicionando a opção `set -E`:
+```bash
+#!/usr/bin/env bash
+# find-user.sh
+# Encontra um usuário dentro do /etc/passwd
+# e imprime o nome em maiúsculo.
+
+set -Eeuo pipefail
+
+trap 'echo "ERRO EM: ${BASH_SOURCE}:${LINENO}:${FUNCNAME:-}"' ERR
+
+main() {
+  # se não passar um usuário, use um default
+  local username="${1:-usuário inválido}"
+
+  grep "${username}" /etc/passwd \
+    | cut -d: -f1 \
+    | tr [:lower:] [:upper:]
+
+  # pra fingir que aqui teria mais comando,
+  # vamos colocar esse echo
+  echo fim
+}
+
+main "$@"
+```
+
+Executando:
+```txt
+$ ./find-user.sh meleu
+MELEU
+fim
+
+$ ./find-user.sh 
+ERRO EM: ./find-user.sh:16:main
+
+```
+
+🥳🎉 Yeah!! É exatamente isso que queremos!!!
+
+## Conclusão
+
+Juntando as peças desse quebra cabeça envolvendo `help trap`, `help set`, trechos do `man bash` e experimentações, chegamos a seguinte conclusão:
+
+1. use `set -euo pipefail` pelos motivos explicados no [artigo anterior](/bash-rigoroso).
+2. `set -e` faz o bash:
+    - interromper execução do script quando qualquer comando terminar com status diferente de zero.
+    - lançar o sinal `ERR`.
+3. o `trap` pode ser usado para capturar esse `ERR`.
+4. quando o `trap` captura o `ERR` ele executa o comando que foi passado pra ele como se estivesse na linha onde o `ERR` foi lançado.
+5. a variável `LINENO` mostra a linha do script onde ela está sendo invocada.
+6. consequência de 4. e 5.:`trap 'echo "${LINENO}"' ERR` vai mostrar a número da linha onde o `ERR` foi lançado.
+7. use `set -E` para o que o `trap 'comando...' ERR` seja herdado pelas funções.
+
+Convertendo isso em código:
+```bash
+# use isso nos seus scripts:
+set -Eeuo pipefail
+
+trap 'echo "ERRO EM: ${BASH_SOURCE}:${LINENO}:${FUNCNAME:-}"' ERR
+```
+
+Obviamente que o `echo` pode ser incrementado. Por exemplo, colocando a mensagem em verbelho com caracteres de escape ANSI. Use sua criatividade! 😉
 
 
 ## Fontes
@@ -371,4 +467,5 @@ Vamos à mais um segredo...
 - `help set`
 - `help trap`
 - `man bash`
-- Eu tive a ideia de usar `$BASH_SOURCE:$LINENO:$FUNCNAME` quando eu estava lendo o [BashGuide](https://mywiki.wooledge.org/BashGuide/Practices#Activate_Bash.27s_Debug_Mode)
+- experimentações...
+- Eu tive a ideia de usar `$BASH_SOURCE:$LINENO:$FUNCNAME` quando eu estava [lendo sobre debugging no BashGuide do Greg's Wiki](https://mywiki.wooledge.org/BashGuide/Practices#Activate_Bash.27s_Debug_Mode)
