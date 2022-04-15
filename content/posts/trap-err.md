@@ -246,7 +246,7 @@ Pois é... Está escrito de maneira meio confusa. E não é por conta da minha t
 
 O help está mencionando um sinal chamado `ERR`, mas se olharmos com atenção a lista de sinais no output do `trap -l` não tem nenhum `SIGERR`.
 
-Pois é! O lance é que aquele `set -e` que eu mencionei no [artigo anterior](/bash-rigoroso) faz o bash criar um sinal chamado `ERR` que será lançado quando o script encontrar algum comando que termine com um status diferente de zero.
+Pois é! O lance é que `set -e` faz o bash criar um sinal chamado `ERR` que será lançado quando o script encontrar algum comando que termine com um status diferente de zero.
 
 Ou seja, o `set -e` faz o bash interromper o script assim encontra uma falha e em seguida lança o sinal `ERR`.
 
@@ -284,7 +284,7 @@ Quando temos uma situação do tipo:
 trap 'echo "ERR capturado, abortando!"' ERR
 ```
 
-O sinal `ERR` será lançado quando qualquer comando do script terminal com uma falha (ou seja, status code diferente de zero).
+O sinal `ERR` será lançado quando qualquer comando do script terminar com uma falha (ou seja, status code diferente de zero).
 
 A grande sacada aqui é que esse `echo` que estamos passando para o `trap` será executado como se estivesse na linha onde o `ERR` foi capturado!
 
@@ -307,7 +307,7 @@ Vamos juntar o conhecimento que adquirimos no [artigo anterior](/bash-rigoroso) 
 trap 'echo "${BASH_SOURCE}:${LINENO}:${FUNCNAME:-}"' ERR
 ```
 
-Vamos ver essa belezura em ação com esse exemplo bem bobinho porém ilustrativo:
+Vamos ver essa belezura em ação com esse exemplo ilustrativo:
 
 ```bash
 #!/usr/bin/env bash

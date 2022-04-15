@@ -172,7 +172,7 @@ Pois é... Isso acontece porque o bash está retornando o status code do último
 
 Agora, ao habilitarmos o `pipefail`, o status code da pipeline será o status do primeiro comando que falhar. Vamos fazer um teste:
 ```bash
-/#!/usr/bin/env bash
+#!/usr/bin/env bash
 # pipe-test2.sh
 
 set -o pipefail
