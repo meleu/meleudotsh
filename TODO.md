@@ -3,7 +3,6 @@
 ## artigos
 
 - [ ] dotfiles
-- [ ] gitconfig pra varias organizações
 - [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
 - [ ] asdf-vm
     - cheat
