@@ -80,7 +80,12 @@ params:
   #############################################################################
   homeInfoParams:
     title: meleu.sh
-    content: Compartilhando conhecimento sobre linha de comando e shell script. Foco no conteúdo e sem distrações.
+    content: |
+      Compartilhando conhecimento sobre linha de comando e shell script.
+
+      De vez em quando algum conteúdo relacionado ao universo DevOps.
+
+      Foco no conteúdo e sem distrações.
 
   socialIcons:
     - name: twitter
