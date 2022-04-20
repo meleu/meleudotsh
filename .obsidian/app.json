@@ -5,7 +5,7 @@
   "useMarkdownLinks": true,
   "attachmentFolderPath": "img",
   "newFileLocation": "folder",
-  "newFileFolderPath": "content/posts",
+  "newFileFolderPath": "content/drafts",
   "showFrontmatter": true,
   "foldHeading": true,
   "foldIndent": true

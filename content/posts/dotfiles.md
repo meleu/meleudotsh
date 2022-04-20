@@ -232,7 +232,7 @@ git reset --hard origin/master
 
 ## Fontes
 
-- gitignore "a porra toda": <https://drewdevault.com/2019/12/30/dotfiles.html>
+- gitignore "a p\*rr@ toda": <https://drewdevault.com/2019/12/30/dotfiles.html>
 - truquezinho do worktree: <https://www.wangzerui.com/2017/03/06/using-git-to-manage-system-configuration-files/>
 - vários artigos sobre gerenciamento de dotfiles: <https://dotfiles.github.io/>
 - Documentação do github sobre como [Remover dados confidenciais do repositório](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository)
