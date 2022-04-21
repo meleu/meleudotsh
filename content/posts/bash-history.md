@@ -218,7 +218,7 @@ shopt -s histappend
 shopt -s cmdhist
 ```
 
-Caso tenha curiosidade de saber como é o meu `.bashrc`, dê uma olhada no meu [homedir no github](https://github.com/meleu/homedir/blob/master/.bashrc).
+Caso tenha curiosidade de saber como é o meu `.bashrc`, dê uma olhada no meu [dotfiles no github](https://github.com/meleu/dotfiles/blob/master/.bashrc).
 
 
 ## Fontes
