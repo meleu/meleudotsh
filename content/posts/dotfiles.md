@@ -5,10 +5,12 @@ description: >
 tags:
   - dotfiles
   - git
-date: 2022-04-27T13:32:13-03:00
+  - dicas
+date: 2022-04-17T13:32:13-03:00
 cover:
   image: "img/dotfiles.png"
   alt: "configuração dos meus dotfiles"
+draft: true
 ---
 
 Neste artigo conheceremos uma maneira inteligente, simples e limpa de gerenciar seus dotfiles com o git.

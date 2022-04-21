@@ -4,6 +4,8 @@ description: >
   Descubra como o cheat.sh vai facilitar sua vida te mostrando rapidamente vários macetes e exemplos de uso dos mais diversos comandos. Podendo inclusive ser acessado diretamente da linha de comando.
 date: 2019-12-27T05:00:13-03:00
 showToc: false
+tags:
+  - links
 cover:
   image: "img/cheat-sh.png"
   alt: "exemplo de output do cheat.sh"
@@ -72,7 +74,7 @@ Imaginemos que você quer lembrar como fazer um _parse_ de JSON em JavaScript. B
 cht.sh js parse json
 ```
 
-![cheat-sh-json](http://meleu.sh/content/images/2019/12/cheat-sh-json.png)
+![cheat-sh-json](/img/cheat-sh-json.png)
 
 Certamente uma ferramenta que qualquer _CLI lover_ vai gostar de, no mínimo, experimentar!
 

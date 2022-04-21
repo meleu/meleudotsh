@@ -4,6 +4,7 @@ description: >
   Habilite essas opções para deixar o bash mais exigente e interromper o seu script assim que algum problema for encontrado.
 tags:
   - boas-praticas
+  - dicas
 date: 2022-04-07T11:08:14-03:00
 cover:
   image: "img/strict-mode.png"
