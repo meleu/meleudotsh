@@ -6,11 +6,10 @@ tags:
   - dotfiles
   - git
   - dicas
-date: 2022-04-17T13:32:13-03:00
+date: 2022-04-27T13:32:13-03:00
 cover:
   image: "img/dotfiles.png"
   alt: "configuração dos meus dotfiles"
-draft: true
 ---
 
 Neste artigo conheceremos uma maneira inteligente, simples e limpa de gerenciar seus dotfiles com o git.
@@ -31,6 +30,8 @@ Armazenar seus dotfiles em um repositório git (e deixá-lo open source em um re
 
 - **backup "na nuvem"**: Todas aquelas suas customizações minuciosas e caprichadas que você fez estaram facilmente acessíveis de outras máquinas que você for começar usar.
 - **aprendizado**: bisbilhotando 👀 os dotfiles de outras pessoas você aprende vários truquezinhos bacanas que facilitam sua vida. E se você deixa seus dotfiles open-source, a comunidade também vai aprender quais são os seus truques.
+
+Caso queira bisbilhotar os meus dotfiles, aqui está: <https://github.com/meleu/.dotfiles>
 
 ## ⚠ ATENÇÃO
 
@@ -230,6 +231,40 @@ git config core.worktree '../../'
 # ⚠ atenção! ⚠ arquivos atuais serão sobrescritos
 git reset --hard origin/master
 ```
+
+
+## Bônus
+
+Se você quer uma maneira rápida de sincronizar seus dotfiles com o repositório remoto, eis a função que eu uso:
+```bash
+# .files(): sincroniza seus dotfiles com o repo remoto.
+# OBS.: o uso de (parênteses) no lugar de {chaves} é 
+#       intencional e serve para que não seja necessário
+#       fazer um `cd` pra voltar para o diretório anterior
+.files() (
+  local gitStatus
+
+  # ALERT: hardcoded path!
+  cd ~/dotfiles
+
+  gitStatus="$(git status --porcelain)"
+
+  if [[ -z "${gitStatus}" ]]; then
+    warn "dotfiles: nothing to update"
+    return 0
+  fi
+
+  git add --all \
+    && git status \
+    && git commit -m "update $(date +'%Y-%m-%d %R'): ${gitStatus}" \
+    && git pull --rebase \
+    && git push
+)
+```
+
+Eu coloco essa função no meu `~/.bash_functions`, que é chamado pelo meu `~/.bashrc`. Desta forma, quando quero sincronizar com o repo remoto eu simplesmente executo `.files` (isso mesmo, "ponto faious").
+
+Se quer mais inspiração. Confira meus dotfiles: <https://github.com/meleu/.dotfiles>
 
 
 ## Fontes
