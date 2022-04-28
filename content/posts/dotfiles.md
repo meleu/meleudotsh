@@ -242,10 +242,10 @@ Se você quer uma maneira rápida de sincronizar seus dotfiles com o repositóri
 #       intencional e serve para que não seja necessário
 #       fazer um `cd` pra voltar para o diretório anterior
 .files() (
+  local dotfilesDir="${HOME}/dotfiles"
   local gitStatus
 
-  # ALERT: hardcoded path!
-  cd ~/dotfiles
+  cd "${dotfilesDir}"
 
   gitStatus="$(git status --porcelain)"
 
