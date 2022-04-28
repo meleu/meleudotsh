@@ -1,5 +1,5 @@
 ---
-title: "A maneira mais simples e inteligente de gerenciar seus dotfiles em um repositório git"
+title: "Uma maneira simples e inteligente de gerenciar seus dotfiles em um repositório git"
 description: >
   Veja como alguns segredinhos do git podem tornar o gerenciamento de seus dotfiles uma coisa simples, limpa e inteligente. Não instale ferramenta alguma, apenas use o git.
 tags:
@@ -12,11 +12,9 @@ cover:
   alt: "configuração dos meus dotfiles"
 ---
 
-Neste artigo conheceremos uma maneira inteligente, simples e limpa de gerenciar seus dotfiles com o git.
+Neste artigo conheceremos uma maneira limpa de gerenciar seus dotfiles usando apenas o git.
 
-Quando eu digo que é simples e limpa é porque não será necessária ferramenta adicional alguma. Você não precisará instalar nada, nem criar links simbólicose e nem escrever script algum para lidar com todas essas ferramentas. Tudo que precisamos é pura e simplesmente o git.
-
-Os recursos nativos do git tornam desnecessárias grande parte das complicações que muitas vezes vemos por aí para gerenciamento de dotfiles.
+Não será necessária ferramenta adicional alguma, você não precisará instalar nada, nem criar links simbólicose e nem escrever script algum. Tudo que precisamos é pura e simplesmente o git.
 
 Como resultado da técnica descrita aqui, você terá um repositório dotfiles refletindo exatamente a estrutura de diretórios e localização dos arquivos que deve estar em seu homedir.
 
