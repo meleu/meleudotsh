@@ -14,9 +14,9 @@ cover:
 
 Neste artigo conheceremos uma maneira inteligente, simples e limpa de gerenciar seus dotfiles com o git.
 
-Quando eu digo que é simples e limpa é porque não será necessária ferramenta adicional alguma. Você não precisará instalar nada e nem mesmo escrever script algum. Tudo que precisamos é pura e simplesmente o git.
+Quando eu digo que é simples e limpa é porque não será necessária ferramenta adicional alguma. Você não precisará instalar nada, nem criar links simbólicose e nem escrever script algum para lidar com todas essas ferramentas. Tudo que precisamos é pura e simplesmente o git.
 
-Para alcançar esse objetivo usaremos recursos nativos do git que tornam desnecessárias grande parte das complicações que muitas vezes vemos por aí para gerenciamento de dotfiles.
+Os recursos nativos do git tornam desnecessárias grande parte das complicações que muitas vezes vemos por aí para gerenciamento de dotfiles.
 
 Como resultado da técnica descrita aqui, você terá um repositório dotfiles refletindo exatamente a estrutura de diretórios e localização dos arquivos que deve estar em seu homedir.
 
