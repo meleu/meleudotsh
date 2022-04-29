@@ -1,5 +1,5 @@
 ---
-title: "Uma maneira simples e inteligente de gerenciar seus dotfiles em um repositório git"
+title: "Uma maneira limpa e inteligente de gerenciar seus dotfiles em um repositório git"
 description: >
   Veja como alguns segredinhos do git podem tornar o gerenciamento de seus dotfiles uma coisa simples, limpa e inteligente. Não instale ferramenta alguma, apenas use o git.
 tags:
@@ -166,7 +166,7 @@ git reset --hard origin/master
 
 **ATENÇÃO**: ao usar o `git reset --hard`, seus dotfiles locais da máquina serão sobrescritos com o conteúdo que está vindo do seu repositório remoto. Geralmente é exatamente isso que queremos, mas de qualquer forma achei por bem ressaltar. 😇
 
-E pronto! É só isso! Agora você já pode compartilhar seus dotfiles com seus colegas, amigos e coma a comunidade em geral.
+E pronto! É só isso! Agora você já pode compartilhar seus dotfiles com seus colegas, amigos e com a comunidade em geral.
 
 
 ## Resumo
