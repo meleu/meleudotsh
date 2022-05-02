@@ -1,7 +1,7 @@
 ---
 title: "Uma maneira limpa e inteligente de gerenciar seus dotfiles em um repositório git"
 description: >
-  Veja como alguns segredinhos do git podem tornar o gerenciamento de seus dotfiles uma coisa simples, limpa e inteligente. Não instale ferramenta alguma, apenas use o git.
+  Veja como alguns segredinhos do git podem tornar o gerenciamento de seus dotfiles uma coisa simples e limpa. Não instale ferramenta alguma, apenas use o git.
 tags:
   - dotfiles
   - git
