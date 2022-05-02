@@ -5,7 +5,6 @@ description: >
 tags:
   - trap
   - boas-praticas
-  - dicas
 date: 2022-04-15T07:09:29-03:00
 cover:
   image: "img/trap-err.png"

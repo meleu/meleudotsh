@@ -5,7 +5,6 @@ description: >
 tags:
   - dotfiles
   - git
-  - dicas
 date: 2022-04-28T13:32:13-03:00
 cover:
   image: "img/dotfiles.png"

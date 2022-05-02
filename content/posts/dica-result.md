@@ -3,7 +3,6 @@ title: "Uma dica simples que vai fazer você ganhar muito tempo quando estiver e
 description: >
   Veja como um simples alias pode te ajudar a economizar muito tempo quando estiver escrevendo e testando trechos dos seus scripts.
 tags:
-  - dicas
   - fundamentos
 date: 2020-01-11T15:51:17-03:00
 cover:
