@@ -263,14 +263,22 @@ Se você está apenas iniciando no shellscript, não se preocupe se não entende
 
 Já etendemos que o shellcheck é bem bacana e nos ajuda a antecipar muitos problemas. Mas se nos atentarmos um pouquinho vamos perceber que mais uma vez acabaremos entrando na repetição do ciclo escrever-salvar-testar.
 
-Mesmo que o relatório do shellcheck seja completinho e isso vá minimizar a quantidade de ciclos escrever-salvar-testar, ainda assim podemos melhorar.
+Mesmo que o relatório do shellcheck seja completinho e isso vá minimizar a quantidade de ciclos escrever-salvar-testar, ainda assim podemos melhorar. Podemos integrar o shellcheck no nosso editor de texto!
 
-Pois vamos integrar o shellcheck no nosso editor de texto (pelo menos alguns deles)
+O [README do shellcheck](https://github.com/koalaman/shellcheck#in-your-editor) lista links para várias maneiras de fazer isso em diversos editores, vou mostrar aqui apenas 3 deles.
 
 **Pré-requisito**: você precisa ter o shellcheck já devidamente instalado na sua máquina.
 
 
 #### vim / Syntastic
+
+Apesar de existirem várias maneiras de integrar shellcheck com o vim, vou focar aqui no uso do [Syntastic](https://github.com/vim-syntastic/syntastic), pois foi o que eu achei que fez mais sentido pra mim.
+
+Eu costumo administrar os plugins do meu vim usando o vim-plug.
+
+
+
+
 
 #### VSCode
 
