@@ -65,7 +65,7 @@ Notamos que é um código bash perfeitamente válido. Não tem erro de sintaxe a
 
 Ao colar o código, você verá na parte de baixo da tela algo assim:
 
-![](Pasted%20image%2020220502160928.png)
+![](shellcheck-web.png)
 
 Observe que mesmo sendo um código perfeitamente válido, o shellcheck está nos apontando vários problemas:
 
@@ -269,18 +269,69 @@ O [README do shellcheck](https://github.com/koalaman/shellcheck#in-your-editor) 
 
 **Pré-requisito**: você precisa ter o shellcheck já devidamente instalado na sua máquina.
 
+#### VSCode
+
+Não tem complicação alguma, simplesmente abra o VSCode, vá na seção de plugins, procure por ShellCheck, e instale.
+
+![](shellcheck-vscode.png)
+
+E pronto! Agora você será alertado sobre problemas no seu código a medida que está escrevendo.
+
 
 #### vim / Syntastic
 
+**OBS.:** Se você não usa vim, pode pular essa parte.
+
 Apesar de existirem várias maneiras de integrar shellcheck com o vim, vou focar aqui no uso do [Syntastic](https://github.com/vim-syntastic/syntastic), pois foi o que eu achei que fez mais sentido pra mim.
 
-Eu costumo administrar os plugins do meu vim usando o vim-plug.
+Eu costumo administrar os plugins do meu vim usando o [vim-plug](https://github.com/junegunn/vim-plug) (explicar como instalar/utilizar o vim-plug está fora do escopo desse texto, confira a documentação).
 
+Instalando o syntastic no meu `~/.vimrc`:
 
+```vim
+" isso só vai funcionar se você tiver
+" o vim-plug devidamente instalado
+call plug#begin()
 
+" syntastic para integrar vim com shellcheck
+Plug 'vim-syntastic/syntastic', { 'for': 'sh' }
 
+call plug#end()
 
-#### VSCode
+" configurações recomendadas pelo Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+```
+
+Depois de salvar o arquivo basta mandar um `:PlugInstall` (que é um comando do vim-plug).
+
+Essa config vai ser suficiente para que quando você salvar o seu script, os erros já aparecerem numa janelinha na parte de baixa da tela:
+
+![](shellcheck-vim.png)
+
+Pra você ir de uma mensagem de erro para a seguinte, use o comando `:lnext`, e pra voltar `:lprevious`.
+
+Como ficar digitando isso é meio tedioso, eu criei um atalhozinho no meu `~/.vimrc`
+
+```vim
+" eu uso espaço como meu "leaderkey"
+let mapleader = "\<Space>"
+
+" pula para o erro seguinte/anterior
+" (útil para usar com syntastic/shellcheck)
+map <leader>ne :lnext<cr>     " ne = Next Error
+map <leader>pe :lprevious<cr> " pe = Previous Error
+```
+
+Agora quando eu salvo o arquivo e shellcheck me mostra os erros, eu posso alterna entre eles usando `<space>ne` e `<space>pe` (eu memorizo como `ne` significando "Next Error", e `pe` para "Previous Error").
+
+Como eu disse, essas configurações só fazem sentido para quem já está familiarizado com vim e gerenciamento de plugins.
+
 
 #### Geany
 

@@ -8,5 +8,6 @@
   "newFileFolderPath": "content/drafts",
   "showFrontmatter": true,
   "foldHeading": true,
-  "foldIndent": true
+  "foldIndent": true,
+  "alwaysUpdateLinks": true
 }
