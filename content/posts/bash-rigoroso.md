@@ -10,6 +10,14 @@ cover:
   alt: habilitando bash strict-mode
 ---
 
+> Este artigo é parte da série "**Práticas de programação shell que mudarão sua vida**"
+> 
+> Os artigos da série são:
+> 
+> 1. deixe seu bash mais rigoroso - https://meleu.sh/bash-rigoroso
+> 2. use um `trap` para saber exatamente onde seu script quebrou - https://meleu.sh/trap-err
+> 3. use o shellcheck - https://meleu.sh/shellcheck
+
 No livro [The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/html/), o Eric S. Raymond diz o seguinte:
 
 > Quando precisar falhar, falhe ruidosamente e o mais cedo possível.
@@ -322,6 +330,7 @@ Neste artigo vimos como uma simples linha de código no início dos seus scripts
 ```bash
 set -euo pipefail
 ```
+
 
 ## Fontes
 
