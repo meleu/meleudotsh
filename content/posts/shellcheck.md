@@ -16,8 +16,8 @@ cover:
 > Os artigos da série são:
 > 
 > 1. [deixe seu bash mais rigoroso](/bash-rigoroso)
-> 2. [use um `trap` para saber exatamente onde seu script quebrou](https://meleu.sh/trap-err)
-> 3. [use o shellcheck](https://meleu.sh/shellcheck)
+> 2. [use um `trap` para saber exatamente onde seu script quebrou](/trap-err)
+> 3. [use o shellcheck](/shellcheck)
 
 Nós amamos programar, não é mesmo? (se você está lendo esse blog, eu imagino que sim). Mas convenhamos, quando chegamos naquele ponto onde fazer uma simples alteração envolve ficar continuamente alternando entre escrever-salvar-testar... Tem hora que enche o saco!
 
