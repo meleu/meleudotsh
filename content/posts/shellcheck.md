@@ -165,8 +165,6 @@ Fazendo esse simples exercício de rodar o shellcheck em alguns dos meus scripts
 
 - Devemos sempre deixar explícito o caminho relativo quando queremos referenciar arquivos usando o `*` asterisco ([SC2155](https://www.shellcheck.net/wiki/SC2155)). Isso serve para evitar que um nome de arquivo se torne uma opção para o comando. Exemplo: imagine o transtorno causado por um arquivo chamado `-rf` quando você usando o comando `rm *`.
 
-- Um macetinho útil para quando fazemos um `cd` em nosso script: execute em `( subshell )`. Desta forma você não precisa fazer um `cd ..` ao terminar o que foi fazer naquele diretório ([SC2103](https://www.shellcheck.net/wiki/SC2103)).
-
 
 Estes 👆 foram apenas alguns exemplos de coisas que aprendi rodando o shellcheck em scripts antigos. Gaste um tempinho fazendo isso e não se arrependerá.
 
@@ -245,10 +243,7 @@ export SCRIPTS_DIR="$(
 
 Pronto! Agora o shellcheck não vai mais encrencar com esse macetinho bastante útil.
 
-
-#### Outras maneiras de ignorar regras do shellcheck
-
-[Nesta página](https://github.com/koalaman/shellcheck/wiki/Ignore) da documentação mostra várias maneiras de ignorar certas regras. Geralmente eu uso uma dessas aqui:
+Existem outras maneiras de ignorar estas regras. [Esta página](https://github.com/koalaman/shellcheck/wiki/Ignore) da documentação mostra várias delas. Eu geralmente uso uma dessas aqui:
 
 1. criando um arquivo `.shellcheckrc` na raiz do projeto (requer shellcheck 0.7+)
 3. inserindo um comentário pra desabilitar a regra no topo do arquivo (logo após o shebang).
@@ -263,7 +258,7 @@ Nesta seção coloco um conteúdo um pouquinho mais avançado, mostrando várias
 Se você está apenas iniciando no shellscript, não se preocupe se não entender tudo... Só de você se preocupar em rodar um `shellcheck` nos seus scripts eu te garanto que você está no caminho correto!
 
 
-### Integrando shellcheck com o o seu editor
+### Integre shellcheck com o o seu editor
 
 Já etendemos que o shellcheck é bem bacana e nos ajuda a antecipar muitos problemas. Mas se nos atentarmos um pouquinho vamos perceber que mais uma vez acabaremos entrando na repetição do ciclo escrever-salvar-testar.
 
@@ -277,7 +272,7 @@ O [README do shellcheck](https://github.com/koalaman/shellcheck#in-your-editor) 
 
 Não tem complicação alguma, simplesmente abra o VSCode, vá na seção de plugins, procure por ShellCheck, e instale.
 
-![](shellcheck-vscode.png)
+![shellcheck-vscode](/img/shellcheck-vscode.png)
 
 E pronto! Agora você será alertado sobre problemas no seu código a medida que está escrevendo.
 
@@ -285,6 +280,8 @@ E pronto! Agora você será alertado sobre problemas no seu código a medida que
 #### vim / Syntastic
 
 **OBS.:** Se você não usa vim, pode pular essa parte.
+
+Eu sou um grande fã do vim (atualmente em processo de migração para o neovim), e frequentemente estou no terminal codando meus scripts nessa delicinha de software.
 
 Apesar de existirem várias maneiras de integrar shellcheck com o vim, vou focar aqui no uso do [Syntastic](https://github.com/vim-syntastic/syntastic), pois foi o que eu achei que fez mais sentido pra mim.
 
@@ -317,7 +314,7 @@ Depois de salvar o arquivo basta mandar um `:PlugInstall` (que é um comando do 
 
 Essa config vai ser suficiente para que quando você salvar o seu script, os erros já apareçam numa janelinha na parte de baixa da tela:
 
-![](shellcheck-vim.png)
+![](/img/shellcheck-vim.png)
 
 Pra você ir de uma mensagem de erro para a seguinte, use o comando `:lnext`, e pra voltar `:lprevious`.
 
@@ -345,7 +342,7 @@ O companheiro [Blau Araujo](https://twitter.com/blau_araujo) me informou que o G
 Para fazer o Geany analisar seu script, basta ir no menu Construir -> Lint.
 
 
-### Usando git hook para impedir commit de código problemático
+### Use um git hook para impedir commit de código problemático
 
 Se você trabalha sozinho num projeto, integrar o shellcheck no seu editor pode ser suficiente. Mas se você trabalha com mais pessoas, precisamos tomar alguns cuidados adicionais.
 
@@ -362,23 +359,7 @@ O script abaixo, deve ser colocado dentro do arquivo `.git/hooks/pre-commit` e d
 # git-hook-pre-commit.sh
 ########################
 #
-# Esse script previne que código shell problemático
-# seja commitado (arquivos .sh). Ele deve ser utilizado
-# como um git hook de pre-commit.
-#
-# Dependência: git e shellcheck
-#
-# Se você usa uma distro debian-based:
-# $ sudo apt install shellcheck
-#
-############################################################
-#
-# COMO UTILIZAR
-###############
-#
-# No seu repositório local haverá um diretório '.git',
-# você deve colocar o conteúdo deste arquivo dentro de
-# '.git/hooks/pre-commit' e atribuir permissão de eXecução.
+# COMO UTILIZAR:
 #
 # $ cat git-hook-pre-commit.sh > .git/hooks/pre-commit
 # $ chmod a+x .git/hooks/pre-commit
@@ -396,18 +377,18 @@ main() {
 main
 ```
 
-Pronto! Fazendo isso corretamente, o próprio git agora vai te informar se o seu código está problemático toda hora que você fizer um `git commit`.
+Pronto! Fazendo isso corretamente, o próprio git agora vai te informar se o seu código está problemático toda hora que você tentar fazer um `git commit`. E o que é melhor, o commit não será realizado enquanto você não tratar o problema.
 
 
 ### Crie uma pipeline para checagem de código
 
-Imagine que você está trabalhando num repositório com mais outras pessoas.
+Imagine que você está trabalhando num projeto com outras pessoas.
 
-Você se importa com a qualidade do seu código, instala shellcheck na sua máquina, integra com seu editor, usa um git hook de pre-commit pra não enviar código bugado pro repositório... Mas aí pode acontecer um commit de um colaborador que ~~está cagando pra tudo isso~~ ainda não aprendeu a importância de mantermos um código livre de bugs e potenciais problemas.
+Você é um cara que se importa com a qualidade do seu código! Você instala shellcheck na sua máquina, integra com seu editor, usa um git hook de pre-commit pra não enviar código bugado pro repositório... Mas aí pode acontecer um commit de um colaborador que ~~está cagando pra tudo isso~~ ainda não aprendeu a importância de mantermos um código livre de bugs e potenciais problemas.
 
 Para que possamos ter esse controle no nosso repositório também, podemos criar uma pipeline que varre nosso código em busca de problemas.
 
-Como eu trabalho com GitLab CI, o job ficaria assim:
+No [wiki do shellcheck](https://github.com/koalaman/shellcheck/wiki) tem algumas dicas para integrar a ferramenta em várias plataformas de integração contínua. Como eu trabalho com gitlab-ci, no meu caso ficaria um job assim:
 
 ```yaml
 stages:
@@ -422,13 +403,45 @@ shellcheck:
     - git ls-files --exclude='*.sh' --ignored -c -z | xargs -0r shellcheck
 ```
 
+E aí coloco esse job para ser executado sempre que alguém commitar algo no repositório.
+
 Aí agora quando entro na página principal projeto no gitlab, já bato o olho na bolinha que aparece ali pra mostrar o status da última pipeline. Aí posso ver como que é bom trabalhar com uma equipe que só tem fera:
 
-![](shellcheck-pipeline-ok.png)
+![](/img/shellcheck-pipeline-ok.png)
 
 E de vez em quando vejo situações como essa:
 
-![](shellcheck-pipeline-fail.png)
+![](/img/shellcheck-pipeline-fail.png)
 
-No [wiki do shellcheck](https://github.com/koalaman/shellcheck/wiki) tem algumas dicas para integrar a ferramenta em várias outras plataformas além do gitlab. Se você trabalha com outro tipo de esteira, vale a pena uma conferida.
+
+Como eu disse, dá pra integrar o shellcheck com outras plataformas de CI. Se você trabalha com outro tipo de esteira, vale a pena dar uma conferida na documentação do shellcheck
+
+## Conclusão
+
+Uau! Esse artigo ficou extenso! 🥵
+
+Vou terminar fazendo um apelo: **PELAMORDEDEUS, use shellcheck.**
+
+Benefícios:
+
+- você será mais feliz
+- seu time será mais feliz
+- ninguém vai te acordar de madrugada pra resolver pepinos causados pelos seus scripts bugados
+- pessoas vão gostar do seu código e vão contribuir com seus projetos open source
+- seu repositório no github vai receber mais estrelinhas
+- o grande amor da sua vida vai voltar pra você
+
+Só coisa boa!
+
+Deixando a brincadeirinha de lado...
+
+Com este arquivo aqui eu encerro a série "práticas em shell que mudarão sua vida".
+
+Só pra lembrar:
+
+1. [deixe seu bash mais rigoroso](/bash-rigoroso)
+2. [use um `trap` para saber exatamente onde seu script quebrou](/trap-err)
+3. use o shellcheck
+
+Mano, se você seguir essas 3 práticas, te garanto que será bem sucedido na sua carreira de programador shell.
 
