@@ -15,9 +15,9 @@ cover:
 > 
 > Os artigos da série são:
 > 
-> 1. deixe seu bash mais rigoroso - https://meleu.sh/bash-rigoroso
-> 2. use um `trap` para saber exatamente onde seu script quebrou - https://meleu.sh/trap-err
-> 3. use o shellcheck - https://meleu.sh/shellcheck
+> 1. [deixe seu bash mais rigoroso](/bash-rigoroso)
+> 2. [use um `trap` para saber exatamente onde seu script quebrou](https://meleu.sh/trap-err)
+> 3. [use o shellcheck](https://meleu.sh/shellcheck)
 
 No artigo anterior aprendemos como fazer o nosso script falhar o mais rápido possível e entedemos qual é a grande vantagem disso. Neste artigo veremos como obter uma indicação bem direta e precisa de onde o nosso script falhou.
 

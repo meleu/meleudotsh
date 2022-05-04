@@ -14,9 +14,9 @@ cover:
 > 
 > Os artigos da série são:
 > 
-> 1. deixe seu bash mais rigoroso - https://meleu.sh/bash-rigoroso
-> 2. use um `trap` para saber exatamente onde seu script quebrou - https://meleu.sh/trap-err
-> 3. use o shellcheck - https://meleu.sh/shellcheck
+> 1. [deixe seu bash mais rigoroso](/bash-rigoroso)
+> 2. [use um `trap` para saber exatamente onde seu script quebrou](https://meleu.sh/trap-err)
+> 3. [use o shellcheck](https://meleu.sh/shellcheck)
 
 No livro [The Art of Unix Programming](http://www.catb.org/esr/writings/taoup/html/), o Eric S. Raymond diz o seguinte:
 
