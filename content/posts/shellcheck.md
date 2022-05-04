@@ -1,26 +1,25 @@
 ---
 title: "Use shellcheck e livre-se dos bugs no seu código antes mesmo de executá-lo"
 description: >
-  "Com o shellcheck você vai se livrar de muitos aborrecimentos e imprevistos com bugs que você jamais conseguiria prever!"
+  Com o shellcheck você vai se livrar de aborrecimentos com bugs que você jamais conseguiria prever!
 tags:
   - boas-praticas
   - ferramentas
-date: 2022-05-02T15:11:31-03:00
+date: 2022-05-04T14:00:31-03:00
 cover:
   image: "img/shellcheck.png"
   alt: shellcheck
-draft: true
 ---
 
 Nós amamos programar, não é mesmo? (se você está lendo esse blog, eu imagino que sim). Mas convenhamos, quando chegamos naquele ponto onde fazer uma simples alteração envolve ficar continuamente alternando entre escrever-salvar-testar... Tem hora que enche o saco!
 
-A ferramenta que vou mostrar neste artigo vai nos ajudar a minimizar essas constantes trocas de contexto, que tanto nos incomodam e quebram o ritmo da nossa escrita.
+A ferramenta que vou mostrar neste artigo vai nos ajudar a minimizar essas constantes trocas de contexto, que quebram o ritmo da nossa escrita e raciocínio.
 
 O shellcheck é um *linter* para shell scripts. Segundo a Wikipedia um [*linter*](https://en.wikipedia.org/wiki/Lint_(software)) é:
 
 > uma ferramenta de análise estática de código usada para alertar erros de programação, bugs, erros estilísticos e construções suspeitas.
 
-Explicando de maneira mais simples: é uma ferramenta que vai análisar o seu código em busca de problemas e vai te alertar sobre o que ele encontrar.
+De maneira mais simples: é uma ferramenta que vai análisar o seu código em busca de problemas e vai te alertar sobre o que ele encontrar.
 
 
 ## Um contexto pessoal
@@ -29,7 +28,7 @@ O shellcheck é mais uma daquelas ferramentas que mudam a vida das pessoas. Mudo
 
 Eu sei que isso soa muito sensacionalista e exagerado... mas é sério, não consigo descrever o shellcheck de outra forma. Vou explicar o motivo falando um pouco do meu trabalho
 
-Parte do meu dia a dia é escrevendo/mantendo esteiras de integração contínua escritas em bash. O ciclo escrever-salvar-testar não é tão simples quanto "salvar o arquivo, ir no terminal e executar o script". No meu trabalho esse ciclo geralmente envolve:
+Parte do meu dia a dia é escrevendo/mantendo esteiras de integração contínua escritas em bash. O ciclo escrever-salvar-testar não é tão simples quanto "salvar o arquivo, ir no terminal e executar o script". No meu caso esse ciclo geralmente envolve:
 
 1. escrever e salvar minhas alterações
 2. fazer o commit das minhas alterações para um repositório git
@@ -52,7 +51,7 @@ Acredite em mim, não é sensacionalismo. 😇
 
 Você pode ver o shellcheck em ação agora mesmo!
 
-Copie esse código bem bobinho aqui (selecione e dê `ctrl-c`):
+Observe o código abaixo e observe que é um código perfeitamente válido. Mesmo que você observe um errinho de lógica, vai notar que não tem erro de sintaxe algum (o bash não vai se recusar a executar este código):
 
 ```bash
 hello() {
@@ -62,33 +61,33 @@ hello() {
 hello $@
 ```
 
-Notamos que é um código bash perfeitamente válido. Não tem erro de sintaxe algum. Mas agora vamos colar esse código nesse site aqui: <https://www.shellcheck.net/>
+Agora copie esse código e cole nesse site: <https://www.shellcheck.net/>
 
-Ao colar o código, você verá na parte de baixo da tela algo assim:
+Você verá na parte de baixo da tela algo assim:
 
-![](shellcheck-web.png)
+![](/img/shellcheck-web.png)
 
 Observe que mesmo sendo um código perfeitamente válido, o shellcheck está nos apontando vários problemas:
 
 - Linha 1:
-    - erro: não atribuímos um shebang ao nosso script (num [artigo anterior](/shebang) aprendemos por que isso nunca deve acontecer no seu script)
+    - não atribuímos um shebang ao nosso script (num [artigo anterior](/shebang) aprendemos por que isso nunca deve acontecer no seu script)
 - Linha 2:
-    - alerta: a variável `$name` está sendo referenciada mas não foi atribuído valor algum a ela.
-    - informação: em volta de variáveis devemos usar [aspas duplas sempre](/aspas-sempre)
+    - a variável `$name` está sendo referenciada mas não foi atribuído valor algum a ela.
+    - em volta de variáveis devemos usar [aspas duplas sempre](/aspas-sempre)
 - Linha 5:
-    - erro: mais uma vez esquecemos das aspas...
+    - mais uma vez esquecemos das aspas...
+
+Obviamente que quando você estiver codando, não vai ficar copiando e colando seu código numa página da web o tempo todo. Portanto vamos instalar o shellcheck na nossa máquina.
 
 
 ### Instalação
 
-Obviamente que quando você estiver codando, não vai ficar copiando e colando seu código numa página da web o tempo todo. Portanto vamos instalar o shellcheck na nossa máquina.
-
 Se você está usando uma distro baseada no Debian:
-```
+```bash
 sudo apt-get install shellcheck
 ```
 
-Outros métodos também podem ser encontrados [no README do shellcheck no github](https://github.com/koalaman/shellcheck#installing) (eu particularmente instalei com o [asdf-vm](https://asdf-vm.com/))
+Outros métodos também podem ser encontrados [no README do projeto](https://github.com/koalaman/shellcheck#installing) (eu particularmente instalei com o [asdf-vm](https://asdf-vm.com/))
 
 
 ### Executando o shellcheck
@@ -101,6 +100,8 @@ Vamos ver com mais um script ilustrativo:
 #!/usr/bin/env bash
 # remove-spaces.sh
 #
+# SCRIPT MERAMENTE ILUSTRATIVO!
+#
 # remove espaços do nome dos arquivos .mp3
 
 directory="$1"
@@ -110,9 +111,7 @@ for file in "$directory/*.mp3"; do
 done
 ```
 
-Mais uma vez, um script perfeitamente válido. O bash não vai reclamar de nada ao tentar interpretar esse script.
-
-Vamos então executar o shellcheck e ver o que ele vai dizer:
+Mais uma vez, um script perfeitamente válido. Vamos então executar o shellcheck e ver o que ele vai dizer:
 
 ```txt
 $ shellcheck remove-spaces.sh
@@ -129,7 +128,7 @@ For more information:
 
 Eita! Parece que exageramos no alcance das aspas duplas ali...
 
-Indo direto ao ponto, o que o shellcheck está tentando nos dizer é que como o `*` está dentro das aspas, aquele padrão não vai expandir para o nome dos arquivos `.mp3` que temos naquele diretório. Ele tentará procurar um arquivo chamado literalmente `*.mp3` (asterisco ponto mp3).
+Indo direto ao ponto, o shellcheck está tentando nos dizer que como o `*` está dentro das aspas, aquele `*.mp3` não vai expandir para o nome dos arquivos `.mp3` que temos naquele diretório. Ele tentará procurar um arquivo literalmente chamado `*.mp3` (asterisco ponto mp3).
 
 No README do shellcheck tem uma [galeria de código ruim](https://github.com/koalaman/shellcheck#gallery-of-bad-code), com uma lista de códigos problemáticos que podem até ser construções válidas para o shell, mas que não é exatamente o que você quer.
 
@@ -149,13 +148,13 @@ Se dermos uma olhadinha [naquele link](https://www.shellcheck.net/wiki/SC2066), 
 
 No nosso exemplo aqui, bastaria usar `"$directory"/*.mp3` (fechar as aspas logo após o nome da variável).
 
-Eu *preciso* enfatizar que o wiki do shellcheck é uma fonte valiosíssima de conhecimento sobre shell scripting.
+Agora e gostaria muito de enfatizar que **o wiki do shellcheck é uma fonte valiosíssima de conhecimento sobre shell scripting.** Principalmente sobre as principais armadilhas programação shell.
 
 Faça esse teste: rode o shellcheck num script qualquer que você tem aí à mão e gaste um tempinho lendo os alertas e as páginas que o shellcheck recomenda.
 
 Tenho certeza que você vai, tipo 🤯 "Wow! Nunca tinha parado pra pensar nisso!"
 
-Bom, pelo menos foi isso que aconteceu comigo.
+Bom... pelo menos foi isso que aconteceu comigo.
 
 Fazendo esse simples exercício de rodar o shellcheck em alguns dos meus scripts eu aprendi coisas como:
 
@@ -163,7 +162,7 @@ Fazendo esse simples exercício de rodar o shellcheck em alguns dos meus scripts
 
 - Em um `rm`, devemos tomar muito cuidado com variáveis que fazem referência a um diretório, pois isso pode trazer consequências catastróficas. Exemplo: em um `rm -rf "$tmpdir"/*`, se a variável `$tmpdir` estiver vazia, isso vai virar um `rm -rf /*`. Seguindo a orientação do shellcheck ([SC2115](https://www.shellcheck.net/wiki/SC2115)), deveríamos usar `${tmpdir:?}`, pois isso fará o comando falhar se a variável estiver vazia.
 
-- Devemos sempre deixar explícito o caminho relativo quando queremos referenciar arquivos usando o `*` asterisco ([SC2155](https://www.shellcheck.net/wiki/SC2155)). Isso serve para evitar que um nome de arquivo se torne uma opção para o comando. Exemplo: imagine o transtorno causado por um arquivo chamado `-rf` quando você usando o comando `rm *`.
+- Devemos sempre deixar explícito o caminho relativo quando queremos referenciar arquivos usando o `*` asterisco ([SC2155](https://www.shellcheck.net/wiki/SC2155)). Assim evitamos que um nome de arquivo se torne uma opção para o comando. Exemplo: imagine o transtorno causado por um arquivo chamado `-rf` quando você usando o comando `rm *`.
 
 
 Estes 👆 foram apenas alguns exemplos de coisas que aprendi rodando o shellcheck em scripts antigos. Gaste um tempinho fazendo isso e não se arrependerá.
@@ -211,12 +210,12 @@ No primeiro alerta ele está falando que eu deveria declarar `SCRIPTS_DIR` prime
 Este alerta serve para chamar a atenção para situações como essa:
 
 ```txt
-$ # o export vai finalizar com sucesso,
-$ # independente do que está dentro do $()
-$
 $ export var=$(comando invalido) && echo sucesso || echo falha
 comando: command not found
 sucesso
+$
+$ # o export acima 👆 finalizou com sucesso,
+$ # mesmo se o comando dentro do $() falhou.
 ```
 
 OK, isso realmente pode ser problemático. Mas eu tenho certeza que no caso específico daquele meu código eu não terei problemas. Portanto eu quero que o shellcheck ignore essa "regra".
@@ -230,9 +229,11 @@ Uma maneira de fazer isso é ir na linha acima do problema e adicionar um coment
 
 Pronto! Agora se você rodar o shellcheck de novo ele não vai mais reclamar disso.
 
-Só que ainda temos o outro alerta, me avisando eu estou usando um array, `${BASH_SOURCE}`, sem especificar o indíce, e que isso vai me retornar apenas o primeiro elemento.
+Só que ainda temos o outro alerta, me avisando eu estou referenciando um array, `${BASH_SOURCE}`, sem especificar o índice, e que isso vai me retornar apenas o primeiro elemento.
 
-Entendo que esse é um alerta útil quando usamos arrays em construções do tipo `for var in "${myArray}"`, onde eu estou esperando obter todos os valores do array. Mas neste meu uso específico aqui, eu tenho certeza que o primeiro elemento do `$BASH_SOURCE` é exatamente o que eu quero. Portanto, basta ignorarmos a regra `SC2128`, adicionando o número desta regra naquele mesmo comentário, separando com uma vírgula.
+Entendo que esse é um alerta útil quando usamos arrays em construções do tipo `for var in "${myArray}"`, onde eu estou esperando obter todos os valores do array. Mas neste meu uso específico aqui, eu tenho certeza que o primeiro elemento do `${BASH_SOURCE}` é exatamente o que eu quero.
+
+Portanto, vamos ignorar a regra `SC2128`, adicionando o número dela naquele mesmo comentário, separando com uma vírgula.
 
 ```bash
 # shellcheck disable=2155,2128
@@ -246,14 +247,14 @@ Pronto! Agora o shellcheck não vai mais encrencar com esse macetinho bastante �
 Existem outras maneiras de ignorar estas regras. [Esta página](https://github.com/koalaman/shellcheck/wiki/Ignore) da documentação mostra várias delas. Eu geralmente uso uma dessas aqui:
 
 1. criando um arquivo `.shellcheckrc` na raiz do projeto (requer shellcheck 0.7+)
-3. inserindo um comentário pra desabilitar a regra no topo do arquivo (logo após o shebang).
+3. inserindo um comentário pra desabilitar a regra no topo do arquivo (abaixo do shebang, claro!)
 2. inserindo um comentário pra desabilitar a regra na linha acima do código problemático.
 
 
 
 ## Indo além
 
-Nesta seção coloco um conteúdo um pouquinho mais avançado, mostrando várias situações onde eu uso o shellcheck e como isso torna minha vida mais feliz. 🙂
+Nesta seção coloco um conteúdo um pouquinho mais avançado, mostrando várias situações onde eu uso o shellcheck e como isso torna minha vida mais fácil. 🙂
 
 Se você está apenas iniciando no shellscript, não se preocupe se não entender tudo... Só de você se preocupar em rodar um `shellcheck` nos seus scripts eu te garanto que você está no caminho correto!
 
@@ -262,7 +263,7 @@ Se você está apenas iniciando no shellscript, não se preocupe se não entende
 
 Já etendemos que o shellcheck é bem bacana e nos ajuda a antecipar muitos problemas. Mas se nos atentarmos um pouquinho vamos perceber que mais uma vez acabaremos entrando na repetição do ciclo escrever-salvar-testar.
 
-Mesmo que o relatório do shellcheck seja completinho e isso vá minimizar a quantidade de ciclos escrever-salvar-testar, ainda assim podemos melhorar. Podemos integrar o shellcheck no nosso editor de texto!
+Mesmo que o relatório do shellcheck seja bem útil e isso vá minimizar a quantidade de ciclos escrever-salvar-testar, ainda assim podemos melhorar. Podemos integrar o shellcheck no nosso editor de texto!
 
 O [README do shellcheck](https://github.com/koalaman/shellcheck#in-your-editor) lista links para várias maneiras de fazer isso em diversos editores, vou mostrar aqui apenas 3 deles.
 
@@ -270,7 +271,7 @@ O [README do shellcheck](https://github.com/koalaman/shellcheck#in-your-editor) 
 
 #### VSCode
 
-Não tem complicação alguma, simplesmente abra o VSCode, vá na seção de plugins, procure por ShellCheck, e instale.
+Não tem complicação alguma, simplesmente abra o VSCode, vá na seção de plugins, procure por ShellCheck, e instale (repito: você ainda precisa ter o shellcheck já instalado na sua máquina).
 
 ![shellcheck-vscode](/img/shellcheck-vscode.png)
 
@@ -283,11 +284,11 @@ E pronto! Agora você será alertado sobre problemas no seu código a medida que
 
 Eu sou um grande fã do vim (atualmente em processo de migração para o neovim), e frequentemente estou no terminal codando meus scripts nessa delicinha de software.
 
-Apesar de existirem várias maneiras de integrar shellcheck com o vim, vou focar aqui no uso do [Syntastic](https://github.com/vim-syntastic/syntastic), pois foi o que eu achei que fez mais sentido pra mim.
+Apesar de existirem várias maneiras de integrar shellcheck com o vim, vou focar aqui no uso do [Syntastic](https://github.com/vim-syntastic/syntastic), pois atualmente foi o que eu achei que fez mais sentido pra mim (pode ser que eu mude de ideia no futuro).
 
 Eu costumo administrar os plugins do meu vim usando o [vim-plug](https://github.com/junegunn/vim-plug) (explicar como instalar/utilizar o vim-plug está fora do escopo desse texto, confira a documentação).
 
-Instalando o syntastic no meu `~/.vimrc`:
+Instalando o Syntastic no meu `~/.vimrc`:
 
 ```vim
 " isso só vai funcionar se você tiver
@@ -295,7 +296,7 @@ Instalando o syntastic no meu `~/.vimrc`:
 call plug#begin()
 
 " syntastic para integrar vim com shellcheck
-Plug 'vim-syntastic/syntastic', { 'for': 'sh' }
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
@@ -350,7 +351,7 @@ Uma coisa que eu costumo fazer nos projetos que trabalho é criar um scriptzinho
 
 Um git hook de pre-commit nada mais é que um script que será executado imediatamente após você enviar um comando `git commit`, porém antes desse commit ser efetivamente realizado. Se o script falhar, o commit **não** é realizado.
 
-No diretório onde está o seu repositório local, você tem um diretório chamado `.git/`. Dentro deste diretório tem um outro chamado `hooks/`. É ali que ficam os git hooks.
+No diretório onde está o repositório local do seu projeto, você tem um diretório chamado `.git/`. Dentro deste diretório tem um outro chamado `hooks/`. É ali que ficam os git hooks.
 
 O script abaixo, deve ser colocado dentro do arquivo `.git/hooks/pre-commit` e deve ser executável:
 
@@ -363,7 +364,6 @@ O script abaixo, deve ser colocado dentro do arquivo `.git/hooks/pre-commit` e d
 #
 # $ cat git-hook-pre-commit.sh > .git/hooks/pre-commit
 # $ chmod a+x .git/hooks/pre-commit
-############################################################
 
 main() {
   git ls-files \
@@ -409,7 +409,7 @@ Aí agora quando entro na página principal projeto no gitlab, já bato o olho n
 
 ![](/img/shellcheck-pipeline-ok.png)
 
-E de vez em quando vejo situações como essa:
+Só que de vez em quando vejo situações como essa:
 
 ![](/img/shellcheck-pipeline-fail.png)
 
@@ -428,20 +428,18 @@ Benefícios:
 - seu time será mais feliz
 - ninguém vai te acordar de madrugada pra resolver pepinos causados pelos seus scripts bugados
 - pessoas vão gostar do seu código e vão contribuir com seus projetos open source
-- seu repositório no github vai receber mais estrelinhas
-- o grande amor da sua vida vai voltar pra você
+- seu repositório vai ganhar mais estrelinhas
+- o amor da sua vida vai voltar pra você
 
-Só coisa boa!
+Só coisa boa! 🙂
 
-Deixando a brincadeirinha de lado...
-
-Com este arquivo aqui eu encerro a série "práticas em shell que mudarão sua vida".
+Com este artigo aqui eu encerro a série "práticas de programação shell que mudarão sua vida".
 
 Só pra lembrar:
 
 1. [deixe seu bash mais rigoroso](/bash-rigoroso)
 2. [use um `trap` para saber exatamente onde seu script quebrou](/trap-err)
-3. use o shellcheck
+3. [use o shellcheck](/shellcheck)
 
 Mano, se você seguir essas 3 práticas, te garanto que será bem sucedido na sua carreira de programador shell.
 
