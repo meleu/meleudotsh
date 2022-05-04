@@ -16,7 +16,7 @@ Nós amamos programar, não é mesmo? (se você está lendo esse blog, eu imagin
 
 A ferramenta que vou mostrar neste artigo vai nos ajudar a minimizar essas constantes trocas de contexto, que tanto nos incomodam e quebram o ritmo da nossa escrita.
 
-O shellcheck é um *linter* para shell scripts. Segundo a Wikipedia um [*linter*]](https://en.wikipedia.org/wiki/Lint_(software)) é:
+O shellcheck é um *linter* para shell scripts. Segundo a Wikipedia um [*linter*](https://en.wikipedia.org/wiki/Lint_(software)) é:
 
 > uma ferramenta de análise estática de código usada para alertar erros de programação, bugs, erros estilísticos e construções suspeitas.
 
@@ -34,7 +34,7 @@ Parte do meu dia a dia é escrevendo/mantendo esteiras de integração contínua
 1. escrever e salvar minhas alterações
 2. fazer o commit das minhas alterações para um repositório git
 3. ir em outro repositório disparar a pipeline que vai executar o meu código
-4. esperar a vez do *job* onde está o meu script ser executado
+4. esperar a vez do *job* onde o meu script será executado
 5. esperar o container ser instanciado
 6. finalmente meu código será executado e eu poderei olhar o log em busca de problemas.
 
@@ -151,7 +151,7 @@ No nosso exemplo aqui, bastaria usar `"$directory"/*.mp3` (fechar as aspas logo 
 
 Eu *preciso* enfatizar que o wiki do shellcheck é uma fonte valiosíssima de conhecimento sobre shell scripting.
 
-Faça esse teste: rode o shellcheck no menor script que você tem aí rapidamente a mão e gaste um tempinho lendo os alertas e as páginas que o shellcheck recomenda.
+Faça esse teste: rode o shellcheck num script qualquer que você tem aí à mão e gaste um tempinho lendo os alertas e as páginas que o shellcheck recomenda.
 
 Tenho certeza que você vai, tipo 🤯 "Wow! Nunca tinha parado pra pensar nisso!"
 
