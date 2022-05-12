@@ -18,11 +18,11 @@ Mostrarei como instalar, alguns exemplos de uso e como configurar o seu editor (
 
 ## Contexto pessoal
 
-Desde que conheci o `shfmt` eu o uso para manter o meu próprio código com uma formatação consistente com as minhas preferências. Mas aonde ele me deixa mais feliz é quando preciso trabalhar num código escrito por uma pessoa sem experiência em programação shell.
+Desde que conheci o `shfmt` eu o uso para manter o meu próprio código com uma formatação consistente com as minhas preferências. Mas aonde ele me deixa mais feliz é quando preciso trabalhar num código escrito por uma pessoa sem experiência com programação shell.
 
 Sabe como é né... O shell é uma linguagem muito poderosa e permissiva. A barreira de entrada é bem pequena e devido ao poder do shell você consegue rapidamente resolver o que você precisa resolver. Por um lado isso é bom (afinal, resolver problemas é uma coisa boa!), mas em contrapartida acaba gerando muito código bagunçado. Difícil de ler e de manter.
 
-Pra agravar o cenário um pouquinho mais, geralmente quem escreve shell scripts, são SysAdmins. Historicamente um SysAdmin é uma pessoa treinada para manter o sistema estável, bem configurado e seguro. Focar em aprender técnicas avançadas de programação, *Clean Code*, e coisas do gênero normalmente não é uma prioridade para um SysAdmin.
+Pra agravar o cenário, geralmente quem escreve shell scripts, são SysAdmins. Historicamente um SysAdmin é uma pessoa treinada para manter o sistema estável, bem configurado e seguro. Focar em aprender técnicas avançadas de programação, *Clean Code*, e coisas do gênero normalmente não é uma prioridade para um SysAdmin.
 
 Como resultado, não é muito raro encontrar por aí código bem difícil de analisar/atualizar/refatorar.
 
@@ -30,6 +30,15 @@ Quando me deparo com um cenário desses, a primeiríssima coisa que faço é rod
 
 
 ## Instalando o shfmt
+
+Apesar de eu ser um grande fã do `shfmt`, tem uma coisa que me deixa intrigado: no [README do projeto](https://github.com/mvdan/sh) não tem uma instrução clara de como instalar.
+
+Mas vamos ultrapassar essa barreira que você vai ver que vai valer a pena
+
+
+## Formatando uma "maçaroca" de código 
+
+
 
 
 ## Instale shfmt no seu editor
