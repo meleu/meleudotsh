@@ -223,7 +223,7 @@ comando1 &&
 
 # depois do 'shfmt -bn'
 comando1 \
-  && comando2
+  && comando2 \
   && comando3
 ```
 
