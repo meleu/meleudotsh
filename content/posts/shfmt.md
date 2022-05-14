@@ -60,7 +60,7 @@ echo 'outra linha com indentação feiosa'
 echo 'você pode não estar vendo...'
 echo 'mas esta linha tem espaços em branco no final > '
 
-transfer() {
+func() {
   if [[ $# -eq 0 ]]; then
     echo "sem argumentos" >&2
     return 1
@@ -74,6 +74,7 @@ main() {
 }
 
 main "$@"
+
 ```
 
 
