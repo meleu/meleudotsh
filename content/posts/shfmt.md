@@ -1,20 +1,27 @@
 ---
 title: Mantenha a consistência na formatação do seu código com shfmt
 description: >
-  Além de manter o seu código com uma formatação consistente, o shfmt também pode tornar aquele código obscuro que você achou por aí em algo mais legível.
+  Com o shfmt, além de manter o seu código com uma formatação consistente, você também pode tornar legível aquele código obscuro que você achou por aí.
 tags:
   - boas-praticas
   - ferramentas
-date: 2022-05-12T15:14:44-03:00
+date: 2022-05-14T14:14:44-03:00
 cover:
   image: "img/shfmt.png"
   alt: shfmt
-draft: true
 ---
 
 Neste artigo vamos conhecer o `shfmt`, uma ferramenta que vai te ajudar a manter seu código com uma formatação consistente, e também para tornar legível algum código de outra pessoa que você queira examinar.
 
-Veremos aqui o que é e como instalar o `shfmt`, alguns exemplos de uso e como configurar o seu editor (VSCode e vim) para formatar seu código assim que você salvar.
+Veremos aqui:
+
+- o que é o `shfmt`
+- demonstração de como ele é útil
+- como instalar
+- opções de formatação
+- pontos de atenção ao utilizar o `shfmt`
+- como integrar o `shfmt` ao seu editor (VSCode e vim)
+
 
 ## Demonstração
 
@@ -68,6 +75,40 @@ main() {
 
 main "$@"
 ```
+
+
+Vejamos agora um exemplo mais extremo. A maçaroca de código a seguir foi obtida em <https://transfer.sh/> (caso não conheça o serviço, recomendo fortemente!):
+
+```bash
+transfer(){ if [ $# -eq 0 ];then echo "No arguments specified.\nUsage:\n transfer <file|directory>\n ... | transfer <file_name>">&2;return 1;fi;if tty -s;then file="$1";file_name=$(basename "$file");if [ ! -e "$file" ];then echo "$file: No such file or directory">&2;return 1;fi;if [ -d "$file" ];then file_name="$file_name.zip" ,;(cd "$file"&&zip -r -q - .)|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null,;else cat "$file"|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;else file_name=$1;curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;}
+```
+
+Ao passar esse 👆 código no `shfmt`, olha o resultado:
+```bash
+transfer() {
+  if [ $# -eq 0 ]; then
+    echo "No arguments specified.\nUsage:\n transfer <file|directory>\n ... | transfer <file_name>" >&2
+    return 1
+  fi
+  if tty -s; then
+    file="$1"
+    file_name=$(basename "$file")
+    if [ ! -e "$file" ]; then
+      echo "$file: No such file or directory" >&2
+      return 1
+    fi
+    if [ -d "$file" ]; then
+      file_name="$file_name.zip" ,
+      (cd "$file" && zip -r -q - .) | curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name" | tee /dev/null,
+    else cat "$file" | curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name" | tee /dev/null; fi
+  else
+    file_name=$1
+    curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name" | tee /dev/null
+  fi
+}
+```
+
+Ainda podemos melhorar bastante essa formatação (por exemplo, quebrando as linhas com `|`), mas a legibilidade de código já ficou minimamente possível.
 
 
 ## Contexto pessoal
@@ -231,6 +272,10 @@ grep meleu /etc/passwd > myInfo.txt
 
 As outras opções de formatação eu não costumo usar, mas recomendo que você experimente um pouco e veja se faz sentido pra você.
 
+Um detalhe: o `shfmt` te mostra a versão formatada do seu código mas ele não altera o arquivo do seu código, a menos que você explicitamente diga a ele que o faça.
+
+Para o fazer o `shfmt` alterar o arquivo do seu código diretamente, use a opção `-w`, `--write`.
+
 ## Pontos de atenção!
 
 Apesar de ser uma ferramenta extremamente útil, existem alguns casos onde precisamos ficar atento pois o `shfmt` não é capaz de lidar.
@@ -329,42 +374,125 @@ No meu caso isso não se torna exatamente um problema, pois eu não uso nem jama
 
 ### A opção `--binary-next-line` não se aplica a `[[ testes ]]`
 
-Todos os "probleminhas" listados acima são perfeitamente aceitáveis pra mim. Tenho pra mim que eles até encorajam boas práticas.
-
-Mas esse aqui é o único "probleminha" do `shfmt` que me incomoda (mas nem por isso parei de usá-lo em TODOS os meus scripts).
+Todos os "probleminhas" listados acima são perfeitamente aceitáveis pra mim. Tenho pra mim que eles até encorajam boas práticas. Mas esse aqui é o único que me incomoda (mas nem por isso parei de usar o `shfmt` em TODOS os meus scripts).
 
 Esse problema não está na [lista de *caveats* do README](https://github.com/mvdan/sh#caveats), mas existe [uma issue aberta sobre isso](https://github.com/mvdan/sh/issues/813).
 
 O lance é que a opção `-bn`,`--binary-next-line` não se aplica às expressões dentro dos `[[ colchetes ]]`.
 
+Por exemplo, se eu tenho uma expressão grande dentro dos colchetes, eu costumo quebrar as linhas desta forma:
 
-
-Expressões longas como essa não são muito comuns nos meus códigos, mas de vez em quando aparecem.
-
-
-
-
-
-
-
-
-
-
-## Formatando um código "confuso"
-
-aplicar nesse script aqui do transfer.sh
 ```bash
-transfer(){ if [ $# -eq 0 ];then echo "No arguments specified.\nUsage:\n transfer <file|directory>\n ... | transfer <file_name>">&2;return 1;fi;if tty -s;then file="$1";file_name=$(basename "$file");if [ ! -e "$file" ];then echo "$file: No such file or directory">&2;return 1;fi;if [ -d "$file" ];then file_name="$file_name.zip" ,;(cd "$file"&&zip -r -q - .)|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null,;else cat "$file"|curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;else file_name=$1;curl --progress-bar --upload-file "-" "https://transfer.sh/$file_name"|tee /dev/null;fi;}
+# resultado que eu gostaria de ter
+if [[ -z "${foo}" \
+  || -z "${bar}" \
+  || -z "${baz}" ]]; then
+  echo "Hello world"
+fi
+
+# o shfmt deixa desse jeito (que eu não gosto):
+if [[ -z "${foo}" ||
+  -z "${bar}" ||
+  -z "${baz}" ]]; then
+  echo "Hello world"
+fi
 ```
+
+Uma maneira de contornar isso é colocar cada teste nos seus próprios colchetes, resultando em um código mais verboso:
+```bash
+# cada teste nos seus próprios [[ colchetes ]]
+# formata do jeito que quero, porém é mais verboso
+if [[ -z "${foo}" ]] \
+  || [[ -z "${bar}" ]] \
+  || [[ -z "${baz}" ]]; then
+  echo "Hello world"
+fi
+```
+
+Repito, apesar de eu não gostar desse problema do `shfmt`, ainda assim eu não deixo de usá-lo em absolutamente TODOS os meus scripts.
+
+E ainda tenho a esperança que o desenvolvedor da ferramenta resolve isso em algum momento (no momento da escrita desse artigo [a issue ainda está aberta](https://github.com/mvdan/sh/issues/813)).
 
 
 
 ## Instale shfmt no seu editor
 
+Tanto no VSCode quanto no vim, espera-se que você já tenha o `shfmt` instalado (veja a seção de instalação acima)
+
 ### VSCode
+
+Basta instalar o plugin "shfmt" mantido pelo "Martin Kühl": <https://marketplace.visualstudio.com/items?itemName=mkhl.shfmt>
+
+Após instalar o plugin, eu adicionei as seguintes configurações no meu `settings.json`:
+```json
+{
+  // ...
+  "[shellscript]": {
+    "editor.defaultFormatter": "mkhl.shfmt",
+    "editor.formatOnSave": true,
+  },
+  "shfmt.executablePath": "/home/meleu/.asdf/shims/shfmt",
+  // esse path é porque instalei o shfmt com o asdf-vm 
+}
+```
+
+Para acessar o seu `settings.json`, pressione `ctrl-shift-p` e comece digitando "preferences json".
+
+![](shfmt-vscode-command.png)
+
 
 ### vim
 
+Para ter o shfmt integrado ao vim eu uso o plugin [z0mbix/vim-shfmt](https://github.com/z0mbix/vim-shfmt).
+
+Como costumo administrar meus plugins com o [vim-plug](https://github.com/junegunn/vim-plug), eu coloco isso no meu `~/.vimrc`:
+
+```vimrc
+" isso só vai funcionar se você tiver
+" o vim-plug devidamente instalado
+call plug#begin()
+
+" ativa o vim-shfmt somente para arquivos .sh
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
+
+call plug#end()
+
+
+" aplica shfmt ao salvar o arquivo
+let g:shfmt_fmt_on_save = 1
+
+" 2 espaços, binary next line, space redirects, case indent
+let g:shfmt_extra_args = '-i 2 -bn -sr -ci'
+```
+
+
 ### bônus: EditorConfig
 
+Uma coisa bem bacana do `shfmt` é que ele também aceita configurações presentes no arquivo `.editorconfig`. Desta forma você pode compartilhar a formatação desejada com todos os colaboradores do projeto.
 
+Por exemplo, nos meus projetos eu costumo colocar esse conteúdo no meu `.editorconfig` (que fica na raiz do projeto):
+```
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+[*.sh]
+indent_style = space
+indent_size = 2           # shfmt -i 2
+
+binary_next_line = true   # shfmt -bn
+space_redirects = true    # shfmt -sr
+switch_case_indent = true # shfmt -ci
+```
+
+Quando você executa o `shfmt` em um (sub)diretório onde tem o arquivo `.editorconfig`, estas opções são aplicadas mesmo que você não passe parâmetro algum para o `shfmt`.
+
+> Para saber mais sobre o EditorConfig veja a página do projeto: <https://editorconfig.org/>
+
+## Fontes
+
+- repositório do shfmt no github: <https://github.com/mvdan/sh>
+- exemplos de uso: <https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd#examples>
+- plugin para vim: <https://github.com/z0mbix/vim-shfmt>
+- plugin do VSCode: <https://marketplace.visualstudio.com/items?itemName=mkhl.shfmt&ssr=false#overview>
+- EditorConfig: https://editorconfig.org/
