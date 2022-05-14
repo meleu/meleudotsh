@@ -12,7 +12,7 @@ cover:
 draft: true
 ---
 
-Neste artigo vamos conhecer o `shfmt`. Uma ferramenta que vai te ajudar a manter seu código com uma formatação consistente, e também para tornar legível algum código de outra pessoa que você queira examinar.
+Neste artigo vamos conhecer o `shfmt`, uma ferramenta que vai te ajudar a manter seu código com uma formatação consistente, e também para tornar legível algum código de outra pessoa que você queira examinar.
 
 Veremos aqui o que é e como instalar o `shfmt`, alguns exemplos de uso e como configurar o seu editor (VSCode e vim) para formatar seu código assim que você salvar.
 
@@ -20,13 +20,13 @@ Veremos aqui o que é e como instalar o `shfmt`, alguns exemplos de uso e como c
 
 Só pra deixar claro, quando eu digo formatação estou me referindo à indentação, declaração de funções, quebra de linhas de comandos longos... Enfim, coisas extremamente básicas mas que influenciam bastante na legibilidade do seu código.
 
-O `shfmt` converte código como esse:
+Veja esse exemplo ilustrativo:
 ```bash
 #!/bin/bash
 
 
- echo 'primeira linha com formatação bugada'
-  echo 'linha 2 com indentação feiosa'
+ echo   'linha com formatação ruim'
+   echo 'outra linha com indentação feiosa'
 
 
 echo 'você pode não estar vendo...'
@@ -42,12 +42,13 @@ main() {
 main       "$@"
 ```
 
-em uma versão bem mais agradável de se ler, como essa aqui:
+Com `shfmt` conseguimos converter aquilo 👆, nisso aqui 👇
+
 ```bash
 #!/bin/bash
 
-echo 'primeira linha com formatação bugada'
-echo 'linha 2 com indentação feiosa'
+echo 'linha com formatação ruim'
+echo 'outra linha com indentação feiosa'
 
 echo 'você pode não estar vendo...'
 echo 'mas esta linha tem espaços em branco no final > '
@@ -84,17 +85,17 @@ Quando me deparo com um cenário desses, a primeiríssima coisa que faço é rod
 
 ## Instalação
 
-Apesar de eu ser um grande fã do `shfmt`, tem uma coisa que me deixa intrigado: no [README do projeto](https://github.com/mvdan/sh) não existe uma instrução clara de como instalar. Mas nós vamos resolver isso bem rápido...
-
-Uma das maneiras é simplesmente baixar o binário na [página de releases do projeto](https://github.com/mvdan/sh/releases).
+No [README do projeto](https://github.com/mvdan/sh) não existe uma instrução muito clara de como instalar o `shfmt`. Mas nós vamos resolver isso bem rápido...
 
 Se você usa uma distro baseada em Debian/Ubuntu, verifique se o programa está disponível para você com `sudo apt install shfmt`.
 
 Se sua distro possui Snap, você pode instalar com `snap install shfmt`.
 
-Eu particularmente gosto de instalar essas ferramentinhas com desenvolvimento bem ativo, usando o [asdf-vm](https://asdf-vm.com), pois assim consigo facilmente brincar com versões mais atuais das ferramentas sem ficar instalando-as globalmente no meu sistema.
+Uma outra maneira é simplesmente baixar o binário na [página de releases do projeto](https://github.com/mvdan/sh/releases).
 
-Não está no escopo desse artigo falar muito sobre o asdf-vm (isso fica pra um artigo futuro), mas vou passar a receitinha de bolo pra instalar o `shfmt`:
+Eu particularmente gosto de instalar essas ferramentinhas que tem um desenvolvimento bem ativo, usando o [asdf-vm](https://asdf-vm.com), pois assim consigo facilmente experimentar versões mais atuais das ferramentas sem ficar instalando-as globalmente no meu sistema.
+
+Não está no escopo desse artigo falar muito sobre o asdf-vm (fica pra um artigo futuro), mas se você tem ele aí, aqui está a receitinha de bolo pra instalar o `shfmt`:
 
 ```bash
 # disponibilizando o shfmt para ser instalado via asdf
@@ -115,9 +116,7 @@ shfmt --version
 
 ## Opções de formatação
 
-A primeira opção que eu gostaria de mostrar, é o `-d`/`--diff`. Simplesmente por ser uma opção onde a gente consegue ver um "diff" entre o nosso código original e o resultado após passar pelo `shfmt`.
-
-Desta forma, quando formos testando as outras opções de formatação a gente vai usar junto com o `-d` e perceberemos claramente o que mudou.
+A primeira opção que eu gostaria de mostrar, é o `-d`/`--diff`. Simplesmente por ser uma opção onde a gente consegue ver um "diff" entre o nosso código original e o resultado após passar pelo `shfmt`. Isso vai te mostrar claramente o que mudou.
 
 Vejamos com esse codiguinho aqui:
 ```bash
@@ -143,11 +142,9 @@ Se a gente rodar o `shfmt -d hello.sh`, obteremos o seguinte diff (obs.: o arqui
 +hello "$@"
 ```
 
-🤔 Uhm... Vejamos...
+Podemos observar que o shfmt colocou uma indentação no `echo` dentro da função `hello`, e também tirou os espaços desnecessários na chamada da função.
 
-O shfmt colocou uma indentação no `echo` dentro da função `hello`, e também tirou os espaços desnecessários na chamada da função.
-
-Bacaninha né? Mas ainda assim tem como melhorar.
+A formatação default ficou bacaninha, né? Mas vamos ver como customizar para um estilo que mais nos agrade.
 
 Por exemplo, eu não curti muito aquela indentação com tab. Nos meus projetos eu costumo utilizar 2 espaços para indentação.
 
@@ -192,42 +189,162 @@ comando1 \
 ```bash
 # antes do 'shfmt -ci'
 case "${extension}" in
-txt) echo "texto" ;;
-mp3) echo "música" ;;
-md) echo "markdown" ;;
-*) echo "outro formato" ;;
+.txt)
+  echo "texto"
+  ;;
+.mp3)
+  echo "música"
+  ;;
+.md)
+  echo "markdown"
+  ;;
+*)
+  echo "outro formato"
+  ;;
 esac
 
 # depois do 'shfmt -ci'
 case "${extension}" in
-  txt) echo "texto" ;;
-  mp3) echo "música" ;;
-  md) echo "markdown" ;;
-  *) echo "outro formato" ;;
+  .txt)
+    echo "texto"
+    ;;
+  .mp3)
+    echo "música"
+    ;;
+  .md)
+    echo "markdown"
+    ;;
+  *)
+    echo "outro formato"
+    ;;
 esac
 ```
 
 - `-sr`, `--space-redirects`: operadores de redirecionamento serão seguidos por um espaço.
 ```bash
+# antes do 'shfmt -sr'
+grep meleu /etc/passwd >myInfo.txt
 
+# depois do 'shfmt -sr'
+grep meleu /etc/passwd > myInfo.txt
 ```
 
-### Espaço após redirecionamento
-
-### Outras opções
-
-- `-kp`, `--keep-padding`
-- `-fn`, `--func-next-line`
+As outras opções de formatação eu não costumo usar, mas recomendo que você experimente um pouco e veja se faz sentido pra você.
 
 ## Pontos de atenção!
 
-<https://github.com/mvdan/sh#caveats>
+Apesar de ser uma ferramenta extremamente útil, existem alguns casos onde precisamos ficar atento pois o `shfmt` não é capaz de lidar.
 
-### Índices de arrays associativos
+Isso está listado no [README do projeto](https://github.com/mvdan/sh#caveats) e nós vamos dar uma analisada aqui.
+
+### Índices de arrays associativos precisam de aspas
+
+Quando estiver usando um array associativo, o `shfmt` vai precisar que você coloque os índices entre aspas. Caso contrário ele terá problemas para formatar índices com espaços ou sinais aritméticos.
+
+Imagine um array desse tipo aqui:
+```bash
+$ # para o bash isso aqui é perfeitamente válido
+$ declare -A array=([indice-1]=um [indice-2]=dois)
+
+$ # passando esse código para o shfmt
+$ echo 'declare -A array=([indice-1]=um [indice-2]=dois)' \
+  | shfmt
+declare -A array=([indice - 1]=um [indice - 2]=dois)
+$ # espaços indevidos aqui 👆    e aqui  👆
+```
+
+O problema é que o parser do `shfmt` acredita que ali dentro daqueles `[colchetes]` tem uma expressão aritmética, e aí tenta formatar essa expressão pra ficar bonitinha.
+
+Inclusive, se o nosso índice tiver espaços, o shfmt vai reclamar que não estamos passando uma expressão válida:
+```bash
+$ # expressão válida no bash
+$ declare -A array=([indice 1]=um)
+
+$ # mas inválida para o shfmt
+$ echo 'declare -A array=([indice 1]=um)' | shfmt
+<standard input>:1:27: not a valid arithmetic operator: 1
+```
+
+**Solução**: basta usarmos aspas que o parser do `shfmt` vai saber que estamos passando uma string (e não uma expressão aritmética):
+```bash
+$ echo 'declare -A array=(["indice 1"]=um ["indice-2"]=dois)' \
+  | shfmt
+declare -A array=(["indice 1"]=um ["indice-2"]=dois)
+
+```
+
 
 ### Ambiguidade entre `$((` e `((`
 
-### Algumas comandos embutidos são tratados como palavras chave
+Recapitulando aqui 3 *features* do bash:
+
+1. `$((expressão))`: executa uma expressão aritmética.
+    - ex.: `echo "Você nasceu em $((thisYear - age))"`
+2. `$(comando)`: executa o `comando` e devolve o output daquele comando.
+    - ex.: `echo "Você está no diretório $(pwd)"`
+3. `(comando)`: executa um `comando` em subshell.
+    - ex.: `(cd /tmp; rm -f files*)`
+
+Se combinarmos a técnica do item 2 com a do item 3, podemos ter uma situação do tipo
+```bash
+# isso é perfeitamente válido em bash
+echo "output dos comandos: $((comando1); (comando2))"
+# o shfmt vai confundir isso 👆
+```
+
+Como podemos notar, aquele comecinho ali com `$((` vai confundir o `shfmt`.
+```txt
+$ echo '$((comando1); (comando2))' | shfmt
+<standard input>:1:1: reached ) without matching $(( with ))
+```
+
+De fato, essa notação é apontada no próprio [padrão POSIX](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06_03) como uma notação ambígua. E recomenda que seja usado um espaço para separar o `$(` e o `(`.
+
+```txt
+$ # com espaços, fica deboas 👍
+$ echo '$( (comando1); (comando2) )' | shfmt -i 2
+$(
+  (comando1)
+  (comando2)
+)
+
+```
+
+
+### Declarações "exóticas" não são suportadas
+
+Em bash você consegue declarar duas variáveis e atribuir o mesmo valor a ambas em uma única linha, usando essa notação aqui:
+```bash
+declare {var1,var2}=valor
+```
+
+Essa notação não é suportada pelo `shfmt`, pois ele vai achar que você está querendo declarar uma variável chamada `{var1,var2}`:
+```txt
+$ echo 'declare {var1,var2}=valor' | shfmt
+<standard input>:1:9: invalid var name
+```
+
+No meu caso isso não se torna exatamente um problema, pois eu não uso nem jamais usaria tal notação (pois acredito que o código deve ser o mais claro e explícito possível).
+
+
+### A opção `--binary-next-line` não se aplica a `[[ testes ]]`
+
+Todos os "probleminhas" listados acima são perfeitamente aceitáveis pra mim. Tenho pra mim que eles até encorajam boas práticas.
+
+Mas esse aqui é o único "probleminha" do `shfmt` que me incomoda (mas nem por isso parei de usá-lo em TODOS os meus scripts).
+
+Esse problema não está na [lista de *caveats* do README](https://github.com/mvdan/sh#caveats), mas existe [uma issue aberta sobre isso](https://github.com/mvdan/sh/issues/813).
+
+O lance é que a opção `-bn`,`--binary-next-line` não se aplica às expressões dentro dos `[[ colchetes ]]`.
+
+
+
+Expressões longas como essa não são muito comuns nos meus códigos, mas de vez em quando aparecem.
+
+
+
+
+
 
 
 
