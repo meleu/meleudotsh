@@ -275,7 +275,7 @@ As outras opções de formatação eu não costumo usar, mas recomendo que você
 
 Um detalhe: o `shfmt` te mostra a versão formatada do seu código mas ele não altera o arquivo do seu código, a menos que você explicitamente diga a ele que o faça.
 
-Para o fazer o `shfmt` alterar o arquivo do seu código diretamente, use a opção `-w`, `--write`.
+Para fazer o `shfmt` alterar o arquivo diretamente, use a opção `-w`, `--write`.
 
 ## Pontos de atenção!
 
