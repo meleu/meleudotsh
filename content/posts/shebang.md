@@ -143,7 +143,7 @@ Principal motivo: quando eu estava contribuindo com o projeto [RetroPie](https:/
 
 Pode ser que eu use `#!/bin/bash` aqui e acolá... Já cheguei a conclusão que as duas soluções são igualmente boas. Mas eu tendo a preferir utilizar o método com o `env`.
 
-Existe ainda alguns casos especiais, **que não estão relacionados especificamente ao bash**, onde o useo do `#!/usr/bin/env` é uma opção melhor: quando você quer executar um script Python ou usando NodeJS.
+Existe ainda alguns casos especiais, **que não estão relacionados especificamente ao bash**, onde o uso do `#!/usr/bin/env` é uma opção melhor: quando você quer executar um script Python ou usando NodeJS.
 
 Vamos ver um exemplo bobo em NodeJS. Se eu quero executar um script simplesmente chamando o nome do arquivo, eu poderia criar um arquivo assim:
 
