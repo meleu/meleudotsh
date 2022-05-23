@@ -44,8 +44,7 @@ Existe ainda uma outra série de vídeos do Blau que eu achei bem legal, que é 
 
 ## Livros
 
-Para aqueles que, como eu, gostam de ter um material na forma escrita, o Blau (eita p\*rr@! esse cara tá em todas!) também escreveu o **Pequeno Manual do Programador Bash**. Conteúdo bastante valioso que pode ser baixado gratuitamente aqui:
-https://blauaraujo.com/2022/02/17/versao-impressa-do-pequeno-manual-do-programador-gnu-bash/
+Para aqueles que, como eu, gostam de ter um material na forma escrita, o Blau (eita p\*rr@! esse cara tá em todas!) também escreveu o **[Pequeno Manual do Programador Bash](https://blauaraujo.com/livro/)**. Conteúdo bastante valioso que pode ser baixado gratuitamente.
 
 Outro livro bastante valioso para se ter a mão é o **[Programação Shell Linux: Referência Definitiva da Linguagem Shell](https://novatec.com.br/livros/programacao-shell-linux-12ed/)**, do grande mestre Júlio Cezar Neves. Como o próprio título diz, este é um livro de referência. Excelente para ter ao alcance para tirar uma dúvida e/ou aprender algo que ainda não esteja dominando. (Observação: esse livro foi originalmente publicado pela editora Brasport, mas em sua 12a. edição foi para a editora Novatec e está com uma diagramação mais caprichada).
 
@@ -70,7 +69,7 @@ O "*shebang*" é a coisa mais fundamental de um script, pois é onde você defin
 
 [link](/aspas-sempre)
 
-Resumindo a importância desse artigo com uma citação: "uma variável em bash é como uma granada, tire suas aspas e ela uma hora explodirá".
+Resumindo a importância desse artigo com uma citação: "uma variável em bash é como uma granada, tire suas aspas e uma hora ela explodirá".
 
 
 ### Deixe o bash mais rigoroso com seu script e evite dores de cabeça
