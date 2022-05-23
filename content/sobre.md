@@ -7,7 +7,7 @@ Você adivinhou! O `.sh` no domínio desse site é uma homenagem à extensão no
 
 ## Que assunto é abordado aqui?
 
-**Este site é totalmente dedicado à linha de comando e shell scripting (principalmente bash).**
+**Este site é totalmente dedicado à linha de comando e shell scripting** (principalmente bash).
 
 Portanto mostro aqui diversos comandos e programas úteis que podem ser utilizados diretamente no console.
 
@@ -27,23 +27,6 @@ Aliás, o conteúdo aqui não é limitado somente ao Linux. O bash também está
 
 Portanto o foco aqui é em uma coisa que é comum à todos estes sistemas: **a linha de comando.**
 
-## Sem distrações!
-
-Faço questão de prover esse conteúdo num formato limpo, agradável de se ler, **sem propagandas ou qualquer outro tipo de distração** pra ficar atrapalhando sua leitura.
-
-Apesar da propaganda ser um recurso quepode gerar alguns trocados e estimular a produção de conteúdo (além de me ajudar com os custos do domínio), o efeito colateral de ser uma grande distração para o leitor não faz valer a pena.
-
-Portanto se você acha que o conteúdo que estou publicando aqui te ajuda de alguma forma e quiser fazer uma doação, eu fico muito grato. Seja [um bombom 🍬 (R$1)](https://picpay.me/meleuzord/1.00), [um café ☕ (R$ 5)](https://picpay.me/meleuzord/5.00), ou [um chopp 🍺 (R$10)](https://picpay.me/meleuzord/10.00). :)
-
-
-## Quem mantém esse site?
-
-Me chamo [meleu](https://github.com/meleu) (mesmo que no meu RG esteja escrito Augusto).
-
-Sou um amante do Linux, da linha de comando, de shell scripting e do movimento Open Source desde quando comprei meu primeiro computador em 1999. Atualmente trabalho como Engenheiro DevOps e uso scripts bash intensivamente no meu dia a dia de trabalho.
-
-Criei este site para compartilhar o conhecimento de shell-script (principalmente bash) que venho acumulando ao longo desses anos.
-
 
 ## Por que criei esse site?
 
@@ -55,3 +38,20 @@ Você perceberá que meus artigos são muito focados em um código limpo, fácil
 
 Lembre-se: **Você lê código muito mais do que escreve.** Portanto faça o possível para que essa leitura seja agradável e fácil de entender.
 
+
+## Sem distrações!
+
+Faço questão de prover esse conteúdo num formato limpo, agradável de se ler, **sem propagandas ou qualquer outro tipo de distração** pra ficar atrapalhando sua leitura.
+
+Apesar da propaganda ser um recurso que pode gerar alguns trocados e estimular a produção de conteúdo (além de me ajudar com os custos do domínio), o efeito colateral de ser uma grande distração para o leitor não faz valer a pena.
+
+No passado eu estava aceitando doações. Mas como atualmente os custos pra manter esse site não causam um grande impacto no meu orçamento, resolvi deixar de lado.
+
+
+## Quem mantém esse site?
+
+Me chamo [meleu](https://github.com/meleu) (mesmo que no meu RG esteja escrito Augusto).
+
+Sou um amante do Linux, da linha de comando, de shell scripting e do movimento Open Source desde quando comprei meu primeiro computador em 1999. Atualmente trabalho como Engenheiro DevOps e uso scripts bash intensivamente no meu dia a dia de trabalho.
+
+Se quiser me contactar para assuntos profissionais, conecte-se comigo no [meu perfil do LinkedIn](https://www.linkedin.com/in/meleu).

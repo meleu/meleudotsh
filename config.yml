@@ -83,9 +83,9 @@ params:
     content: |
       Compartilhando conhecimento sobre linha de comando e shell script.
 
-      De vez em quando algum conteúdo relacionado ao universo DevOps.
-
       Foco no conteúdo e sem distrações.
+
+      > **Se você é iniciante em shell script [comece por aqui](/comeco)**.
 
   socialIcons:
     - name: twitter
