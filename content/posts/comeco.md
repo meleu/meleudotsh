@@ -8,7 +8,6 @@ date: 2022-05-22T10:29:28-03:00
 cover:
   image: "img/por-que-shell.gif"
   alt: prompt
-draft: true
 ---
 
 Neste artigo eu ofereço uma relação de conteúdo **em português** você comece DO ZERO e chegue a um nível razoável de proficiência em programação shell.
