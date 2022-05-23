@@ -2,13 +2,10 @@
 
 ## artigos
 
-- [ ] dotfiles
 - [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
 - [ ] asdf-vm
     - cheat
     - cheatsheets
-- [ ] shellcheck
-- [ ] shfmt
 - [ ] unix moderno
     - https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
     - https://github.com/ibraheemdev/modern-unix
@@ -31,13 +28,4 @@
 - [x] ?para os arquivos que já existem, fazer um link levando para o diretório `/posts` (usei a opção `permalinks`)
 - [x] disponibilizar via GitHub Pages ([guia](https://www.jameswright.xyz/post/20200409/deploy_wowchemy_to_githubio/))
 - [x] criar um diretório `static/` - [hugo config](https://gohugo.io/content-management/static-files/)
-
-
-## páginas
-
-- [ ] referencias
-    - [ ] blau araujo bash pdf
-    - [ ] blau araujo videos
-- [x] sobre
-
 
