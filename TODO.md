@@ -10,6 +10,19 @@
     - https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
     - https://github.com/ibraheemdev/modern-unix
     - https://mobile.twitter.com/amilajack/status/1479328649820000256
+    - pup
+    - hyperfine
+- [ ] coding style
+  - por que colocar tudo em funções
+  - fuções que todo script "sério" deveria ter
+      - fail
+      - help
+      - usage
+  - `DEBUG`
+- [ ] o que fazer após o vimtutor
+
+
+
 
 ## chore
 
