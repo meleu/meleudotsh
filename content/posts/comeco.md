@@ -53,11 +53,11 @@ Após já ter começado a não só brincar com shell scripts, mas também a escr
 Cedo ou tarde você vai precisar se sentir confortável com Expressões Regulares, e na nossa língua o melhor livro que existe nesse tema é o **[Expressões Regulares - Uma abordagem divertida](https://www.piazinho.com.br/)**, também do Aurelio Marinho Jargas. Esse livro eu recomendo para qualquer profissional de TI, até mesmo se não vai trabalhar com shell. Conteúdo extremamente valioso.
 
 
-## Artigos do meleu.sh voltado para iniciantes
+## Artigos mais importantes do meleu.sh
 
 Eu uso a tag [fundamentos](/tags/fundamentos) para categorizar artigos que considero importantes para iniciantes. Também uso a tag [boas-praticas](/tags/boas-praticas) para artigos que mostram algumas técnicas que podem até não ser totalmente compreendidas por iniciantes, mas se um iniciante seguir, certamente evitará muitas dores de cabeça.
 
-Vou listar aqui, em ordem de importância, os que considero mais fundamentais para um iniciante.
+Vou listar aqui, em ordem de importância (o que vem primeiro é o mais importante):
 
 ### O que o #! realmente faz?
 
