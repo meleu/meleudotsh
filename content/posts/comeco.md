@@ -50,7 +50,7 @@ Outro livro bastante valioso para se ter a mão é o **[Programação Shell Linu
 
 Após já ter começado a não só brincar com shell scripts, mas também a escrever scripts mais sérios, o próximo material que eu recomendo é o **[Shell Script Profissional](https://www.shellscript.com.br/)**, do [Aurelio Marinho Jargas](https://aurelio.net). Aqui vamos sair do básico e começar a levar o shell script mais a sério.
 
-Cedo ou tarde você vai precisar se sentir confortável com Expressões Regulares, e na nossa língua o melhor livro que existe nesse tema é o **[Expressões Regulares - Uma abordagem divertida](https://www.piazinho.com.br/)**, também do Aurelio Marinho Jargas. Esse livro eu recomendo para qualquer profissional de TI, até mesmo se não vai trabalhar com shell. Conteúdo extremamente valioso.
+Cedo ou tarde você vai precisar se sentir confortável com Expressões Regulares, e na nossa língua o melhor livro que existe nesse tema é o **[Expressões Regulares - Uma abordagem divertida](https://www.piazinho.com.br/)**, também do Aurelio. Esse livro eu recomendo para qualquer profissional de TI, até mesmo se não vai trabalhar com shell. Conteúdo extremamente valioso.
 
 
 ## Artigos mais importantes do meleu.sh
