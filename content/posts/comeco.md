@@ -48,7 +48,7 @@ Para aqueles que, como eu, gostam de ter um material na forma escrita, o Blau (e
 
 Outro livro bastante valioso para se ter a mão é o **[Programação Shell Linux: Referência Definitiva da Linguagem Shell](https://novatec.com.br/livros/programacao-shell-linux-12ed/)**, do grande mestre Júlio Cezar Neves. Como o próprio título diz, este é um livro de referência. Excelente para ter ao alcance para tirar uma dúvida e/ou aprender algo que ainda não esteja dominando. (Observação: esse livro foi originalmente publicado pela editora Brasport, mas em sua 12a. edição foi para a editora Novatec e está com uma diagramação mais caprichada).
 
-Após já ter começado a não só brincar com shell scripts, mas também a escrever scripts mais sérios, o próximo material que eu recomendo é o **[Shell Script Profissional](https://www.shellscript.com.br/)**, do [Aurelio Marinho Jargas]. Aqui vamos sair do básico e começar a levar o shell script mais a sério.
+Após já ter começado a não só brincar com shell scripts, mas também a escrever scripts mais sérios, o próximo material que eu recomendo é o **[Shell Script Profissional](https://www.shellscript.com.br/)**, do [Aurelio Marinho Jargas](https://aurelio.net). Aqui vamos sair do básico e começar a levar o shell script mais a sério.
 
 Cedo ou tarde você vai precisar se sentir confortável com Expressões Regulares, e na nossa língua o melhor livro que existe nesse tema é o **[Expressões Regulares - Uma abordagem divertida](https://www.piazinho.com.br/)**, também do Aurelio Marinho Jargas. Esse livro eu recomendo para qualquer profissional de TI, até mesmo se não vai trabalhar com shell. Conteúdo extremamente valioso.
 
