@@ -10,7 +10,7 @@ cover:
   alt: prompt
 ---
 
-Neste artigo eu ofereço uma relação de conteúdo **em português** você comece DO ZERO e chegue a um nível razoável de proficiência em programação shell.
+Neste artigo eu ofereço uma relação de conteúdo **em português** para que você comece DO ZERO e chegue a um nível razoável de proficiência em programação shell.
 
 Eu reconheço que alguns artigos aqui do meleu.sh não são lá tão focados no leitor que está iniciando suas aventuras no shell.
 
