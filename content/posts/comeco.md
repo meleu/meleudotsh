@@ -76,7 +76,7 @@ Resumindo a importância desse artigo com uma citação: "uma variável em bash 
 
 [link](/bash-rigoroso)
 
-Com essa técnica o seu script irá falhar o mais rápido possível. Desta forma você terá poderá repará-lo enquanto ainda está trabalhando nele, com o contexto do problema ainda fresquinho na cabeça.
+Com essa técnica o seu script irá falhar o mais rápido possível. Desta forma você poderá repará-lo enquanto ainda está trabalhando nele, com o contexto do problema ainda fresquinho na cabeça.
 
 **Use essa técnica mesmo que você seja um iniciante!**
 
