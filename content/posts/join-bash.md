@@ -54,6 +54,8 @@ E a seguir um trecho da descrição da expansão feita com `@` arroba:
 
 Devido a esta propriedade, se tentarmos a função `joinBy()` usando `@` arroba no lugar de `*` asterisco (`echo "${@:2}"`), não obteremos o resultado desejado.
 
+> **Atualização**
+> O Blau Araujo fez um vídeo explicando no detalhe essas diferenças entre o `*` e o `@`. Confira aqui: [# Bash: expansões dos parâmetros `@` e `*` - quais são as diferenças?](https://youtu.be/x6Vv9Lb2WWQ)
 
 ## Fontes
 
