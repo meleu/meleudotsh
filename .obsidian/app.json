@@ -9,5 +9,6 @@
   "showFrontmatter": true,
   "foldHeading": true,
   "foldIndent": true,
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "strictLineBreaks": true
 }
