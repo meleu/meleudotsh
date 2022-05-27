@@ -56,7 +56,7 @@ Devido a esta propriedade, se tentarmos a função `joinBy()` usando `@` arroba 
 
 > **Atualização**
 >
-> O Blau Araujo fez um vídeo explicando no detalhe essas diferenças entre o `*` e o `@`. Confira aqui: [# Bash: expansões dos parâmetros `@` e `*` - quais são as diferenças?](https://youtu.be/x6Vv9Lb2WWQ)
+> O Blau Araujo fez um vídeo explicando no detalhe essas diferenças entre o `*` e o `@`. Confira aqui: [Bash: expansões dos parâmetros `@` e `*` - quais são as diferenças?](https://youtu.be/x6Vv9Lb2WWQ)
 
 ## Fontes
 
