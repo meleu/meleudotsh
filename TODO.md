@@ -20,6 +20,12 @@
       - usage
   - `DEBUG`
 - [ ] o que fazer após o vimtutor
+- [ ] bash - gitignore.io `curl -L https://gitignore.io/api/linux`
+- [ ] bash - gitignore.io with dialog
+- [ ] bash - youtube viewer: <https://github.com/alexanderepstein/Bash-Snippets/tree/master/ytview>
+
+
+
 
 
 
