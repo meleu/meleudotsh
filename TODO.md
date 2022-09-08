@@ -3,6 +3,8 @@
 ## artigos
 
 - [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
+- [ ] como aprender vim
+- [ ] engenharia reversa de imagens docker
 - [ ] asdf-vm
     - cheat
     - cheatsheets
