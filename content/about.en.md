@@ -6,7 +6,7 @@ layout: "single"
 You guessed right! The `.sh` in this site's domain is a reference to usual file extension used for shell scripts.
 
 
-## Which topic is addressed here?
+## Which topics are addressed here?
 
 **This website is 100% dedicated to the command line and shell scripting** (mainly bash).
 
@@ -19,7 +19,7 @@ One of my premises is to generate content that:
 - help spread good programming practices.
 
 
-## Which topic is NOT addressed here?
+## Which topics are NOT addressed here?
 
 I will not address peculiarities/pros/cons of the infinite Linux distributions available out there. Neither configurations/customizations of graphical environments.
 
