@@ -1,6 +1,7 @@
 ---
 title: "Sobre o meleu.sh"
 layout: "single"
+url: "/sobre/"
 ---
 
 Você adivinhou! O `.sh` no domínio desse site é uma homenagem à extensão normalmente usada para arquivos contendo shell script.

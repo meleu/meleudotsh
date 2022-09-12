@@ -1,4 +1,5 @@
 ---
+translationKey: elemento-presente-no-array
 title: "Como checar se um array contém um determinado elemento"
 date: 2020-01-03T05:00:59-03:00
 tags:
@@ -6,7 +7,7 @@ tags:
   - bash-puro
 cover:
   image: "img/elemento-presente-no-array.png"
-  alt: "output de covid.sh"
+  alt: "code snippet"
 ---
 
 Quando estamos trabalhando com arrays em shell scripts é comum termos situações onde queremos saber se um determinado elemento está presente no array.

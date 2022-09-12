@@ -2,6 +2,47 @@ baseURL: https://meleu.sh/
 languageCode: pt
 defaultContentLanguage: pt
 title: meleu.sh
+  
+languages:
+  pt:
+    languageName: "Portugues"
+    weight: 1
+# english configurations
+################################################################################
+  en:
+    languageName: English
+    weight: 2
+    homeInfoParams:
+      title: meleu.sh
+      content: |
+        Sharing knowledge about command line and shell script.
+
+        Focus on content and no distractions.
+    menu:
+      main:
+        - identifier: archive
+          name: archive
+          url: ../archive/
+          weight: 10
+        - identifier: tags
+          name: tags
+          url: /tags/
+          weight: 20
+        - identifier: search
+          name: search
+          url: ../search/
+          weight: 30
+        - identifier: about
+          name: about
+          url: /about/
+          weight: 99
+    editPost:
+      URL: "https://github.com/meleu/meleudotsh/edit/master/content"
+      text: "Suggest changes in this article"
+      appendFilePath: true
+# end of english configurations
+################################################################################
+
 
 ###############################################################################
 # PaperMod configs
@@ -50,7 +91,7 @@ menu:
       name: busca
       url: /busca/
       weight: 30
-    - identifier: sobre
+    - identifier: about
       name: sobre
       url: /sobre/
       weight: 99

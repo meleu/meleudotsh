@@ -1,5 +1,17 @@
 # TODO
 
+## translate to English
+
+- [ ] about
+- [ ] shebang
+- [ ] join
+- [ ] element in array
+- [ ] bash-rigoroso
+- [ ] trap-err
+- [ ] shellcheck
+- [ ] shfmt
+
+
 ## artigos
 
 - [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
