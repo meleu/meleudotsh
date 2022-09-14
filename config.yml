@@ -42,7 +42,7 @@ languages:
           weight: 99
     editPost:
       URL: "https://github.com/meleu/meleudotsh/edit/master/content"
-      text: "Suggest changes in this article"
+      text: "✏️ Suggest changes in this article"
       appendFilePath: true
 # end of english configurations
 ################################################################################
@@ -156,7 +156,7 @@ params:
   #############################################################################
   editPost:
     URL: "https://github.com/meleu/meleudotsh/edit/master/content"
-    text: "Sugerir mudanças neste artigo"
+    text: "✏️ Sugerir mudanças neste artigo"
     appendFilePath: true
   #############################################################################
 
