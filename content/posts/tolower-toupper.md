@@ -5,7 +5,6 @@ description: >
 tags:
   - codigo
   - bash-puro
-  - fundamentos
 date: 2020-01-25T16:09:01-03:00
 cover:
   image: "img/tolower-toupper.png"
