@@ -42,7 +42,7 @@ languages:
           weight: 99
     editPost:
       URL: "https://github.com/meleu/meleudotsh/edit/master/content"
-      text: "✏️ Suggest changes in this article"
+      text: "✏️ Edit this article"
       appendFilePath: true
 # end of english configurations
 ################################################################################
@@ -147,16 +147,16 @@ params:
   #############################################################################
 
   # google analytics
-  analytics:
-    google:
-      SiteVerificationTag: "UA-155045503-1"
+  # analytics:
+  #   google:
+  #     SiteVerificationTag: "UA-155045503-1"
 
   # link para edição
   # https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/#edit-link-for-posts
   #############################################################################
   editPost:
     URL: "https://github.com/meleu/meleudotsh/edit/master/content"
-    text: "✏️ Sugerir mudanças neste artigo"
+    text: "✏️ Edite este artigo"
     appendFilePath: true
   #############################################################################
 

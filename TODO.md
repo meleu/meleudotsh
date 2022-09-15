@@ -15,6 +15,7 @@
 ## artigos
 
 - [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
+- [ ] é possível ganhar dinheiro programando em shell script
 - [ ] como aprender vim
 - [ ] engenharia reversa de imagens docker
 - [ ] asdf-vm
