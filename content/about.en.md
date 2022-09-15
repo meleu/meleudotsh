@@ -1,6 +1,7 @@
 ---
 title: "About meleu.sh"
 layout: "single"
+url: "/en/about/"
 ---
 
 You guessed right! The `.sh` in this site's domain is a reference to usual file extension used for shell scripts.

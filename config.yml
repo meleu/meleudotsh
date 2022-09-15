@@ -21,12 +21,12 @@ languages:
       content: |
         Sharing knowledge about command line and shell script.
 
-        Focus on content and no distractions.
+        Focus on content, no distractions.
     menu:
       main:
         - identifier: archive
           name: archive
-          url: ../archive/
+          url: /en/archive/
           weight: 10
         - identifier: tags
           name: tags
@@ -34,11 +34,11 @@ languages:
           weight: 20
         - identifier: search
           name: search
-          url: ../search/
+          url: /en/search/
           weight: 30
         - identifier: about
           name: about
-          url: /about/
+          url: /en/about/
           weight: 99
     editPost:
       URL: "https://github.com/meleu/meleudotsh/edit/master/content"
