@@ -16,7 +16,7 @@
 
 - [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
 - [ ] é possível ganhar dinheiro programando em shell script
-- [ ] como aprender vim
+- [ ] como aprender vim - o que fazer após o vimtutor?
 - [ ] engenharia reversa de imagens docker
 - [ ] asdf-vm
     - cheat
@@ -34,7 +34,6 @@
       - help
       - usage
   - `DEBUG`
-- [ ] o que fazer após o vimtutor
 - [ ] bash - gitignore.io `curl -L https://gitignore.io/api/linux`
 - [ ] bash - gitignore.io with dialog
 - [ ] bash - youtube viewer: <https://github.com/alexanderepstein/Bash-Snippets/tree/master/ytview>
