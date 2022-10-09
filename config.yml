@@ -4,51 +4,6 @@ defaultContentLanguage: pt
 title: meleu.sh
   
 ###############################################################################
-# multilingual configs
-# https://www.regisphilibert.com/blog/2018/08/hugo-multilingual-part-1-managing-content-translation/
-###############################################################################
-languages:
-  pt:
-    languageName: "Portugues"
-    weight: 1
-# english configurations
-################################################################################
-  en:
-    languageName: English
-    weight: 2
-    homeInfoParams:
-      title: meleu.sh
-      content: |
-        Sharing knowledge about command line and shell script.
-
-        Focus on content, no distractions.
-    menu:
-      main:
-        - identifier: archive
-          name: archive
-          url: /en/archive/
-          weight: 10
-        - identifier: tags
-          name: tags
-          url: /tags/
-          weight: 20
-        - identifier: search
-          name: search
-          url: /en/search/
-          weight: 30
-        - identifier: about
-          name: about
-          url: /en/about/
-          weight: 99
-    editPost:
-      URL: "https://github.com/meleu/meleudotsh/edit/master/content"
-      text: "✏️ Edit this article"
-      appendFilePath: true
-# end of english configurations
-################################################################################
-
-
-###############################################################################
 # PaperMod configs
 # https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-installation/
 # configs pendentes:

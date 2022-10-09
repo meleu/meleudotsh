@@ -9,6 +9,7 @@ tags:
 cover:
   image: "img/shebang.png"
   alt: "shebang"
+draft: true
 ---
 
 

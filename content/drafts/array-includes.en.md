@@ -8,6 +8,7 @@ tags:
 cover:
   image: "img/elemento-presente-no-array.png"
   alt: "code snippet"
+draft: true
 ---
 
 When working with arrays it's quite common to face the need to check if an array includes a certain element. Although we can have arrays in bash, we don't have a specific method to check that. In this article we're going to address this problem using a not so known bash feature.
