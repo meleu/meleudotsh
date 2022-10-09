@@ -3,6 +3,10 @@ languageCode: pt
 defaultContentLanguage: pt
 title: meleu.sh
   
+# Eu tentei ser um site bilíngue, mas o esforço necessária iria tomar muito
+# do meu tempo. Caso eu mude de ideia, esse commit vai ser útil:
+# cd6ccd3b147500ff3810351d3708844d8c380db2
+  
 ###############################################################################
 # PaperMod configs
 # https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-installation/
