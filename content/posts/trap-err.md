@@ -305,7 +305,7 @@ trap 'echo "ERR capturado na linha ${LINENO}!"' ERR
 
 ### Tentando juntar tudo isso
 
-Vamos juntar o conhecimento que adquirimos no [artigo anterior](/bash-rigoroso) com o que foi foi exposto aqui e vamos logo ao truque que vai mudar a sua vida:
+Vamos juntar o conhecimento que adquirimos no [artigo anterior](/bash-rigoroso) com o que foi exposto aqui e vamos logo ao truque que vai mudar a sua vida:
 
 ```bash
 # OBS: isso só funciona se usarmos 'set -e'

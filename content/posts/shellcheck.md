@@ -267,9 +267,9 @@ Nesta seção coloco um conteúdo um pouquinho mais avançado, mostrando várias
 Se você está apenas iniciando no shellscript, não se preocupe se não entender tudo... Só de você se preocupar em rodar um `shellcheck` nos seus scripts eu te garanto que você está no caminho correto!
 
 
-### Integre shellcheck com o o seu editor
+### Integre shellcheck com o seu editor
 
-Já etendemos que o shellcheck é bem bacana e nos ajuda a antecipar muitos problemas. Mas se nos atentarmos um pouquinho vamos perceber que mais uma vez acabaremos entrando na repetição do ciclo escrever-salvar-testar.
+Já entendemos que o shellcheck é bem bacana e nos ajuda a antecipar muitos problemas. Mas se nos atentarmos um pouquinho vamos perceber que mais uma vez acabaremos entrando na repetição do ciclo escrever-salvar-testar.
 
 Mesmo que o relatório do shellcheck seja bem útil e isso vá minimizar a quantidade de ciclos escrever-salvar-testar, ainda assim podemos melhorar. Podemos integrar o shellcheck no nosso editor de texto!
 

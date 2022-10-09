@@ -2,6 +2,8 @@
 
 ## translate to English
 
+**note**: desisti de manter o meleu.sh como bilíngue, mas ainda assim quero traduzir estes artigos para o meleu.dev
+
 - [ ] about
 - [ ] shebang
 - [ ] join
@@ -29,7 +31,7 @@
     - hyperfine
 - [ ] coding style
   - por que colocar tudo em funções
-  - fuções que todo script "sério" deveria ter
+  - funções que todo script "sério" deveria ter
       - fail
       - help
       - usage
