@@ -29,3 +29,10 @@ draft: true
     - Ingress
         - Controller (NginX)
         - Resource
+
+---
+
+conteúdos úteis do [[livro Kubernetes Basico]]
+
+[[k8s basico 04-kubectl#Comando de depuração]]
+
