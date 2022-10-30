@@ -337,3 +337,4 @@ set -euo pipefail
 - `help set`
 - `man bash`
 - The Art of Unix Programming - [Rule of Repair](http://www.catb.org/esr/writings/taoup/html/ch01s06.html#id2878538) 
+- [Use Bash Srict Mode (Unless You Love Debugging)](http://redsymbol.net/articles/unofficial-bash-strict-mode/)
