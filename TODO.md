@@ -1,27 +1,13 @@
 # TODO
 
-## translate to English
-
-**note**: desisti de manter o meleu.sh como bilíngue, mas ainda assim quero traduzir estes artigos para o meleu.dev
-
-- [ ] about
-- [ ] shebang
-- [ ] join
-- [ ] element in array
-- [ ] bash-rigoroso
-- [ ] trap-err
-- [ ] shellcheck
-- [ ] shfmt
-
 
 ## artigos
 
-- [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
 - [ ] é possível ganhar dinheiro programando em shell script
-- [ ] como aprender vim - o que fazer após o vimtutor?
 - [ ] engenharia reversa de imagens docker
-- [ ] asdf-vm
-    - cheat
+- [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
+- [ ] como aprender vim - o que fazer após o vimtutor?
+- [ ] cheat - <https://github.com/cheat/cheat>
     - cheatsheets
 - [ ] unix moderno
     - https://jvns.ca/blog/2022/04/12/a-list-of-new-ish--command-line-tools/
@@ -40,10 +26,10 @@
 - [ ] bash - gitignore.io with dialog
 - [ ] bash - youtube viewer: <https://github.com/alexanderepstein/Bash-Snippets/tree/master/ytview>
 
+## séries
 
-
-
-
+- [ ] unix as IDE - [original from Arabesque](https://blog.sanctum.geek.nz/series/unix-as-ide/)
+- [ ] "Aprenda bash com TDD (ou TDD com bash)" - inspiração: [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests/)
 
 
 ## chore
