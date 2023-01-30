@@ -4,6 +4,11 @@
 ## artigos
 
 - [ ] é possível ganhar dinheiro programando em shell script
+- [ ] aplicando Clean Code em bash scripts
+    - [ ] Nome significativos
+    - [ ] Funções
+    - [ ] Comentários
+    - [ ] Formatação
 - [ ] engenharia reversa de imagens docker
 - [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
 - [ ] como aprender vim - o que fazer após o vimtutor?
