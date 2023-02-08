@@ -39,6 +39,7 @@
 
 ## chore
 
+- [ ] comentários <https://giscus.app/>
 - [ ] configurar um 404 que exibe barra de busca
 - [ ] analytics
 - [ ] SEO
