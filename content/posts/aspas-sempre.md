@@ -123,7 +123,7 @@ No meu [artigo sobre _case convertion_](http://meleu.sh/tolower-toupper/) você 
 
 ### quando estiver usando expressão regular dentro de um `[[ ... ]]`
 
-Não use aspas quando sua variável for uma expressão regular que você quer usar com o `[[` e `=~`:
+Não use aspas quando sua variável for uma expressão regular que você quer usar com o `[[` e =~:
 ```shell-session
 $ string='se curte shell, visite meleu.sh'
 $ regex='meleu\.sh$'

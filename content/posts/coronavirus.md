@@ -212,7 +212,7 @@ json2array() {
 
 Em [um outro artigo](http://meleu.sh/percorrer-arquivo/) eu explico em detalhes essa técnica de redirecionar conteúdo para um `while read`. Aqui eu vou explicar de maneira breve:
 
-- `IFS==`: como vimos no tópico acima, aquele comando `jq` vai me fornecer um conteúdo parecido com isso: `cases=188146`. Portanto, se eu setar o `IFS` como `=` sinal de igual, ele vai separar `cases` e `188146` em dois argumentos.
+- `IFS==`: como vimos no tópico acima, aquele comando `jq` vai me fornecer um conteúdo parecido com isso: `cases=188146`. Portanto, se eu setar o `IFS` como = sinal de igual, ele vai separar `cases` e `188146` em dois argumentos.
 
 - `read -r key value`: como o read receberá dois argumentos, o primeiro será `$key` e o segundo será `$value`.
 
