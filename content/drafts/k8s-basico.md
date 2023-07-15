@@ -32,7 +32,7 @@ draft: true
 
 ---
 
-conteúdos úteis do [[livro Kubernetes Basico]]
+conteúdos úteis do [[Kubernetes Basico]]
 
 [[k8s basico 04-kubectl#Comando de depuração]]
 
