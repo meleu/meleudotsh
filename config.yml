@@ -94,12 +94,15 @@ params:
       > **Se você é iniciante em shell script [comece por aqui](/comeco)**.
 
   socialIcons:
-    - name: twitter
-      url: "https://twitter.com/meleushell"
+    - name: other
+      title: Link to my digital garden
+      url: "index.xml"
     - name: github
       url: "https://github.com/meleu"
     - name: linkedin
       url: "https://www.linkedin.com/in/meleu/"
+    - name: twitter
+      url: "https://twitter.com/meleushell"
     - name: rss
       url: "index.xml"
   # TODO: adicionar link para o youtube, quanto tiver
