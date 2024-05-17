@@ -28,7 +28,6 @@ Aliás, o conteúdo aqui não é limitado somente ao Linux. O bash também está
 
 Portanto o foco aqui é em uma coisa que é comum à todos estes sistemas: **a linha de comando.**
 
-
 ## Por que criei esse site?
 
 Meu objetivo é conseguir difundir no mercado brasileiro a adoção de boas práticas referentes a shell-script (principalmente bash). Deixar o código mais legível e de mais fácil manutenção.
@@ -39,7 +38,6 @@ Você perceberá que meus artigos são muito focados em um código limpo, fácil
 
 Lembre-se: **Você lê código muito mais do que escreve.** Portanto faça o possível para que essa leitura seja agradável e fácil de entender.
 
-
 ## Sem distrações!
 
 Faço questão de prover esse conteúdo num formato limpo, agradável de se ler, **sem propagandas ou qualquer outro tipo de distração** pra ficar atrapalhando sua leitura.
@@ -48,11 +46,8 @@ Apesar da propaganda ser um recurso que pode gerar alguns trocados e estimular a
 
 No passado eu estava aceitando doações. Mas como atualmente os custos pra manter esse site não causam um grande impacto no meu orçamento, resolvi deixar de lado.
 
-
 ## Quem mantém esse site?
 
 Me chamo [meleu](https://github.com/meleu) (mesmo que no meu RG esteja escrito Augusto).
 
 Sou um amante do Linux, da linha de comando, de shell scripting e do movimento Open Source desde quando comprei meu primeiro computador em 1999. Atualmente trabalho como Engenheiro DevOps e uso scripts bash intensivamente no meu dia a dia de trabalho.
-
-Se quiser me contactar para assuntos profissionais, conecte-se comigo no [meu perfil do LinkedIn](https://www.linkedin.com/in/meleu).
