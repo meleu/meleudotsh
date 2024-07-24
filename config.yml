@@ -136,10 +136,26 @@ params:
       - summary
       - content
 
+  # habilitando comentários:
+  #############################################################################
+  giscus:
+    repo: "meleu/meleudotsh"
+    repoId: "R_kgDOG_9USg"
+    category: "Announcements"
+    categoryId: "DIC_kwDOG_9USs4ChHrL"
+    mapping: "pathname"
+    strict: "0"
+    reactionsEnabled: "1"
+    emitMetadata: "0"
+    inputPosition: "bottom"
+    theme: "preferred_color_scheme"
+    lang: "pt"
+    loading: "lazy"
+
 # config de busca
 # https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/#search-page
 outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON
+home:
+  - HTML
+  - RSS
+  - JSON
