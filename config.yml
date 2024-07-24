@@ -76,6 +76,7 @@ params:
   tocOpen: false
   showCodeCopyButtons: true
   showBreadCrumbs: true
+  comments: true
 
   # sugerir outros posts ao final
   # (não gostei do fato de ficar acima dos links de compartilhamento)
