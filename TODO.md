@@ -21,6 +21,7 @@
       - usage
   - `DEBUG`
 - [ ] engenharia reversa de imagens docker
+- [ ] [smallest docker image static website](https://lipanski.com/posts/smallest-docker-image-static-website)
 - [ ] carbon.now.sh e carbonara - após escrever, postar [aqui](https://twitter.com/gutocarvalho/status/1513562053415477253) 
 - [ ] como aprender vim - o que fazer após o vimtutor? (preciso acabar o vex.sh)
 - [ ] unix moderno
@@ -41,7 +42,7 @@
 
 ## chore
 
-- [ ] comentários <https://giscus.app/>
+- [x] comentários <https://giscus.app/>
 - [ ] configurar um 404 que exibe barra de busca
 - [ ] analytics
 - [ ] SEO
