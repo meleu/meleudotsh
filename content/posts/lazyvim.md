@@ -10,27 +10,34 @@ cover:
   alt: "LazyVim dashboard"
 ---
 
+Depois de aproximadamente 2 décadas usando [Vim](https://www.vim.org/), em 2023 eu me rendi ao [Neovim](https://neovim.io/).
+
+Cheguei a gastar alguns dias tentando fazer aquele setup bacanudo e super customizado pra deixá-lo como uma IDE, mas percebi que isso **NÃO** é uma tarefa simples (tanto de se fazer quanto de se manter no longo prazo). Por fim decidi me render a uma "distribuição" neovim, especificamente a [LazyVim](https://lazyvim.org/).
+
 Nesse artigo mostro como configuro o LazyVim logo após uma instalação, para deixá-lo de um jeito que eu fico mais produtivo.
 
-Depois de aproximadamente 2 décadas usando [Vim](https://www.vim.org/), em 2023 eu me rendi ao [Neovim](https://neovim.io/). Cheguei a gastar alguns dias tentando fazer aquele setup bacanudo e super customizado pra deixá-lo como uma IDE, mas percebi que isso **NÃO** é uma tarefa simples (tanto de se fazer quanto de se manter no longo prazo). Portanto decidi me render a uma "distribuição" neovim, especificamente a [LazyVim](https://lazyvim.org/).
+## Avisos
 
-## Avisos!
-
-- Este artigo **NÃO** tem a intenção de evangelizar o uso do vim ou propagandear o quão produtivo você pode ser quando o usa.
-- Este artigo **NÃO** fala sobre instalação do neovim e/ou LazyVim! Para isso você terá que seguir as orientações da [documentação oficial](https://lazyvim.org/).
-- Este artigo **NÃO** vai descrever detalhadamente o que cada plugin faz.
+- **NÃO** tenho aqui a intenção de evangelizar o uso do vim ou propagandear o quão produtivo você pode ser quando o usa.
+- **NÃO** falo sobre instalação do neovim e/ou LazyVim! Para isso você terá que seguir as orientações da [documentação oficial](https://lazyvim.org/).
+- **NÃO** descrevo detalhadamente o que cada plugin faz.
 - Vou falar apenas das configurações que fiz logo após uma instalação do LazyVim.
 - No momento da escrita desse artigo o LazyVim está na versão 14.11.
 - Enquanto eu estiver usando o LazyVim no meu dia a dia, pretendo ir atualizando esse artigo quando julgar necessário.
 
-
 ## Keybindings úteis para saber logo de cara
+
+### Arquivos e buffers
+
+- `<leader><leader>` picker de arquivos (ele tem fuzzy finding)
+- `<leader>,` - picker de buffers abertos
+- `<leader>bd` - fecha o buffer atual
 
 ### Notificações
 
 Pra quem já está acostumado com o vim/neovim "clássico" vai estranhar as notificações. Algumas vezes são informações úteis, outras vezes pode ser ruído. De qualquer forma acho útil já chegar sabendo como revisitar essas notificações quando necessário:
 
-- `<leader>sna` - mostra todas notificações 
+- `<leader>sna` - mostra todas notificações
 - `<leader>snt` - mostra todas as notificações no "picker"
 - `<leader>snl` - mostra a última notificação
 - `<leader>snd` - limpa todas notificações visíveis na tela
@@ -118,7 +125,7 @@ Observe que aqui 👆 no finalzinho do arquivo eu configurei `gh` para funcionar
 
 Apesar de reconhecer que usar H e L (maiúsculos) pode parecer "intuitivo" para navegar para o buffer que vem antes/depois, estas teclas já possuem um significado histórico no vim, e que eu já estou muito habituado a usar (inclusive em outras aplicações que emulam vim keybindings, como tmux e Obsidian).
 
-- `H` (mnemônico pra High) vai pro topo da área visível do buffer atual 
+- `H` (mnemônico pra High) vai pro topo da área visível do buffer atual
 - `L` (mnemônico pra Low) vai pro final da área visível do buffer atual
 
 Portanto, eu quero desabilitar o comportamento que vem no LazyVim.
@@ -374,4 +381,3 @@ vim.keymap.set("n", "gT", ":BufferLineCyclePrev<CR>")
 Pra evitar de ficar um artigo muito longo, vou parando por aqui.
 
 Mais pra frente faço outro artigo configurando o LazyVim com recursos que uso no meu dia a dia de trabalho como desenvolvedor.
-
