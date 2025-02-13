@@ -3,8 +3,8 @@ title: "Como converter de maiúsculas para minúsculas (e vice-versa) com bash"
 description: >
   Em várias linguagens nós contamos com toLower()/toUpper() para converter strings para minúsculas/maiúsculas. No bash podemos ter essa mesma funcionalidade.
 tags:
-  - codigo
   - bash-puro
+  - codigo
 date: 2020-01-25T16:09:01-03:00
 cover:
   image: "img/tolower-toupper.png"

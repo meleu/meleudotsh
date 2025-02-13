@@ -3,8 +3,8 @@ translationKey: elemento-presente-no-array
 title: "Como checar se um array contém um determinado elemento"
 date: 2020-01-03T05:00:59-03:00
 tags:
-  - codigo
   - bash-puro
+  - codigo
 cover:
   image: "img/elemento-presente-no-array.png"
   alt: "code snippet"

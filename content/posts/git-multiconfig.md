@@ -4,6 +4,7 @@ description: >
   Depois de ler esse artigo você também nunca mais vai commitar no github com seu email do trabalho!
 tags:
   - git
+  - configuracoes
 date: 2022-04-20T12:25:19-03:00
 cover:
   image: "img/git-multiconfig.png"

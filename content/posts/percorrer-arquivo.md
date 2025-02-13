@@ -4,6 +4,7 @@ description: >
   Veja uma maneira robusta de percorrer um arquivo linha por linha. E sem cair nas armadilhas sutis que nos trazem surpresas desagradáveis.
 tags:
   - boas-praticas
+  - fundamentos
   - codigo
 date: 2020-01-21T16:00:42-03:00
 cover:
