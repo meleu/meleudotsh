@@ -1,6 +1,6 @@
 ---
 title: Habilitando auto-suggestions no bash
-description: Uma maneira super rápida de acessar seu histórico.
+description: Deixe o bash completar seu comando com uma sugestão baseada no seu histórico.
 tags:
   - bash
   - configuracoes
