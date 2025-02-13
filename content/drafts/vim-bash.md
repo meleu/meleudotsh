@@ -4,6 +4,7 @@ description:
 tags:
   - unix-moderno
   - vim
+  - neovim
   - boas-praticas
 date: 2022-05-02T14:18:40-03:00
 cover:
@@ -12,15 +13,8 @@ cover:
 draft: true
 ---
 
-
-
-### asdf-vm
-
-### shfmt
-
-### shellcheck
-
-### vim + shfmt + shellcheck
-
-- https://github.com/z0mbix/vim-shfmt
-- https://github.com/vim-syntastic/syntastic
+- LazyVim
+- Mason
+    - shfmt
+    - shellcheck
+    - bashls
