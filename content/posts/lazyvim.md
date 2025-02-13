@@ -243,7 +243,7 @@ return {
   }
 ```
 
-#### documentação do "hover"
+#### bordas na documentação do "hover"
 
 Quando estamos lendo um código e queremos ver a documentação de um determinado código usamos `K` (ou `gh`, se você está seguindo minha config). Isso é gerenciado pelo `noice`, e eu também gosto de ter bordas nessa janelinha de documentação. Pra isso basta adicionar isso no `lua/plugins/extended-noice.lua`:
 
