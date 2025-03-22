@@ -27,4 +27,3 @@ git submodule update --init --recursive
 # efetivamente atualizar o PaperMod theme
 git submodule update --remote --merge
 ```
-
