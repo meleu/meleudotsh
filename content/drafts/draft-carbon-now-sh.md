@@ -11,7 +11,8 @@ cover:
   alt:
 draft: true
 ---
-
+> [!important]
+> Mudar para o freeze do charmbracelet
 ## Fontes
 
 - <https://github.com/jpmens/jo>

@@ -8,13 +8,13 @@ Você adivinhou! O `.sh` no domínio desse site é uma homenagem à extensão no
 
 ## Que assunto é abordado aqui?
 
-**Este site é totalmente dedicado à linha de comando e shell scripting** (principalmente bash).
+**Este site é totalmente dedicado à linha de comando.**
 
 Portanto mostro aqui diversos comandos e programas úteis que podem ser utilizados diretamente no console.
 
-Também mostro como combiná-los, através de shell scripts, para fazer tarefas maiores.
+Apenas escrevo sobre aquilo que eu uso no meu dia a dia. Dificilmente terá um artigo sobre algo que é uma modinha. Provavelmente só escreverei sobre essa coisa depois que a modinha passou e a ferramenta ainda se mostra relevante.
 
-Uma das minhas premissas é gerar conteúdo que:
+Algumas das minhas premissas é gerar conteúdo que:
 
 - seja útil para qualquer usuário que gosta da linha de comando em ambientes Unix-like.
 - permaneça relevante por vários anos.
@@ -50,4 +50,8 @@ No passado eu estava aceitando doações. Mas como atualmente os custos pra mant
 
 Me chamo [meleu](https://github.com/meleu) (mesmo que no meu RG esteja escrito Augusto).
 
-Sou um amante do Linux, da linha de comando, de shell scripting e do movimento Open Source desde quando comprei meu primeiro computador em 1999. Atualmente trabalho como Engenheiro DevOps e uso scripts bash intensivamente no meu dia a dia de trabalho.
+Sou um amante do Linux, da linha de comando, de shell scripting e do movimento Open Source desde quando comprei meu primeiro computador em 1999.
+
+Já trabalhei como "Engenheiro DevOps" e atualmente trabalho Desenvolvedor Full Stack com foco em Ruby on Rails.
+
+Uso a linha de comando todos os dias e aqui só escrevo sobre as ferramentas que eu uso no meu dia a dia e recomendo.
