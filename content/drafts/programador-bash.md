@@ -1,8 +1,9 @@
 # Use o Bash como um programador
 
 
-- motivação: programe pensando no programador do futuro
+- motivação: escreva código para humanos entenderem
 
+- motivos para não usar bash
 - sempre use aspas
 - sempre use `set -Eeo pipefail`
 - sempre use shellcheck
