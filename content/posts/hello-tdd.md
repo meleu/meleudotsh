@@ -1,10 +1,10 @@
 ---
-title: Aprenda TDD no Bash
+title: Aplicando TDD no Bash
 description: >
-  Veja como usar TDD e ter testes automatizados para seus programas Bash.
+  Aprenda Desenvolvimento Guiado por Testes no Bash.
 tags:
   - testes
-date: 2025-03-22T15:00:00-03:00
+date: 2025-06-13T19:00:00-03:00
 cover:
   image: "img/hello-bats-tdd.png"
   alt: bats output
@@ -12,23 +12,19 @@ cover:
 
 
 
-> ## AVISO!
-> 
-> Após publicar este arquivo eu percebi que ele ficou muito grande. Isso ocorre pois eu abordo dois assuntos que merecem artigos separados.
-> 
-> Por isso resolvi quebrar este conteúdo em dois:
->
-> 1. [Setup do BATS](../bats)
-> 2. [Fluxo de _Test-Driven Development_](../hello-tdd)
-> 
-> Aqui eu mantenho o conteúdo original, mas recomendo a leitura dos artigos linkados acima, separadamente.
-
-
-O objetivo principal desse artigo é ensinar o básico do básico de:
-- como usar o BATS
-- como praticar Test-Driven Development
+O objetivo principal desse artigo é ensinar o básico de como praticar Test-Driven Development em um projeto bash utilizando o BATS como framework de testes.
 
 Para isso escreveremos um "Hello, World poliglota".
+
+> ## AVISO!
+>
+> Se você já leu o artigo [Aprenda TDD no Bash](../tdd-bash) não encontrará novidade alguma aqui!
+>
+> Escrevi esse artigo aqui pois percebi que o artigo original estava muito longo. Portanto resolvi quebrá-lo em dois:
+>
+> 1. [Setup do BATS](../bats)
+> 2. Fluxo de _Test-Driven Development_
+
 
 Durante a leitura pode ser que você ache que estou progredindo de forma demasiadamente lenta para resolver um problema tão simples, e isso é verdade! É intencional. Pois quero mostrar o passo a passo do TDD (e não como escrever hello-world).
 
@@ -36,23 +32,12 @@ Claro que estas ferramentas são bem mais úteis para resolver "problemas reais"
 
 Ah! E tenho certeza que no caminho você vai acabar aprendendo alguns macetinhos de bash. 😉
 
+
 ## O que é BATS?
 
-[BATS](https://github.com/bats-core/bats-core) signfica Bash Automated Testing System. É um _framework_ de testes para bash, que permite que verifiquemos se o nosso programa está se comportando da maneira que queremos.
+[BATS](https://github.com/bats-core/bats-core) significa Bash Automated Testing System. É um _framework_ de testes para bash, que permite que verifiquemos se o nosso programa está se comportando da maneira que queremos.
 
- Estou sendo breve pois já quero partir pra ação. Mas se você quiser, pode obter mais informações sobre o BATS na [documentação oficial](https://bats-core.readthedocs.io/).
-
-### Instalando o BATS
-
-A maioria das distribuições GNU/Linux possuem um pacote chamado `bats` que você pode instalar usando o gerenciador de pacotes oficial.
-
-Eu particularmente prefiro instalar via [Homebrew](https://brew.sh/), pois é um método que funciona tanto pra GNU/Linux como pra MacOS.
-
-```bash
-brew install bats-core
-```
-
-Fique a vontade para instalar da maneira que você preferir.
+No artigo anterior vimos o setup básico de um projeto bash usando o BATS. Neste artigo estou assumindo que você já leu o artigo anterior e já tem tudo que precisa pra começarmos a aprender TDD com bash.
 
 ## O que é TDD
 
@@ -81,244 +66,36 @@ Se você se importa com a qualidade do seu trabalho, saiba que esse esforço val
 
 Agora chega de blablabla! Se você ainda está aqui lendo é por que ao menos têm esperança de que isso é uma coisa útil de se aprender. Então vamos pra prática!
 
-## Primeiros passos
+## Iniciando o projeto
 
-Antes de tudo, vamos preparar um diretório onde colocaremos o código do nosso projeto:
+Vamos seguir aquele checklist mencionado no artigo anterior:
+
+### Checklilst
+
+- [ ] Crie um diretório para o projeto
+- [ ] Crie os diretórios `test` e `src`
+- [ ] Inicie um repo git
+- [ ] Instale BATS
+- [ ] Instale os BATS helpers
+
+### Passo a passo
 
 ```bash
+# diretório do projeto
 mkdir hello-tdd
 cd hello-tdd
-```
 
-Vamos também iniciar um repositório git no diretório do nosso projeto:
+# diretório dos testes e do código de produção
+mkdir test src
 
-```bash
+# iniciando um repositório
 git init
-```
 
-Você provavelmente já sabe como criar um "Hello, World" em bash. Peço que resista à tentação de escrever o código e siga comigo pra usarmos TDD, onde escreveremos os testes primeiro. Antes mesmo do nosso código principal existir.
+# bats-core: o bats propriamente dito (útil para usarmos em pipelines)
+git submodule add \
+  https://github.com/bats-core/bats-core.git \
+  test/bats
 
-Pra não bagunçar o projeto misturando código do nosso programa com o código dos testes automatizados, vamos criar um diretório específico para os testes:
-
-```bash
-# assumindo que já estamos no 'hello-tdd/'
-mkdir test
-```
-
-Criaremos nosso primeiro teste para checar se estamos aptos a executar nosso script. Para isso criamos o arquivo `test/hello_test.bats`.
-
-**OBSERVAÇÃO**: o arquivo tem a extensão `.bats` mas o conteúdo é basicamente bash! O BATS não é uma "linguagem" nova que você tem que aprender. A única coisa diferente que você verá num arquivo `.bats` é a declaração dos testes nesse formato: `@test "nome do teste"`. Todo o resto é apenas bash.
-
-Aqui está o `test/hello_test.bats`:
-
-```bash
-# eu prefiro colocar a descrição em inglês,
-# fique a vontade pra colocar em português.
-@test "can run the script" {
-  ./hello.sh
-}
-```
-
-É isso mesmo! Nosso primeiro teste quer apenas verificar se conseguimos executar nosso programa, por isso está simplesmente chamando `./hello.sh`! Vamos executar esse teste e ver o output:
-
-```
-$ bats test/hello_test.bats 
-hello_test.bats
- ✗ can run the script
-   (in test file test/hello_test.bats, line 2)
-     `./hello.sh' failed with status 127
-   /home/meleu/src/hello-tdd/test/hello_test.bats: line 2: ./hello.sh: No such file or directory
-
-1 test, 1 failure
-```
-
-💥 Já começamos com uma falha!
-
-Pois vá se acostumando! O TDD é assim mesmo...
-
-Observe que no meio daquela mensagem temos o motivo da falha: `./hello.sh: No such file or directory`.
-
-O arquivo não existe. Pois então vamos criá-lo:
-
-```bash
-touch hello.sh
-```
-
-E executar o teste novamente:
-
-```
-$ bats test/hello_test.bats 
-hello_test.bats
- ✗ can run the script
-   (in test file test/hello_test.bats, line 2)
-     `./hello.sh' failed with status 126
-   /home/meleu/src/hello-tdd/test/hello_test.bats: line 2: ./hello.sh: Permission denied
-
-1 test, 1 failure
-```
-
-Outra falha. Novamente com uma dica do que devemos fazer: `./hello.sh: Permission denied`.
-
-Se temos um `Permission denied`, só nos resta dar permissão de execução pro arquivo e executar o teste novamente:
-
-```
-$ # dando permissão de execução
-$ chmod a+x hello.sh 
-
-$ # executando o teste
-$ bats test/hello_test.bats 
-hello_test.bats
- ✓ can run the script
-
-1 test, 0 failures
-```
-
-🥳🎉 Agora sim! Nosso primeiro teste passou!
-
-Tá bom... Isso não é lá grande coisa. Estamos apenas validando que um arquivo tem permissão de execução. Essa parte foi só pra termos uma mini injeção de dopamina ao ver um teste passando.
-
-### Organizando os arquivos do projeto
-
-Já que criamos um diretório para os testes, vamos também criar um diretório para o código executável e colocar o arquivo lá:
-
-```bash
-mkdir src
-mv hello.sh src/hello.sh
-```
-
-Dessa forma teremos essa estrutura de diretórios:
-
-```
-$ tree
-.
-├── src
-│   └── hello.sh
-└── test
-    └── hello_test.bats
-
-2 directories, 2 files
-```
-
-Agora vamos executar nosso teste novamente:
-
-```
-$ bats test/hello_test.bats 
-hello_test.bats
- ✗ can run the script
-   (in test file test/hello_test.bats, line 2)
-     `./hello.sh' failed with status 127
-   /home/meleu/src/hello-tdd/test/hello_test.bats: line 2: ./hello.sh: No such file or directory
-
-1 test, 1 failure
-```
-
-Ooops! Nosso teste voltou a falhar por não encontrar o arquivo!
-
-Isso está acontecendo pois não estamos especificando o caminho até o arquivo! Vamos resolver isso:
-
-```bash
-@test "can run the script" {
-  ./src/hello.sh
-}
-```
-
-Executando o teste:
-
-```
-$ bats test/hello_test.bats 
-hello_test.bats
- ✓ can run the script
-
-1 test, 0 failures
-```
-
-OK. Nosso arquivo foi encontrado e o teste passou. Mas ainda assim ficamos com aquela sensação de que essa solução não parece muito robusta.
-
-Vamos tentar por exemplo entrar no diretório do `test/` e executar o teste de lá:
-
-```
-$ cd test/
-
-$ bats hello_test.bats 
-hello_test.bats
- ✗ can run the script
-   (in test file hello_test.bats, line 2)
-     `./src/hello.sh' failed with status 127
-   /home/meleu/src/hello-tdd/test/hello_test.bats: line 2: ./src/hello.sh: No such file or directory
-
-1 test, 1 failure
-```
-
-O teste simplesmente não encontrou nosso codigo, só por que mudamos de diretório... Não queremos um teste tão "frágil" assim. Vamos resolver isso criando um `setup` pro nosso teste.
-
-### Fazendo o `setup`
-
-Em um arquivo BATS, a função `setup` tem um significado especial: ela é uma função que será executada antes de cada teste (se quiser mais detalhes veja a [documentação aqui](https://bats-core.readthedocs.io/en/stable/writing-tests.html#setup-and-teardown-pre-and-post-test-hooks)).
-
-Vamos criar uma função de `setup` para adicionar o caminho pro nosso executável direto no `PATH`. Dessa forma podemos executar o `hello.sh` sem nos preocupar em especificar o caminho.
-
-Nosso `test/hello_test.bats` então fica assim:
-
-```bash
-setup() {
-  PATH="${BATS_TEST_DIRNAME}/../src:${PATH}"
-}
-
-@test "can run the script" {
-  hello.sh
-}
-```
-
-Ali no `setup` estamos nos aproveitando da variável `$BATS_TEST_DIRNAME`, que o BATS já deixa preenchida com o caminho pro diretório do arquivo de teste. A partir desse diretório vamos para `../src`, que é onde está o nosso executável.
-
-Observe que o teste também está sendo feito com uma chamada direta ao `hello.sh`, sem especificar o caminho. Nós podemos fazer isso pois o `setup` já deixou o `PATH` devidamente preparado.
-
-Vamos conferir se isso realmente funciona:
-
-```
-$ bats hello_test.bats 
-hello_test.bats
- ✓ can run the script
-
-1 test, 0 failures
-```
-
-Maravilha! Estamos no caminho certo!
-
-### O que vimos até agora
-
-- Criamos o diretório `hello-tdd` para começar um novo projeto do zero.
-- Colocamos nosso arquivo de teste no diretório `test/`.
-- Nosso arquivo executável ficará em `src/`.
-- Usamos o `setup` para atualizar o `PATH` com o caminho para o executável.
-- Usamos a variável `$BATS_TEST_DIRNAME` pra pegar o caminho do diretório onde está nosso arquivo de teste.
-- Nosso teste chama o arquivo executável usando apenas o nome do arquivo (sem precisar especificar o caminho completo)
-
-Só pra lembrar, no momento nosso `test/hello_test.bats` está assim:
-
-```bash
-setup() {
-  PATH="${BATS_TEST_DIRNAME}/../src:${PATH}"
-}
-
-@test "can run the script" {
-  hello.sh
-}
-```
-
-E o nosso `src/hello.sh` nada mais é que um arquivo vazio com permissão de execução.
-
-## Instalando BATS helpers
-
-O projeto BATS oferece helpers com algumas conveniências que podem nos ajudar bastante na escrita de testes.
-
-No nosso projeto nós queremos verificar se a saída do programa é `Hello, World`. Fazemos isso criando **asserções** sobre o que o programa gera como saída.
-
-Para criar asserções vamos precisar do helper `bats-assert`. Vamos usar também o `bats-support` para que ele nos forneça mensagens de erro/falha amigáveis, dando mais clareza sobre onde nosso código está quebrando.
-
-Para "instalar" esses helpers no nosso projeto vamos adicioná-los como submódulos:
-
-```bash
 # bats-assert: responsável pelas asserções
 git submodule add \
   https://github.com/bats-core/bats-assert.git \
@@ -328,16 +105,29 @@ git submodule add \
 git submodule add \
   https://github.com/bats-core/bats-support.git \
   test/test_helper/bats-support
-
-# bats-core: o bats propriamente dito (útil para usarmos em pipelines)
-git submodule add \
-  https://github.com/bats-core/bats-core.git \
-  test/bats
 ```
 
-Observe que estamos também "instalando" como submódulo o próprio `bats-core`. Isso é útil, por exemplo, para rodar testes diretamente numa pipeline de Integração Contínua (mas isso é papo para um outro artigo).
+Crie um arquivo `test/hello_test.bats` com esse conteúdo:
 
-No momento nossa estrutura de diretórios está assim:
+```bash
+setup() {
+  load 'test_helper/bats-support/load'
+  load 'test_helper/bats-assert/load'
+
+  PATH="${BATS_TEST_DIRNAME}/../src:${PATH}"
+}
+
+# Agora você consegue facilmente chamar seu código
+@test "TODO: CHANGE THIS TEST..." {
+  run my_code.sh
+  # veja como fazer asserções no README de
+  # https://github.com/bats-core/bats-assert
+}
+```
+
+### Estrutura inicial do projeto
+
+Agora você deverá ter uma estrutura tipo assim:
 
 ```
 $ tree -F -L 2
@@ -351,22 +141,12 @@ $ tree -F -L 2
 ```
 
 
-## Implementando funcionalidades com TDD
 
-Nós queremos implementar, via TDD, um programa que ao ser chamado escreva na tela a string `Hello, World`.
+## Começando com TDD
 
-Primeiro vamos carregar os helpers no nosso `setup`, dessa forma:
+Você provavelmente já sabe como criar um "Hello, World" em bash. Peço que resista à tentação de escrever o código e siga comigo pra usarmos TDD, onde escreveremos os testes primeiro. Antes mesmo do nosso código principal existir.
 
-```bash
-setup() {
-  load 'test_helper/bats-support/load'
-  load 'test_helper/bats-assert/load'
-
-  PATH="${BATS_TEST_DIRNAME}/../src:${PATH}"
-}
-```
-
-Como já falamos, para testar tal programa precisamos fazer **asserções** sobre sua saída. Nosso teste ficará assim:
+Já temos uma estrutura inicial do nosso arquivo de testes em `test/hello_test.bats`, agora vamos adicionar o nosso primeiro teste e fazer uma **asserção** sobre sua saída. Nosso teste ficará assim:
 
 ```bash
 # ... conteúdo original do test/hello_test.bats
@@ -386,7 +166,6 @@ Vamos executar o teste e ver o resultado:
 ```
 $ bats test/hello_test.bats 
 hello_test.bats
- ✓ can run the script
  ✗ say Hello, World
    (from function `assert_output' in file test/test_helper/bats-assert/src/assert_output.bash, line 194,
     in test file test/hello_test.bats, line 16)
@@ -398,7 +177,7 @@ hello_test.bats
    --
    
 
-2 tests, 1 failure
+1 tests, 1 failure
 ```
 
 O que é bacana de usar o `assert_output` é que ele diz claramente o que era esperado na saída e o que foi realmente impresso:
@@ -423,10 +202,9 @@ Executemos o teste novamente:
 ```
 $ bats test/hello_test.bats 
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
 
-2 tests, 0 failures
+1 tests, 0 failures
 ```
 
 Woohool!!! 🥳🎉 O teste passou! 
@@ -460,7 +238,6 @@ Executando:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
  ✗ say hello to people
    (from function `assert_output' in file test/test_helper/bats-assert/src/assert_output.bash, line 194,
@@ -473,7 +250,7 @@ hello_test.bats
    --
 
 
-3 tests, 1 failure
+2 tests, 1 failure
 ```
 
 **Observação**: acostume-se a não ficar irritado vendo testes falharem!
@@ -495,7 +272,6 @@ E vamos conferir se os testes passam:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✗ say Hello, World
    (from function `assert_output' in file test/test_helper/bats-assert/src/assert_output.bash, line 194,
     in test file test/hello_test.bats, line 14)
@@ -508,7 +284,7 @@ hello_test.bats
 
  ✓ say hello to people
 
-3 tests, 1 failure
+2 tests, 1 failure
 ```
 
 😳
@@ -534,11 +310,10 @@ Executando os tests:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
  ✓ say hello to people
 
-3 tests, 0 failures
+2 tests, 0 failures
 ```
 
 Que maravilha! Todos os testes passando!
@@ -570,11 +345,10 @@ Executando os testes:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
  ✓ say hello to people
 
-3 tests, 0 failures
+2 tests, 0 failures
 ```
 
 Maravilha! Fizemos uma mudança e confirmamos que nada quebrou!
@@ -603,6 +377,7 @@ git commit --all --message "Hello, meleu"
 ```
 
 Agora estamos prontos para implementar ainda mais _features_ no nosso hello-world...
+
 ## Um hello-world poliglota
 
 Uma características dos sistemas Unix-like (o que inclui o GNU/Linux e o MacOS) é que a variável de ambiente `$LANG` é utilizada para determinar o idioma utilizado nas mensagens do sistema para o usuário.
@@ -648,7 +423,6 @@ Executando o teste:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
  ✓ say hello to people
  ✗ say olá to people
@@ -662,7 +436,7 @@ hello_test.bats
    --
 
 
-4 tests, 1 failure
+3 tests, 1 failure
 ```
 
 Conforme esperado, todos os testes que já existiam continuam passando. Apenas o novo teste falhou, e ele já nos informa o que está errado: ele espera `Olá, meleu` e nosso programa forneceu `Hello, meleu`.
@@ -692,12 +466,11 @@ Executamos o teste:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
  ✓ say hello to people
  ✓ say olá to people, in Portuguese
 
-4 tests, 0 failures
+3 tests, 0 failures
 ```
 
 #### Refatorar?
@@ -741,7 +514,6 @@ Executamos o teste:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
  ✓ say hello to people
  ✓ say olá to people, in Portuguese
@@ -756,7 +528,7 @@ hello_test.bats
    --
 
 
-5 tests, 1 failure
+4 tests, 1 failure
 ```
 
 OK, o _output_ não foi o que está sendo esperado pelo teste.
@@ -786,13 +558,12 @@ Executamos os testes:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
  ✓ say hello to people
  ✓ say olá to people, in Portuguese
  ✓ say Hola to people, in Spanish
 
-5 tests, 0 failures
+4 tests, 0 failures
 ```
 
 Beleza, tudo passando.
@@ -853,7 +624,6 @@ Execute o teste:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
  ✓ say hello to people
  ✓ say olá to people, in Portuguese
@@ -869,7 +639,7 @@ hello_test.bats
    --
 
 
-6 tests, 1 failure
+5 tests, 1 failure
 ```
 
 Agora que vimos que o nosso teste está falhando podemos alterar nosso código para passar no teste.
@@ -898,14 +668,13 @@ Executando os testes:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
  ✓ say hello to people
  ✓ say olá to people, in Portuguese
  ✓ say Hola to people, in Spanish
  ✓ say Bonjour to people, in French
 
-6 tests, 0 failures
+5 tests, 0 failures
 ```
 
 Topzera da balada! Todos os testes passando!
@@ -947,14 +716,13 @@ Vamos executar os testes:
 ```
 $ bats test/hello_test.bats
 hello_test.bats
- ✓ can run the script
  ✓ say Hello, World
  ✓ say hello to people
  ✓ say olá to people, in Portuguese
  ✓ say Hola to people, in Spanish
  ✓ say Bonjour to people, in French
 
-6 tests, 0 failures
+5 tests, 0 failures
 ```
 
 Que delicinha! Tudo passando!
@@ -994,36 +762,7 @@ Lembre-se, durante a refatoração o flow é esse:
 
 ## Recapitulando
 
-Vamos listar os principais pontos sobre cada tema abordado no artigo.
-
-### BATS
-
-- Extensão do arquivo: `.bats`
-- Função `setup` é executada antes de cada teste.
-- Básico de um `setup`:
-    - carrega `bats-support`
-    - carrega `bats-assert`
-    - define um `$PATH` pra chamar o nosso programa facilmente
-```bash
-setup() {
-  load 'test_helper/bats-support/load'
-  load 'test_helper/bats-assert/load'
-
-  PATH="${BATS_TEST_DIRNAME}/../src:${PATH}"
-}
-```
-- Formato básico de um teste:
-```bash
-@test "descrição significativa do teste" {
-  # chame o programa com run
-  run my_program
-  
-  # valide a saída do programa com assert_output
-  assert_ouput "saída esperada"
-}
-```
-
-### TDD
+### Test-Driven Development
 
 - Escreva o teste antes de ter o código que será testado.
 - Você **PRECISA** ver seu teste falhando
@@ -1031,6 +770,7 @@ setup() {
     - notar que ele produz descrições de falha que são fáceis de entender e dão dicas do que devemos fazer.
 - Escreva a menor quantidade possível de código para fazer seu teste passar.
 - Por fim refatore, com a segurança dos seus testes automatizados.
+
 
 ## Palavras finais
 
@@ -1048,4 +788,3 @@ Deixe aí nos comentários se você gostaria de ver mais artigos nesse estilo po
 ## Referências
 
 - [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests) - livro que ensina Golang com TDD. Foi de onde peguei a inspiração para usar esse "hello-world poliglota".
-- [BATS Tutorial](https://bats-core.readthedocs.io/en/stable/tutorial.html) - o tutorial oficial do BATS.
