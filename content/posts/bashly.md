@@ -61,7 +61,9 @@ Para ilustrar como criar um CLI robusto usando o Bashly, criaremos um programa g
 
 O Bashly é uma gem do Ruby. Na ecossistema Ruby nós chamamos de _gem_ os pacotes de software (como um npm package para o NodeJS, ou um crate para o Rust).
 
-**Observação**: apesar de ser desenvolvido em Ruby, você não precisa saber nada de Ruby para usar o Bashly!
+**Observação**: apesar de ser desenvolvido em Ruby:
+- você **não** precisa saber nada de Ruby para usar o Bashly.
+- o usuário do seu script **não** precisa ter Ruby instalado.
 
 O Bashly depende que você tenha o Ruby instalado numa versão 3.2 ou maior. Execute `ruby --version` no seu terminal, se sua versão for igual ou maior que 3.2 você já está pronto pra instalar o Bashly. Caso contrário você precisará instalar uma versão adequada do Ruby.
 
