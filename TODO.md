@@ -35,8 +35,8 @@
 ## séries
 
 - [ ] o terminal é a sua IDE - [original from Arabesque](https://blog.sanctum.geek.nz/series/unix-as-ide/)
-- [ ] use o bash como um desenvolvedor - [binaryphile](https://www.binaryphile.com/bash/2018/07/26/approach-bash-like-a-developer-part-1-intro.html)
-- [ ] "Aprenda bash com TDD (ou TDD com bash)" - inspiração: [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests/)
+- [ ] use o bash como um programador - [binaryphile](https://www.binaryphile.com/bash/2018/07/26/approach-bash-like-a-developer-part-1-intro.html)
+- [x] "Aprenda bash com TDD (ou TDD com bash)" - inspiração: [Learn Go with Tests](https://quii.gitbook.io/learn-go-with-tests/)
 
 ## chore
 
