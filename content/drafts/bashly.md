@@ -1,14 +1,12 @@
 ## Tutorial de Bashly - parte 1
 
-Neste artigo conheceremos o Bashly, pra que ele serve e as principais vantagens de utilizá-lo.
-
-> **Observação**: para usar o Bashly é necessário saber lidar com arquivos YAML (o que é uma coisa bem simples).
+Neste artigo conheceremos o Bashly, pra que ele serve e as principais vantagens de utilizá-lo. Faremos isso com uma abordagem bem mão-na-massa, desenvolvendo uma aplicação CLI simples porém com "acabamento" bem robusto.
 
 ## Por que usar Bashly?
 
 Pra começar a falar dos motivos de usar o bashly, vamos imaginar o seguinte cenário...
 
-Temos um código bash bem simples que serve para gerar números aleatórios. Chamemos esse programa de `rndm`, nosso gerador de números randômicos. Nosso programa é tão simples que ele contém apenas uma linha que importa: `echo $RANDOM`.
+Temos um código bash bem simples que serve para gerar números aleatórios. Chamemos esse programa de `rndm`, nosso gerador de números randômicos. Nosso programa é tão simples que ele contém apenas uma única linha que importa: `echo $RANDOM`.
 
 Talvez a gente nem precisasse escrever um script só pra isso, mas é que começamos a pensar em novas funcionalidades para nosso programa. Por exemplo, queremos especificar o número máximo a ser gerado, pra poder chamar nosso programa assim:
 
@@ -22,27 +20,31 @@ rndm --max 2
 
 Talvez você até saiba como gerar números aleatórios dentro de uma faixa específica. A lógica pra fazer isso nem é tão complicada assim. Mas se algum dia já escreveu um programa bash que faça _parsing_ de `--opções` da linha de comando você sabe bem o que vai acontecer: o nosso programinha, que é originalmente bem simples, vai explodir em complexidade só por conta do código necessário para lidar com essas opções.
 
-Ah! E já que você adicionou opções ao seu programa, você também tem que providenciar um `--help` para que o usuário saiba quais são opções disponíveis e como usá-las corretamente. Outra coisa: se você vai aceitar input do usuário, é importante validar o que ele está enviando para o seu programa.
+Ah! E já que você adicionou opções ao seu programa, você também tem que providenciar um `--help` para que o usuário saiba quais são as opções disponíveis e como usá-las corretamente. Outra coisa: se você vai aceitar input do usuário, é importante validar o que ele está enviando para o seu programa.
 
 No final das contas você vai gastar mas energia mental lidando com todas essas minúcias de parsing de opções e help do que com o problema que você realmente quer resolver: gerar números aleatórios.
 
-É pra resolver esse tipo de problema que o Bashly foi criado! O Bashly vai te ajudar a:
+É pra resolver essa dor que o Bashly foi criado! Com ele teremos facilidade em:
 
 - fazer parsing de `--opções`
 - criar mensagens de help facilmente
 - validar input
 - verificar dependências
-- e mais muitas outras coisas...
+- e muitas outras coisas típicas de um CLI sério...
 
-Ao usar Bashly essas tarefas, tediosas porém importantes de se ter em um típico programa CLI, serão resolvidas facilmente. Assim você pode se concentrar no problema que você realmente precisa resolver.
+Ao usar Bashly essas tarefas tediosas, porém importantes de se ter em um típico programa CLI, serão resolvidas facilmente. Assim você pode se concentrar na lógica do problema que você realmente precisa resolver.
 
 Para ilustrar como criar um CLI usando o Bashly, criaremos um programa gerador de número randômicos. Ele começará bem simples, mas irá receber muitas funcionalidades interessantes ao longo do tutorial.
 
+> **Observação**: para usar o Bashly é necessário saber lidar com arquivos YAML (o que é uma coisa bem simples).
+
 ## Instalando o Bashly
 
-O Bashly é uma gem do Ruby. Na ecossistema Ruby nós chamamos os pacotes de _gem_ (como um npm package para o NodeJS, ou um crate para o Rust).
+O Bashly é uma gem do Ruby. Na ecossistema Ruby nós chamamos de _gem_ os pacotes de software (como um npm package para o NodeJS, ou um crate para o Rust).
 
 O Bashly depende que você tenha o Ruby instalado numa versão 3.2 ou maior.
+
+**Observação**: apesar de ser desenvolvido em Ruby, você não precisa saber nada de Ruby para usar o Bashly!
 
 Eu gosto muito de usar "runtime version managers" como o [mise](https://mise.jdx.dev/) (uso e recomendo) ou [asdf](https://asdf-vm.com) para instalar interpretadores e compiladores em diversas versões. Recomendo que você faça o mesmo para instalar o Ruby numa versão 3.2 ou maior.
 
@@ -66,6 +68,16 @@ $ bashly --version
 1.3.2
 ```
 
+No momento da escrita desse artigo a versão do Bashly é 1.3.2.
+
+### IMPORTANTE: versão do Bash
+
+O código final gerado pelo Bashly faz uso de arrays associativos e outras features que dependem do Bash na versão maior ou igual a 4.2 (que foi lançada em 2011).
+
+Se você está usando uma distro Linux, muito provavelmente você já está usando uma versão compatível.
+
+Se você está usando MacOS, seu Bash provavelmente está "travado" na versão 3.2.57. Mas não se preocupe: um simples `brew install bash` já resolve o problema (estou assumindo que você esteja usando o [Homebrew](https://brew.sh)).
+
 ## Iniciando um projeto
 
 Vamos começar criando um diretório para o nosso projeto
@@ -77,7 +89,7 @@ cd rndm
 
 Uma maneira de iniciar um projeto com o bashly, é usar `bashly init`, isso irá criar um arquivo chamado `src/bashly.yml`. Se você fizer isso observará que o arquivo já vem com muita informação e isso pode ser um pouco confuso para um primeiro contato.
 
-Aqui nós vamos escrever o `bashly.yml` totalmente "na mão", e vamos aprender cada configuração com calma. Portanto eu sugiro que você abra o `src/bashly.yml` e remova toda o conteúdo que encontrar lá. Em seguida adicione apenas isso:
+Aqui nós vamos escrever o `bashly.yml` totalmente "na mão", e vamos aprender cada configuração com calma. Portanto iremos abrir o `src/bashly.yml` e remova toda o conteúdo que encontrar lá. Em seguida adicione apenas isso:
 
 ```yaml
 name: rndm
@@ -692,28 +704,48 @@ Uma coisa legal que vimos aqui é que o Bashly pegou o conteúdo de `src/lib/val
 
 Isso acontece pois o Bashly pega o conteúdo de qualquer arquivo `src/lib/*.sh`, e coloca no script final. Portanto essa é uma excelente maneira de você modularizar seu código, permitindo que cada arquivo tenha um objetivo bem definido e específico, deixando seu código mais organizado.
 
-Acho que agora é uma boa hora para mais um commit.
+Agora que aprendemos a modularizar nosso código, eu vou querer criar um arquivo `src/lib/random_number_functions.sh` e colocar nele o código referente aos dois tipos de obtenção de números aleatórios que nós temos:
+
+```bash
+# src/lib/random_number_functions.sh
+
+get_random_number() {
+  local max_number="$1"
+  echo $((RANDOM % max_number + 1))
+}
+
+get_random_number_from_web() {
+  local max_number="$1"
+  curl \
+    --silent \
+    --location \
+    "https://www.random.org/integers/?num=1&min=0&max=${max_number}&col=1&base=10&format=plain"
+}
+```
+
+Com estas funções o nosso `src/root_command.sh` pode ficar bem simples e legível:
+
+```bash
+max_number="${args[--max]}"
+
+validate_positive_integer "$max_number"
+
+if [[ "${args[--web]}" == 1 ]]; then
+  get_random_number_from_web "$max_number"
+else
+  get_random_number "$max_number"
+fi
+```
+
+Faça um `bashly generate` e faça alguns testes para confirmar que tudo está funcionado conforme esperado.
+
+Se tiver tudo bem, agora é uma boa hora para mais um commit.
 
 ### Validando argumentos da maneira Bashly
 
 Apesar de já estarmos validando o argumento de `--max` chamando a função `validate_positive_integer` la dentro do `src/root_command.sh`, o Bashly oferece uma maneira de fazermos essa validação de forma mais limpa ainda. De forma que podemos remover essas referências a validações do nosso código principal e deixá-lo bem limpinho e focado na geração de números aleatórios.
 
-Pra começar vamos apagar a chamada ao `validate_positive_integer` do nosso `root_command.sh`, portanto o código voltará a ser simplão, desse jeito:
-
-```bash
-max_number="${args[--max]}"
-
-if [[ "${args[--web]}" == 1 ]]; then
-  curl \
-    --silent \
-    --location \
-    "https://www.random.org/integers/?num=1&min=0&max=${max_number}&col=1&base=10&format=plain"
-else
-  echo $((RANDOM % max_number + 1))
-fi
-``` 
-
-Agora vamos entender a maneira Bashly de fazer validação, que funciona da seguinte forma:
+A maneira Bashly de fazer validação funciona da seguinte forma:
 
 - Na configuração da flag, adicionamos uma linha como essa:`validate: function_name`.
 - Criamos uma função chamada `validate_function_name`, que será automaticamente executada antes de permitir que o input do usuário seja usado.
@@ -775,6 +807,40 @@ The argument must be a positive integer. Given value: -1
 
 Olha que bacana: o Bashly até melhorou a mensagem de erro, explicitando que é um problema na validação do `--max`!
 
+OK, fizemos essa validação _a-la-Bashly_, mas o nosso `src/root_command.sh` continua com referências (desnecessárias) às funções de validação. Vamos limpar nosso código e você verá como que o Bashly permite que nosso código fique bem limpinho:
+
+Primeiro o `src/root_command.sh`:
+
+```bash
+if [[ "${args[--web]}" == 1 ]]; then
+  get_random_number_from_web
+else
+  get_random_number
+fi
+```
+
+Como a nossa validação Bashly garante que `${args[--max]}` está válido, nós podemos referenciá-lo com segurança diretamente lá nas funções do `src/lib/random_number_functions.sh`:
+
+```bash
+# o 'validate:' lá no nosso bashly.yml garante
+# que o '${args[--max]}' tenha um valor válido,
+# portanto é seguro utilizá-lo aqui! 👍
+get_random_number() {
+  local max_number="${args[--max]}"
+  echo $((RANDOM % max_number + 1))
+}
+
+get_random_number_from_web() {
+  local max_number="${args[--max]}"
+  curl \
+    --silent \
+    --location \
+    "https://www.random.org/integers/?num=1&min=0&max=${max_number}&col=1&base=10&format=plain"
+}
+```
+
+Faça novos testes e constate que tudo está funcionando corretamente.
+
 Aqui podemos fazer mais um commit e ir encerrando essa parte do tutorial.
 
 ## Finalizando (por enquanto)
@@ -782,29 +848,44 @@ Aqui podemos fazer mais um commit e ir encerrando essa parte do tutorial.
 Agora eu gostaria que você parasse por um momento e desse mais uma olhada no seu `src/root_command.sh`. Aprecie o quanto o código é simples.
 
 ```bash
-max_number="${args[--max]}"
-
 if [[ "${args[--web]}" == 1 ]]; then
-  curl \
-    --silent \
-    --location \
-    "https://www.random.org/integers/?num=1&min=0&max=${max_number}&col=1&base=10&format=plain"
+  get_random_number_from_web
 else
-  echo $((RANDOM % max_number + 1))
+  get_random_number
 fi
 ```
 
-Para ser bem honesto, eu acho que esse código poderia ser ainda mais simples, mas como essa primeira parte do tutorial já está ficando grande, vamos parar por aqui.
+Vamos também dar uma apreciada na estrutura de diretórios e arquivos do nosso projeto:
 
-Vamos lembrar das minúcias e complexidades que o Bashly resolveu pra nós:
+```
+$ tree
+.
+├── rndm
+└── src
+    ├── bashly.yml
+    ├── lib
+    │   ├── random_number_functions.sh
+    │   └── validations.sh
+    └── root_command.sh
+
+2 directories, 5 files
+```
+
+De código que nós realmente escrevemos, só temos estes 3 arquivinhos com propósitos muito bem definidos:
+
+- `validations.sh`: responsável pela validação de input.
+- `random_number_functions.sh`: responsável por conter as funções geradoras de números aleatórios.
+- `root_command.sh`: a "porta de entrada" da aplicação, que chama a função correta de acordo com a opção do usuário.
+
+Agora vamos lembrar das minúcias e complexidades que nós nem nos preocupamos pois o Bashly resolveu pra nós:
 
 - mensagem de help lindona e completinha
 - verificação de dependências
 - parsing de `--opções`
-- validação de input (ok, escrevemos um pouco de código aqui)
+- chamar a validação de input correta
 - modularização de código
 
-E isso é apenas uma breve introdução. Se você gostaria que eu escrevesse mais sobre o Bashly deixa aí nos comentários que eu vou fazendo continuações desse tutorial, expondo os outros recursos existentes.
+E isso é apenas uma breve introdução ao Bashly. Se você gostaria que eu escrevesse mais sobre este tema, deixe aí nos comentários. O Bashly tem muitos outros recursos interessantes que valem a pena serem explorados.
 
 ## Referências
 
