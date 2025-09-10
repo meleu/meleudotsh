@@ -330,7 +330,7 @@ Vamos ver isso no código do `src/root_command.sh`:
 ```bash
 # se usarmos 'rndm --web' ou 'rndm -w',
 # o ${args[--web]} terá o valor '1'
-if [[ "${args[--web]}" == 1 ]]; then
+if [[ "${args[--web]}" ]]; then
   curl \
     --silent \
     --location \
@@ -425,7 +425,7 @@ Mande mais um commit aí e vamos em frente...
 Vamos dar uma olhada no nosso código novamente:
 
 ```bash
-if [[ "${args[--web]}" == 1 ]]; then
+if [[ "${args[--web]}" ]]; then
   curl \
     --silent \
     --location \
@@ -465,7 +465,7 @@ Ao fazer isso 👆 já podemos alterar o nosso `src/root_command.sh` para ficar 
 ```bash
 # src/root_command.sh
 
-if [[ "${args[--web]}" == 1 ]]; then
+if [[ "${args[--web]}" ]]; then
   get_random_number_from_web
 else
   generate_random_number
@@ -550,7 +550,7 @@ max_number="${args[--max]}"
 # estamos salvando esse valor na variável 'max_number'
 # pra referenciá-la facilmente abaixo...
 
-if [[ "${args[--web]}" == 1 ]]; then
+if [[ "${args[--web]}" ]]; then
   get_random_number_from_web "$max_number"
 else
   generate_random_number "$max_number"
@@ -728,7 +728,7 @@ if ! [[ "$max_number" =~ ^[1-9][0-9]*$ ]]; then
   exit 1
 fi
 
-if [[ "${args[--web]}" == 1 ]]; then
+if [[ "${args[--web]}" ]]; then
   get_random_number_from_web "$max_number"
 else
   generate_random_number "$max_number"
@@ -784,7 +784,7 @@ max_number="${args[--max]}"
 # 👇 simplesmente chamando a validação aqui!
 validate_positive_integer "$max_number"
 
-if [[ "${args[--web]}" == 1 ]]; then
+if [[ "${args[--web]}" ]]; then
   get_random_number_from_web "$max_number"
 else
   generate_random_number "$max_number"
@@ -878,7 +878,7 @@ OK, fizemos essa validação _a-la-Bashly_, mas o nosso `src/root_command.sh` co
 
 max_number="${args[--max]}"
 
-if [[ "${args[--web]}" == 1 ]]; then
+if [[ "${args[--web]}" ]]; then
   get_random_number_from_web "$max_number"
 else
   generate_random_number "$max_number"
@@ -953,5 +953,5 @@ E isso é apenas uma breve introdução ao Bashly. Se você gostaria que eu escr
 
 ## Referências
 
-[Documentação do bashly.](https://bashly.dev)
+[Documentação do Bashly.](https://bashly.dev)
 
