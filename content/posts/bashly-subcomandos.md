@@ -1,5 +1,22 @@
+---
+title: "Crie aplicações CLI robustas com o Bashly - parte 2"
+description: >
+  Crie subcomandos para sua aplicação CLI.
+tags:
+  - bashly
+  - codigo
+  - bash
+  - ferramentas
+date: 2025-09-09T23:15:14-03:00
+cover:
+  image: "img/bashly-logo.png"
+  alt: Logo do Bashly
+---
 
-No [artigo anterior](/bashly) demos os nossos primeiros passos com o Bashly. Criamos um gerador de números aleatórios bem simples, porém com uma interface sólida. 
+
+Neste artigo daremos continuidade ao projeto iniciado no [artigo anterior](/bashly) e criaremos um gerador de senhas aleatórias. No caminho aprenderemos mais facilidades oferecidas pelo Bashly.
+
+Só lembrando, no artigo anterior nós demos nossos primeiros passos com o Bashly. Criamos um gerador de números aleatórios bem simples, porém com uma interface sólida. 
 
 Com pouco esforço conseguimos:
 
@@ -8,11 +25,16 @@ Com pouco esforço conseguimos:
 - checagem de dependências
 - uma mensagem de help bem "profissional"
 
-## O que veremos?
+Neste artigo veremos:
 
-Vamos assumir que o papo de aleatoriedade do último nos deu a ideia de criar um gerador de senhas aleatórias. Ao invés de criar uma nova aplicação "do zero" vamos aproveitar as funções que já temos nosso `rndm`, que gera números aleatórios, e apenas adicionar a funcionalidade de gerar senhas.
+- como criar subcomandos
+- como definir aliases para os subcomandos
+- definir um subcomando para atuar como o comando _default_
+- como lidar com argumentos que são conflitantes e não podem ser usados juntos
 
-Vamos continuar nosso projeto e explorar mais algumas _features_ do Bashly. Veremos como ele pode continuar facilitando nossa vida ao criar aplicações CLI.
+## Contexto
+
+E ao invés de criar uma nova aplicação "do zero" vamos aproveitar as funções que já temos no nosso `rndm`, que gera números aleatórios, e apenas adicionar a funcionalidade de gerar senhas.
 
 Primeiro aprenderemos a criar subcomandos. Isso vai permitir que nosso `rndm` possa ser utilizado de duas formas:
 - `rndm number`: gera número aleatório
@@ -143,7 +165,7 @@ mv src/root_command.sh src/number_command.sh
 Agora basta um `bashly generate` e testar o programa usando o subcomando:
 
 ```
-$ # se usarmos sem argumento, temos a mensgem de "usage"
+$ # se usarmos sem argumento, temos a mensagem de "usage"
 $ ./rndm
 rndm - Do random stuff
 
@@ -213,51 +235,8 @@ $ ./rndm --web
 
 OK. Apenas uma única linha no nosso YAML e o problema foi resolvido.
 
-Faça um commit e vamos continuar.
-
-### Criando alias para o subcomando
-
-Para facilitar a vida dos nossos usuários, vamos permitir que eles chamem nosso gerador via `rndm num` e também simplesmente via `rndm n`:
-
-Para isso basta deixarmos claro no nosso YAML que queremos criar aliases:
-
-```yaml
-# src/bashly.yml
-name: rndm
-help: Prints a random number
-version: 0.0.2
-
-commands:
-  - name: number
-    default: force
-    
-    # basta adicionar um array de aliases
-    alias:
-      - num
-      - n
-      
-    # daqui pra baixo tudo igual...
-```
-
-Confirmando que funciona:
-
-```
-$ ./rndm num
-10157
-
-$ ./rndm num --max 3
-2
-
-$ ./rndm n
-26071
-
-$ ./rndm n --web
-4607
-```
-
-Bacaninha, né?
-
 Agora chega de futucar o gerador de números aleatórios. Faça mais um commit e vamos partir para o gerador de senhas.
+
 
 ## Gerador de Senhas
 
@@ -392,9 +371,9 @@ generate_password "$chars" "$size"
  
  Execute os testes aí do seu passo e confirme que tudo está funcionando. 
  
-### Aliases para o `rndm password`
+### Criando aliases para subcomandos
 
-Estou achando que esse `rndm password` é um comando muito grande pra digitar. Vamos criar uns aliases:
+Estou achando que esse `rndm password` é um comando muito grande pra digitar. Para facilitar a vida dos nossos usuários, vamos permitir que eles chamem nosso gerador via `rndm passwd`, ou `rndm pass`, ou simplesmente via `rndm p`:
 
 ```yaml
 name: rndm
@@ -402,11 +381,13 @@ help: Do random stuff
 version: 0.0.2
 
 commands:
-  - name: number
-    # ... configurações do 'rndm number'
-
+    # ...
   - name: password
     help: Generates a random password
+    
+    # criar aliases é muito simples!
+    # basta adicionar um array de aliases
+    # 👇
     alias:
       - passwd
       - pass
@@ -461,7 +442,7 @@ commands:
 
 O que fizemos aqui já aprendemos no artigo anterior, então nem vou me preocupar com muitas explicações.
 
-Só com essas adições ao YAML já temos alguns benefícios que já podemos perceber:
+Só com essas adições já observamos  3 benefícios:
 
 1. Mensagem de help já mostra info sobre a nova opção 
 
@@ -716,6 +697,7 @@ conflicting options: -n cannot be used with --alpha
 ```
 
 Perfeito! Vamos commitar e ver um outro caso de uso.
+
 ### Senhas com caracteres especiais
 
 E se o nosso usuário quiser uma senha bem forte, incluindo caracteres especiais?
@@ -798,9 +780,9 @@ Acho que ficou bem legal nosso gerador de senhas. Vamos fazer mais um commit e i
 
 ## Finalizando
 
-Neste artigo eu espero que uma coisa tenha ficado bem evidente: focamos mais nas _features_ da nossa aplicação do que em qualquer outra coisa.
+Neste artigo eu espero que uma coisa tenha ficado bem evidente: focamos mais nas _features_ da nossa aplicação do que nas complexidades de subcomandos, aliases e opções conflitnates.
 
-Todo o rolê de lidar com subcomandos, fazer parsing de argumentos, detectar argumentos conflitantes... Toda essa complexidade colateral foi resolvido com algumas poucas linhas no nosso YAML. Essa é a beleza do Bashly! Ele te diz: "vai lá focar nas features que você quer entregar pro seu usuário, deixa que eu cuido do trabalho chato".
+A complexidade colateral, sem muita relação com o problema de "geração de senha" foi resolvida com algumas poucas linhas no nosso YAML. Essa é a beleza do Bashly! Ele te diz: "vai lá focar nas features que você quer entregar pro seu usuário, deixa que eu cuido do trabalho chato".
 
 Só esse help lindão já é uma grande demonstração de algo que seria extremamente maçante e propenso a erros e esquecimentos, mas que é resolvido "de graça" pelo Bashly:
 
@@ -852,9 +834,11 @@ $ tree
 2 directories, 7 files
 ```
 
-Percebe-se que é um projetinho simples, porém com um acabamento e uma interface bem sólida.
+Percebe-se que é um projetinho simples, porém entrega o que promete e com uma interface bem caprichada.
 
 ## Principais aprendizados
+
+Aprender a usar o Bashly para:
 
 - criar subcomandos
 - definir um subcomando como o comando padrão
@@ -863,4 +847,5 @@ Percebe-se que é um projetinho simples, porém com um acabamento e uma interfac
 
 ## Referências
 
-[Documentação do Bashly](https://bashly.dev/).
+- [Documentação do Bashly](https://bashly.dev/).
+- a inspiração da lógica de geração de senha veio do [zzsenha](https://github.com/funcoeszz/funcoeszz/blob/master/zz/zzsenha.sh) lá do saudoso funcoeszz do Aurelio.
