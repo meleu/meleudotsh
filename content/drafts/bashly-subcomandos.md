@@ -1,31 +1,31 @@
 
-No [artigo anterior](/bashly) demos os nossos primeiros passos com o Bashly. Criamos um gerador de números aleatórios bem simples, porém com uma interface bem robusta. Com pouco esforço conseguimos:
+No [artigo anterior](/bashly) demos os nossos primeiros passos com o Bashly. Criamos um gerador de números aleatórios bem simples, porém com uma interface sólida. 
+
+Com pouco esforço conseguimos:
 
 - adicionar opções de linha de comando
 - validação de input
 - checagem de dependências
 - uma mensagem de help bem "profissional"
 
-> TODO: adicionar aqui link para o código do artigo anterior
-
-Aqui nós vamos assumir que todo esse papo de aleatoriedade nos deu a ideia de criar um gerador de senhas aleatórias. Ao invés de criar uma nova aplicação "do zero" vamos aproveitar que já temos nosso `rndm`, que gera números aleatórios, e apenas adicionar a funcionalidade de gerar senhas.
-
 ## O que veremos?
 
-Neste artigo vamos continuar nosso evoluindo nosso projeto e explorar mais algumas features do Bashly. Veremos como ele pode continuar facilitando nossa vida ao criar aplicações CLI.
+Vamos assumir que o papo de aleatoriedade do último nos deu a ideia de criar um gerador de senhas aleatórias. Ao invés de criar uma nova aplicação "do zero" vamos aproveitar as funções que já temos nosso `rndm`, que gera números aleatórios, e apenas adicionar a funcionalidade de gerar senhas.
 
-Primeiro vamos aprender a criar subcomandos. Isso vai permitir que nosso `rndm` possa ser utilizado de duas formas:
+Vamos continuar nosso projeto e explorar mais algumas _features_ do Bashly. Veremos como ele pode continuar facilitando nossa vida ao criar aplicações CLI.
+
+Primeiro aprenderemos a criar subcomandos. Isso vai permitir que nosso `rndm` possa ser utilizado de duas formas:
 - `rndm number`: gera número aleatório
 - `rndm password`: gera um password aleatório
 
-Em seguida vamos implementar nosso gerador de password e ir adicionando _features_ a ele. Nesse caminho vamos aprendendo novas facilidades oferecidas pelo Bashly.
+Em seguida vamos implementar nosso gerador de password e ir adicionando _features_ a ele.
 
 
 ## Subcomandos
 
 A ideia de subcomandos é muito comum em aplicações CLI modernas como Git (`git add`, `git commit`, `git push`) e Docker (`docker image pull`, `docker container run`). Pois é isso que faremos com nosso programa.
 
-O Bashly permite a criação de subcomandos  de forma bem simples, basta usarmos uma estrutura como essa no nosso `src/bashly.yml`:
+O Bashly permite a criação de subcomandos  de forma bem simples, basta usarmos uma estrutura como essa no `src/bashly.yml`:
 
 ```yaml
 name: my_cli
@@ -46,13 +46,13 @@ commands:
 
 Ou seja, basta definirmos um `commands:` e colocar dentro dele os nossos subcomandos.
 
-Talvez com um exemplo fique mais tranquilo de entender...
+Com um exemplo fica mais tranquilo de entender...
 
 Vamos transformar nosso gerador de números aleatórios em um subcomando que será invocado assim: `rndm number`.
 
 ### `rndm number`
 
-Atualmente nosso `src/bashly.yml` está assim:
+Só pra lembrar, atualmente nosso `src/bashly.yml` está assim:
 
 ```yaml
 name: rndm
@@ -124,7 +124,7 @@ Observe que o arquivo `src/number_command.sh` foi criado.
 
 Uma outra coisa que não está explicita ali mas que precisamos levar em consideração, é que o nosso `src/root_command.sh` original foi completamente ignorado. Isso ocorre pois agora o nosso `src/bashly.yml` não especifica nenhum "root command". Temos apenas um subcomando chamado "number" (e é por isso que o Bashly criou um `src/number_command.sh`).
 
-Se você olhar o conteúdo arquivo gerado verá um conteúdo já familiar (vimos isso no artigo anterior):
+Se você olhar o arquivo gerado, verá um conteúdo já familiar (vimos isso no artigo anterior):
 
 ```bash
 echo "# This file is located at 'src/number_command.sh'."
@@ -134,7 +134,7 @@ echo "# Feel free to edit this file; your changes will persist when regenerating
 inspect_args
 ```
 
-Nós não precisamos de nada desse conteúdo. A única que precisamos fazer agora é simplesmente mover todo o conteúdo do nosso código original para o novo arquivo:
+Nós não precisamos de nada disso. A única que precisamos é simplesmente mover todo o conteúdo do nosso código original para o novo arquivo:
 
 ```bash
 mv src/root_command.sh src/number_command.sh
@@ -182,7 +182,7 @@ Faça um commit e vamos explorar outros recursos relacionados à subcomandos.
 
 Originalmente nosso gerador de números aleatórios era executado invocando `rndm`. Agora tornamos obrigatório que ele seja invocado via `rndm number`. Com isso quebramos a retrocompatibilidade do nosso programa.
 
-Se por um acaso algum de nossos usuários está chamando nosso `rndm` em algum script dele, terá uma surpresa desagradável quando atualizar nosso programa e ver que o script dele está quebrando (por nossa causa).
+Se por um acaso algum de nossos usuários está chamando nosso `rndm` em algum script dele, terá uma surpresa bem desagradável quando atualizar nosso programa e ver que o script dele está quebrando (por nossa causa).
 
 Para evitar essa situação, vamos fazer com que o `rndm number` seja o subcomando _default_ a ser invocado quando chamarmos simplesmente `rndm`. Para isso basta adicionarmos `default: force` no nosso `src/bashly.yml`:
 
@@ -277,15 +277,40 @@ commands:
     help: Generates a random password
 ```
 
+Vamos dar uma olhadela no help como ficou:
+
+```
+$ ./rndm --help
+rndm - Do random stuff
+
+Usage:
+  rndm COMMAND
+  rndm [COMMAND] --help | -h
+  rndm --version | -v
+
+Commands:
+  number     Prints a random number
+  password   Generates a random password
+
+Options:
+  --help, -h
+    Show this help
+
+  --version, -v
+    Show version number
+```
+
+Conforme esperado, o subcomando `password` está listado ali. Seguimos...
+
 Ao regenerar observamos que o arquivo `src/password_command.sh` foi criado. É nele que colocaremos nosso código.
 
-Explicando de uma maneira simplificada como funcionará nosso gerador de senhas:
+Explicando sucintamente como funcionará nosso gerador de senhas:
 
 - teremos um sequência de caracteres a serem utilizados na senha, por exemplo: `abcdefghijklmnopqrstuvwxyz`.
 - nesse exemplo temos 26 caracteres, portanto geramos um número aleatório entre 1 e 26 e pegamos o respectivo carácter da lista.
 - repetimos esse processo até termos uma senha do tamanho desejado
 
-A lista de caracteres usadas nesse exemplo foi só pra facilitar a explicação. O que nós queremos de verdade é um gerador de senhas que use letras, minúsculas, maiúsculas e números (e posteriormente adicionaremos caracteres especiais).
+A lista de caracteres usadas nesse exemplo foi só pra facilitar a explicação. O que nós queremos de verdade é um gerador de senhas que use letras minúsculas, maiúsculas e números (e posteriormente adicionaremos caracteres especiais).
 
 Nessa primeira implementação vamos definir um tamanho de senha de 8 caracteres.
 
@@ -293,10 +318,10 @@ Nessa primeira implementação vamos definir um tamanho de senha de 8 caracteres
 # src/password_command.sh
 
 size=8
-password=''
 letters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 numbers='1234567890'
 chars="${letters}${numbers}"
+password=''
 
 while [[ ${#password} -lt $size ]]; do
   offset="$(generate_random_number "${#chars}")"
@@ -309,7 +334,7 @@ echo "$password"
 O código acima faz uso de alguns recursos do Bash que podem não ser tão amplamente conhecidos, então vamos relembrar:
 
 - a notação `${#var}` é como o bash retorna o tamanho de uma string
-- a notação `${#var:N:1}` significa que queremos uma substring de `$var`, começando do enésimo carácter, e contendo apenas 1 carácter.
+- a notação `${var:N:1}` significa que queremos uma substring de `$var`, começando do enésimo carácter, e contendo apenas 1 carácter.
 
 A função `generate_random_number` é exatamente aquela que criamos no artigo anterior, um gerador de números aleatórios que recebe como primeiro argumento o valor máximo.
 
@@ -329,7 +354,47 @@ $ ./rndm password
 G4iqVrWg
 ```
 
-Legal! Funcionando conforme esperado! No entanto eu estou achando que esse `rndm password` muito grande. Vamos criar uns aliases:
+Legal! Funcionando conforme esperado!
+
+### Movendo geração de senha para função
+
+Agora eu já estou querendo que a lógica de geração de senha vá pra uma função específica. Portanto vamos fazer isso criando o arquivo `src/lib/password_functions.sh`:
+
+```bash
+# src/lib/password_functions.sh
+
+generate_password() {
+  local charset="$1"
+  local size="$2"
+  local password offset
+
+  while [[ ${#password} -lt $size ]]; do
+    offset="$(generate_random_number "${#chars}")"
+    password+="${chars:offset-1:1}"
+  done
+
+  echo "$password"
+}
+```
+
+Agora lá no nosso `src/password_command.sh` podemos penas chamar a função, assim:
+
+```bash
+# src/password_command.sh
+
+size=8
+letters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+numbers='1234567890'
+chars="${letters}${numbers}"
+
+generate_password "$chars" "$size"
+```
+ 
+ Execute os testes aí do seu passo e confirme que tudo está funcionando. 
+ 
+### Aliases para o `rndm password`
+
+Estou achando que esse `rndm password` é um comando muito grande pra digitar. Vamos criar uns aliases:
 
 ```yaml
 name: rndm
@@ -361,7 +426,7 @@ $ ./rndm p
 aZSF8a8Z
 ```
 
-Ótimo! Agora estou sentindo que é uma boa hora pra um commit e uma nova _feature_.
+Ótimo! Agora estou sentindo que é uma boa hora pra um commit e partirmos pra uma nova _feature_.
 
 ### Tamanho da senha
 
@@ -418,7 +483,7 @@ Options:
     Show this help
 ```
 
-2. Já estamos fazendo validação de input
+2. Já estamos fazendo validação de input (reaproveitando código que criamos anteriormente)
 
 ```
 $ ./rndm p --size 0
@@ -434,9 +499,9 @@ validation error in --size, -s PASSWORD_SIZE:
 The argument must be a positive integer. Given value: texto
 ```
 
-Bacana, né não? Já estamos reaproveitando código que criamos anteriormente.
+3. Temos a variável `${args[--size]}` à nossa disposição.
 
-Agora vamos efetivamente fazer com que nosso código respeite a decisão do usuário referente ao tamanho da senha, para isso basta pegar o valor passado como argumento e atribuir à variável `size`:
+Para fazer com que nosso código respeite a decisão do usuário referente ao tamanho da senha, basta pegar o valor passado como argumento e atribuir à variável `size`:
 
 ```bash
 # src/password_command.sh
@@ -445,17 +510,11 @@ Agora vamos efetivamente fazer com que nosso código respeite a decisão do usu�
 size="${args[--size]}"
 # 👆
 
-password=''
 letters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 numbers='1234567890'
 chars="${letters}${numbers}"
 
-while [[ ${#password} -lt $size ]]; do
-  offset="$(generate_random_number "${#chars}")"
-  password+="${chars:offset-1:1}"
-done
-
-echo "$password"
+generate_password "$chars" "$size"
 ```
 
 Conferindo:
@@ -488,17 +547,12 @@ help: Do random stuff
 version: 0.0.2
 
 commands:
-  - name: number
-    # ... configurações do 'rndm number'
-
+  # ...
   - name: password
     # ...
-    
     flags:
-      - long: --size
-        # ...
-
-        # 👇 linhas adicionadas
+      # ...
+      # 👇 linhas adicionadas
       - long: --numeric
         short: -n
         help: Generates a numeric password
@@ -510,24 +564,18 @@ Com essa configuração nós teremos a flag `${args[--numeric]}` disponível no 
 # src/password_command.sh
 
 size="${args[--size]}"
-password=''
 numbers='1234567890'
 letters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 # 👇 verificando se usuário quer senha numérica
 if [[ "${args[--numeric]}" ]]; then
-  chars="$numbers"
+  chars="${numbers}"
 else
   chars="${letters}${numbers}"
 fi
 # 👆
 
-while [[ ${#password} -lt $size ]]; do
-  offset="$(generate_random_number "${#chars}")"
-  password+="${chars:offset-1:1}"
-done
-
-echo "$password"
+generate_password "$chars" "$size"
 ```
 
 Vamos dar uma conferida:
@@ -551,27 +599,268 @@ $ ./rndm pass -ns 4
 
 Mais uma feature implementada. Vamos commitar e partir pra próxima!
 
+### Senhas com apenas letras
+
+Pode ser que o usuário também queira gerar uma senha apenas com letras, sem números. Vamos prover essa opção via `--alpha`.
+
+```yaml
+# ...
+commands:
+  # ...
+  - name: password
+    # ...
+    flags:
+      # ...
+      # 👇 linhas adicionadas
+      - long: --alpha
+        short: -a
+        help: Generates a password using only letters from the alphabet
+```
+
+Agora precisamos lidar com o `--alpha` no nosso código:
+
+```bash
+# src/password_command.sh
+
+size="${args[--size]}"
+numbers='1234567890'
+letters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+if [[ "${args[--numeric]}" ]]; then
+  chars="${numbers}"
+
+# 👇 se usuário passar '--alpha'...
+elif [[ "${args['--alpha']}" ]]; then
+  chars="${letters}"
+  # 👆 vamos usar apenas letras do alfabeto
+  
+else
+  chars="${letters}${numbers}"
+fi
+
+generate_password "$chars" "$size"
+```
+
+Testando:
+
+```
+$ ./rndm pass --alpha
+nCtrNHgV
+
+$ ./rndm pass -a
+fGGrYHfi
+
+$ ./rndm pass -a --size 10
+WNXjLrLakm
+
+$ ./rndm pass -as 10
+iAGAdHekyO
+
+$ ./rndm pass -as 20
+lxafckXNyRetYnLIkApp
+
+$ # o que será que acontece se usarmos isso:
+$ ./rndm pass --alpha --numeric
+85366290
+```
+
+Tava tudo funcionando legal, até que ali no último exemplo encontramos um problema para resolver: a opção `--alpha` não deveria ser permitida quando usamos `--numeric`. Ou seja, as opções `--numeric` e `--alpha` devem ser mutuamente exclusivas, e o nosso programa precisa avisar ao usuário quando ele comete este equívoco.
+
+### Argumentos mutuamente exclusivos
+
+Felizmente o Bashly nos fornece uma maneira muito fácil de especificar que argumentos são conflitantes. Basta declararmos isso usando `conflicts`, com um detalhe importante: **a configuração de `conflicts` precisa ser declarada nos dois dois lados da exclusividade**.
+
+Aqui faremos isso:
+
+```yaml
+# ...
+commands:
+  # ...
+  - name: password
+    # ...
+    flags:
+      # ...
+      - long: --numeric
+        short: -n
+        help: Generates a numeric password
+        # 👇 linhas adicionadas
+        conflicts:
+          - --alpha
+        # 👆 linhas adicionadas
+
+      - long: --alpha
+        short: -a
+        help: Generates a password using only letters from the alphabet
+        # 👇 linhas adicionadas
+        conflicts:
+          - --numeric
+        # 👆 linhas adicionadas
+```
+
+Dessa vez não precisamos fazer coisa alguma com nosso código. Tudo será lindamente resolvido pelo Bashly.
+
+Vamos ver se isso realmente funciona:
+
+```
+$ ./rndm pass --alpha --numeric
+conflicting options: --numeric cannot be used with --alpha
+
+$ ./rndm pass --numeric --alpha
+conflicting options: --alpha cannot be used with --numeric
+
+$ ./rndm pass -na
+conflicting options: -a cannot be used with --numeric
+
+$ ./rndm pass -an
+conflicting options: -n cannot be used with --alpha
+```
+
+Perfeito! Vamos commitar e ver um outro caso de uso.
 ### Senhas com caracteres especiais
 
-E se o nosso usuário quiser uma senha
+E se o nosso usuário quiser uma senha bem forte, incluindo caracteres especiais?
 
+Vamos prover essa funcionalidade através da opção `--allow-symbols`. 
 
+```yaml
+name: rndm
+help: Do random stuff
+version: 0.0.2
 
+commands:
+  # ...
+  - name: password
+    # ...
+    flags:
+      # ...
+      # 👇 linhas adicionadas
+      - long: --allow-symbols
+        short: -S
+        help: Allow special characters in the generated password
+```
 
+Agora no nosso código vamos adicionar a lista de símbolos à lista de possíveis caracteres:
 
----
+```bash
+# src/password_command.sh
 
-We want to create a random password generator
+size="${args[--size]}"
+numbers='1234567890'
+letters='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-- rndm number
-    - aliases: num, n
-- default command
-    - `rndm` calls `rndm number`
-- rndm password
-- `--size NUM` default 8
-- `--alpha`: only alphabet chars
-- `--num`: only numbers
-    - conflicts with `--alpha`
-- `--allow-symbols`: use special symbols
-    - conflicts with `--num`, but not with `--alpha`
-- `examples`
+# 👇 lista de caracteres especiais
+symbols='!@#$%&*()-_+={}[];:/?,.'
+
+if [[ "${args[--numeric]}" ]]; then
+  chars="${numbers}"
+elif [[ "${args['--alpha']}" ]]; then
+  chars="${letters}"
+else
+  chars="${letters}${numbers}"
+fi
+
+# 👇 se usuário passar '--allow-symbols'...
+if [[ "${args['--allow-symbols']}" ]]; then
+  chars+="${symbols}"
+fi
+# 👆 adicionamos os caracteres especiais na lista
+
+generate_password "$chars" "$size"
+```
+
+Agora vamos testar várias maneiras de chamar o `--allow-symbols`:
+
+```
+$ ./rndm pass --allow-symbols
+2E%3}6&_
+
+$ ./rndm pass -S
+E0OFLv@F
+
+$ ./rndm pass -S --size 10
+lbr#!udh?)
+
+$ ./rndm pass -S --size 15
+uLIT4SFPI]a/C$J
+
+$ ./rndm pass -S -s 20
+-0yL$,I5x%}lYffH_/@7
+
+$ ./rndm pass -Ss 20
+MvVS&!H8rCvIJEe;(Zjp
+
+$ # se quiser uma senha com números e símbolos:
+$ ./rndm pass --numeric --allow-symbols
+1}!5,@]2
+```
+
+Acho que ficou bem legal nosso gerador de senhas. Vamos fazer mais um commit e ir finalizando o artigo.
+
+## Finalizando
+
+Neste artigo eu espero que uma coisa tenha ficado bem evidente: focamos mais nas _features_ da nossa aplicação do que em qualquer outra coisa.
+
+Todo o rolê de lidar com subcomandos, fazer parsing de argumentos, detectar argumentos conflitantes... Toda essa complexidade colateral foi resolvido com algumas poucas linhas no nosso YAML. Essa é a beleza do Bashly! Ele te diz: "vai lá focar nas features que você quer entregar pro seu usuário, deixa que eu cuido do trabalho chato".
+
+Só esse help lindão já é uma grande demonstração de algo que seria extremamente maçante e propenso a erros e esquecimentos, mas que é resolvido "de graça" pelo Bashly:
+
+```
+$ ./rndm password --help
+rndm password - Generates a random password
+
+Alias: passwd, pass, p
+
+Usage:
+  rndm password [OPTIONS]
+  rndm password --help | -h
+
+Options:
+  --size, -s PASSWORD_SIZE
+    Number of characters in the generated password
+    Default: 8
+
+  --numeric, -n
+    Generates a numeric password
+    Conflicts: --alpha
+
+  --alpha, -a
+    Generates a password using only letters from the alphabet
+    Conflicts: --numeric
+
+  --allow-symbols, -S
+    Allow special characters in the generated password
+
+  --help, -h
+    Show this help
+``` 
+
+Vamos dar uma olhada também na estrutura do nosso projeto:
+
+```
+$ tree
+.
+├── rndm
+└── src
+    ├── bashly.yml
+    ├── lib
+    │   ├── password_functions.sh
+    │   ├── random_number_functions.sh
+    │   └── validations.sh
+    ├── number_command.sh
+    └── password_command.sh
+
+2 directories, 7 files
+```
+
+Percebe-se que é um projetinho simples, porém com um acabamento e uma interface bem sólida.
+
+## Principais aprendizados
+
+- criar subcomandos
+- definir um subcomando como o comando padrão
+- criar aliases
+- declarar argumentos mutuamente exclusivos (`conflict`)
+
+## Referências
+
+[Documentação do Bashly](https://bashly.dev/).
