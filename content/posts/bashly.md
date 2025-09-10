@@ -62,6 +62,7 @@ Para ilustrar como criar um CLI robusto usando o Bashly, criaremos um programa g
 O Bashly é uma gem do Ruby. Na ecossistema Ruby nós chamamos de _gem_ os pacotes de software (como um npm package para o NodeJS, ou um crate para o Rust).
 
 **Observação**: apesar de ser desenvolvido em Ruby:
+
 - você **não** precisa saber nada de Ruby para usar o Bashly.
 - o usuário do seu script **não** precisa ter Ruby instalado.
 
@@ -340,10 +341,10 @@ else
 fi
 ```
 
-Agora podemos gerar o script novamente, com `bashly generate`, 
+Agora podemos gerar o script novamente, com `bashly generate`,
 
-> ### Agilizando o `bashly generate`.
-> 
+> ### Agilizando o `bashly generate`
+>
 > Você vai começar a notar que precisaremos executar o `bashly generate` a cada alteração nos arquivos. Uma maneira de agilizar esse processo é simplesmente abrir um outro terminal e executar:
 >
 > ```
@@ -477,7 +478,6 @@ Gere e execute o `rndm` novamente para certificar-se de que tudo está funcionan
 Uma coisa legal que vimos aqui é que o Bashly pegou o conteúdo de `src/lib/random_number_functions.sh` e colocou na versão final do script (o arquivo `rndm`). Por isso que conseguimos chamar as funções que criamos sem precisar ficar se preocupando em fazer `source` de arquivos.
 
 De fato o Bashly pega o conteúdo de qualquer arquivo `src/lib/*.sh`, e coloca no script final. Portanto essa é uma excelente maneira de você modularizar seu código, permitindo que cada arquivo tenha um objetivo bem definido e específico, deixando seu código mais organizado e legível.
-
 
 ## Usando `--opções-com argumento`
 
@@ -638,9 +638,9 @@ flags:
   - long: --max
     arg: max
     help: Specifies the maximum number to be generated
-	# Veja como é simples atribuir um valor default!
-	# Obs.: as "aspas" são necessárias para que o valor
-	#       seja considerado uma string, e não um número.
+ # Veja como é simples atribuir um valor default!
+ # Obs.: as "aspas" são necessárias para que o valor
+ #       seja considerado uma string, e não um número.
     default: "32767"
 ```
 
@@ -733,7 +733,7 @@ if [[ "${args[--web]}" ]]; then
 else
   generate_random_number "$max_number"
 fi
-``` 
+```
 
 Conferindo:
 
@@ -930,28 +930,27 @@ E isso é apenas uma breve introdução ao Bashly. Se você gostaria que eu escr
 #### O comando `bashly`
 
 - Bashly é uma gem Ruby que depende do Ruby 3.2+.
-    - não é necessário conhecimento de Ruby para usar Bashly
+  - não é necessário conhecimento de Ruby para usar Bashly
 - o comando `bashly generate` lê o arquivo `src/bashly.yml` e gera o script final
-    - use `bashly generate --watch` para ficar monitorando alterações e gerar automaticamente.
+  - use `bashly generate --watch` para ficar monitorando alterações e gerar automaticamente.
 
 #### Arquivos de código
 
 - o arquivo `src/bashly.yml` é um YAML que é como se fosse um contrato da interface entre nossa aplicação e o usuário.
-    - podemos especificar dependências definindo `dependencies:`.
+  - podemos especificar dependências definindo `dependencies:`.
 - o arquivo `src/root_command.sh` é a "porta de entrada" da aplicação.
 - arquivos `src/lib/*.sh` são todos colocados no script final.
 
 #### Argumentos da linha de comando
 
 - flags
-    - valores ficam em `${args[--nome-da-flag]}`
-    - flags booleanas possuem valor `1` quando utilizadas
+  - valores ficam em `${args[--nome-da-flag]}`
+  - flags booleanas possuem valor `1` quando utilizadas
 - validação de argumento:
-    - na configuração da flag:`validate: function_name`
-    - função `validate_function_name` será executada antes de usar o input do usuário.
-    - se `validate_function_name` imprimir qualquer coisa em stdout, programa aborta.
+  - na configuração da flag:`validate: function_name`
+  - função `validate_function_name` será executada antes de usar o input do usuário.
+  - se `validate_function_name` imprimir qualquer coisa em stdout, programa aborta.
 
 ## Referências
 
 [Documentação do Bashly.](https://bashly.dev)
-

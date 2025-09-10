@@ -76,6 +76,7 @@ params:
   tocOpen: false
   showCodeCopyButtons: true
   showBreadCrumbs: true
+  comments: true
 
   # sugerir outros posts ao final
   # (não gostei do fato de ficar acima dos links de compartilhamento)
@@ -100,7 +101,7 @@ params:
     - name: github
       url: "https://github.com/meleu"
     - name: twitter
-      url: "https://twitter.com/meleushell"
+      url: "https://x.com/meleuzord"
     - name: rss
       url: "index.xml"
   # TODO: adicionar link para o youtube, quanto tiver
@@ -136,10 +137,26 @@ params:
       - summary
       - content
 
+  # habilitando comentários:
+  #############################################################################
+  giscus:
+    repo: "meleu/meleudotsh"
+    repoId: "R_kgDOG_9USg"
+    category: "Announcements"
+    categoryId: "DIC_kwDOG_9USs4ChHrL"
+    mapping: "pathname"
+    strict: "0"
+    reactionsEnabled: "1"
+    emitMetadata: "0"
+    inputPosition: "bottom"
+    theme: "transparent_dark"
+    lang: "pt"
+    loading: "lazy"
+
 # config de busca
 # https://adityatelange.github.io/hugo-PaperMod/posts/papermod/papermod-features/#search-page
 outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON
+home:
+  - HTML
+  - RSS
+  - JSON
